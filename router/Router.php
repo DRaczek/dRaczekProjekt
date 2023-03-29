@@ -1,0 +1,39 @@
+<?php
+include("MVC/controllers/HomeController.php");
+include("MVC/controllers/AuthController.php");
+
+class Router {
+    public function __construct(){
+
+    }
+
+    /**
+     * Funkcja służąca do routingu.
+    */
+    function routeRequest($requestUri, $routes) {
+        //petla sprawdza czy podany adres pasuje do $routes
+        foreach ($routes as $route => $params) {
+            // zamienia zmienne w adresie URL na wyrażenia regularne
+            //np. '/users/123' na '/users/(\d+)', co później jest wykorzystane do przypisania argumentu do wyrażenia regularnego
+            $pattern = str_replace(':id', '(\d+)', $route);
+    
+            // dopasowuje adres URL do wzorca i pobiera pasujące zmienne
+            // ^ - początek łancucha znaków
+            // $ - koniec łańcucha znaków
+            // # - delimiter (php wyrzuca błąd, jeżeli ich nie ma), oddzielają wyrażenia regularne od ich flag
+            // Jeśli adres URL pasuje do wzorca, funkcja preg_match() przypisuje dopasowane wartości do zmiennej $matches,
+            // która jest tablicą asocjacyjną, w której klucze odpowiadają kolejnym dopasowanym wyrażeniom regularnym w $pattern,
+            // a wartości to pasujące wartości w adresie URL.
+            if (preg_match('#^'.$pattern.'$#', $requestUri, $matches)) {
+                $controller = new $params['controller']();
+                $action = $params['action'];
+                // usuwa pierwszy element, bo pierwszy element zawiera cały URL.
+                $params = array_slice($matches, 1);
+                //wywołuje $controller->$action($params);
+                call_user_func_array(array($controller, $action), $params);
+                return true;
+            }
+        }
+        return false;
+    }
+  }
