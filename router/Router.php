@@ -16,6 +16,7 @@ class Router {
             // zamienia zmienne w adresie URL na wyrażenia regularne
             //np. '/users/123' na '/users/(\d+)', co później jest wykorzystane do przypisania argumentu do wyrażenia regularnego
             $pattern = str_replace(':id', '(\d+)', $route);
+            $pattern = str_replace(":token", '([A-Za-z\d]+)', $pattern);
     
             // dopasowuje adres URL do wzorca i pobiera pasujące zmienne
             // ^ - początek łancucha znaków
