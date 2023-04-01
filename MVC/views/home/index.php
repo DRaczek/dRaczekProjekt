@@ -11,7 +11,8 @@
         <?php
             if(isset($_SESSION['user_id'])){
                 echo "Zalogowano jako : ".$_SESSION['user_email']."<br>";
-                echo "<a href=\"logout\">wyloguj się</a>";
+                echo "<a href=\"logout\">wyloguj się</a><br>";
+                echo "<a href=\"user\">Szczegóły użytkownika</a>";
             }
             else{
                 echo "<a href=\"login\">Zaloguj się</a>";

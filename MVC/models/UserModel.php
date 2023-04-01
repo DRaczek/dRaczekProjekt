@@ -37,18 +37,18 @@ class UserModel{
         $dbh = null;
     }
 
-    public function isEmailUnique($email){
+    public function isEmailTaken($email){
         $dbh = include("MVC/models/Database.php");
         $query = "SELECT COUNT(*) FROM users WHERE email = ?";
         $stmt = $dbh->prepare($query);
         $stmt->execute([$email]);
-        $count = $stmt->fetch();
+        $count = ($stmt->fetch())[0];
         $dbh = null;
         if($count>0){
-            return false;
+            return true;
         }
         else{
-            return true;
+            return false;
         }
         
     }
@@ -78,5 +78,26 @@ class UserModel{
         $password = password_hash($password, PASSWORD_DEFAULT);
         $stmt->execute([$password, $user_id]);
         $dbh = null;
+    }
+
+    public function getUser($userId){
+        $dbh = include("MVC/models/Database.php");
+        $query = "SELECT email, first_name, last_name, date_of_birth FROM users WHERE id = ? AND status = ?";
+        $stmt = $dbh->prepare($query);
+        $stmt->execute([$userId, (int)StatusEnum::ACTIVE]);
+        $dbh = null;
+        return $stmt->fetch();
+    }
+
+    public function editUser($firstName, $lastName, $dateOfBirth, $userId){
+        $dbh = include("MVC/models/Database.php");
+        $query = "UPDATE users SET first_name = ?, last_name = ?, date_of_birth = ?, user_id_last_modified = ?, last_modified_date = ? WHERE id = ?";
+        $stmt = $dbh->prepare($query);
+        $stmt->execute([$firstName, $lastName, $dateOfBirth, $userId, (new DateTime())->format('Y-m-d H:i:s'), $userId]);
+        $dbh = null;
+    }
+
+    public function displayChangePasswordPage(){
+        
     }
 }

@@ -1,6 +1,4 @@
 <?php
-include("MVC/controllers/HomeController.php");
-include("MVC/controllers/AuthController.php");
 
 class Router {
     public function __construct(){
