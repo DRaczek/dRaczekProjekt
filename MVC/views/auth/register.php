@@ -7,17 +7,6 @@
     <title>Document</title>
 </head>
 <body>
-    <div style="border:5px dashed red;">
-        <?php
-            if(isset($_SESSION['user_id'])){
-                echo "Zalogowano jako : ".$_SESSION['user_email']."<br>";
-                echo "<a href=\"logout\">wyloguj się</a>";
-            }
-            else{
-                echo "<a href=\"login\">Zaloguj się</a>";
-            }
-        ?>
-    </div>
     Strona rejestracji.<br>
     <form action="register/sendForm" method="post">
         <input type="email" name="email" placeholder="E-mail"><Br>

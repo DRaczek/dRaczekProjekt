@@ -7,6 +7,10 @@
     '/dRaczekProjekt/register/sendForm' => array('controller' => 'AuthController', 'action' => 'registrationProcess'),
     '/dRaczekProjekt/register/verify/:token' => array('controller' => 'AuthController', 'action' => 'registrationVerify'),
     '/dRaczekProjekt/login/sendForm' => array('controller' => 'AuthController', 'action' => 'loginProcess'),
-    '/dRaczekProjekt/logout' => array('controller' => 'AuthController', 'action' => 'logout')
+    '/dRaczekProjekt/logout' => array('controller' => 'AuthController', 'action' => 'logout'),
+    '/dRaczekProjekt/resetPassword/stepOne' => array('controller' => 'AuthController', 'action' => 'displayStepOnePasswordReset'),
+    '/dRaczekProjekt/resetPassword/stepOne/send' => array('controller' => 'AuthController', 'action' => 'stepOnePasswordReset'),
+    '/dRaczekProjekt/resetPassword/stepTwo/token/:token' => array('controller' => 'AuthController', 'action' => 'displayStepTwoPasswordReset'),
+    '/dRaczekProjekt/resetPassword/stepTwo/send' => array('controller' => 'AuthController', 'action' => 'stepTwoPasswordReset')
 );
 ?>

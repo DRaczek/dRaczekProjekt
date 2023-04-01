@@ -61,4 +61,22 @@ class UserModel{
         $dbh = null;
         return $stmt->fetch();
     }
+
+    public function getActiveUserIdByEmail($email){
+        $dbh = include("MVC/models/Database.php");
+        $query = "SELECT id, email FROM users WHERE email = ? AND status = ?";
+        $stmt = $dbh->prepare($query);
+        $stmt->execute([$email, (int)StatusEnum::ACTIVE]);
+        $dbh = null;
+        return $stmt->fetch();
+    }
+
+    public function resetUserPassword($user_id, $password){
+        $dbh = include("MVC/models/Database.php");
+        $query = "UPDATE users SET password = ? WHERE id = ?";
+        $stmt = $dbh->prepare($query);
+        $password = password_hash($password, PASSWORD_DEFAULT);
+        $stmt->execute([$password, $user_id]);
+        $dbh = null;
+    }
 }

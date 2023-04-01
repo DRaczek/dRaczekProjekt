@@ -4,17 +4,22 @@ class AuthController{
     public function __construct(){
 
     }
-    public function displayLoginPage(){
-        include("MVC/views/auth/login.php");
-    }
-    public function displayRegisterPage(){
-        include("MVC/views/auth/register.php");
+    public function checkIfLoggedInAndRedirect(){
+        if(isset($_SESSION['user_id'])){
+            header("Location:home");
+        }
     }
 
     /**
      * Metody związane z rejestracją konta w systemie.
      */
+    public function displayRegisterPage(){
+        $this->checkIfLoggedInAndRedirect();
+        include("MVC/views/auth/register.php");
+    }
+
     public function registrationProcess(){
+        $this->checkIfLoggedInAndRedirect();
         if(isset($_POST['submit'])){
             try{
                 $this->registrationValidation();
@@ -53,6 +58,7 @@ class AuthController{
     }
 
     public function registrationVerify(){
+        $this->checkIfLoggedInAndRedirect();
         $uri = $_SERVER['REQUEST_URI'];
         $parts = explode("/", $uri);
         $token = end($parts);
@@ -169,8 +175,16 @@ class AuthController{
     /**
      * Metody związane z logowaniem użytkownika do systemu.
      */
+    public function displayLoginPage(){
+        $this->checkIfLoggedInAndRedirect();
+        if(isset($_SESSION['user_id'])){
+            header("Location:home");
+        }
+        include("MVC/views/auth/login.php");
+    }
 
     public function loginProcess(){
+        $this->checkIfLoggedInAndRedirect();
         if(!isset($_POST['email']) || !isset($_POST['password'])){
             $_SESSION['message'] = "Podane dane są nieprawidłowe.";
             header("Location:../login");
@@ -201,6 +215,111 @@ class AuthController{
      */
     public function logout(){
         include("logout.php");
+    }
+
+    /**
+     * Metody związane z resetowaniem zapomnianego hasła do konta.
+     */
+    public function displayStepOnePasswordReset(){
+        $this->checkIfLoggedInAndRedirect();
+        include("MVC/views/auth/stepOneResetPassword.php");
+    }
+
+    public function stepOnePasswordReset(){
+        $this->checkIfLoggedInAndRedirect();
+        if(!isset($_POST['email']) && !isset($_POST['submit'])){
+            $_SESSION['message'] = "Nie wszystkie pola zostały wysłane.";
+            header("Location:../stepOne");
+        }
+        $email = $_POST['email'];
+        $userModel = new UserModel();
+        $result = $userModel->getActiveUserIdByEmail($email);
+        if($result==null){
+            $_SESSION['message'] = "Konto o podanym mailu nie istnieje lub jest niedostępne.";
+            header("Location:../stepOne");
+        }
+        else{
+            include("config/predefindedUsers.php");
+            $token = bin2hex(random_bytes(32));
+            $tokenModel = new TokenModel();
+            $tokenModel->saveToken($token, TokenActionEnum::STEP_ONE_RESET_PASSWORD, $result['id'], $System_user_id);
+            $this->sendStepOneResetPasswordMail($result['email'], $token);
+            $_SESSION['message'] = "Na podany mail wysłano link do drugiego etapu resetu hasła.";
+            header("Location:../stepOne");
+        }
+    }
+
+    private function sendStepOneResetPasswordMail($email, $token){
+        $to = $email;
+        $subject = 'Reset hasła';
+        $message = 'Witaj, aby zresetować swoje hasło przejdź do strony pod linkiem: '.
+            'localhost/dRaczekProjekt/resetPassword/stepTwo/token/'.$token;
+        $headers = 'From: draczekprojekt@gmail.com' . "\r\n" .
+            'Reply-To: draczekprojekt@gmail.com' . "\r\n" .
+            'X-Mailer: PHP/' . phpversion();
+        mail($to, $subject, $message, $headers);
+    }
+
+    public function displayStepTwoPasswordReset(){
+        $this->checkIfLoggedInAndRedirect();
+        $uri = $_SERVER['REQUEST_URI'];
+        $parts = explode("/", $uri);
+        $token = end($parts);
+        $tokenModel = new TokenModel();
+        $result = $tokenModel->checkToken($token);
+        if($result===false || $result['action']!=(int)TokenActionEnum::STEP_ONE_RESET_PASSWORD){
+            $_SESSION['message'] = "Nieprawidłowy token";
+            include("MVC/views/auth/stepTwoResetPassword.php");
+            exit();
+        }
+        $_SESSION['token']=$token;
+        include("MVC/views/auth/stepTwoResetPassword.php");
+    }
+
+    public function stepTwoPasswordReset(){
+        $this->checkIfLoggedInAndRedirect();
+        if(!isset($_POST['submit'])
+        || !isset($_POST['token'])
+        || !isset($_POST['password'])
+        || !isset($_POST['repeatPassword'])){
+            header("Location:../stepOne");  
+        }
+
+        try{
+            $dbh = include("MVC/models/Database.php");
+            $dbh->beginTransaction();
+    
+            $token = $_POST['token'];
+            $tokenModel = new TokenModel();
+            $result = $tokenModel->checkToken($token);
+            if($result===false || $result['action']!=(int)TokenActionEnum::STEP_ONE_RESET_PASSWORD){
+                header("Location:../stepOne");  
+            }
+            $password = $_POST['password'];
+            $repeatPassword = $_POST['repeatPassword'];
+          
+            $violations = array();
+            try{
+                $this->validatePassword($password, $repeatPassword, $violations);
+            }
+            catch(Exception $e){
+                $_SESSION['message'] = implode("", $violations);
+                header("Location:resetPassword/stepTwo/token/".$token);  
+                $dbh=null;
+            }
+            $userModel = new UserModel();
+            $userModel->resetUserPassword($result['user_id'], $password);
+            $tokenModel->deleteToken($token);
+            $_SESSION['message'] = "Hasło zostało zmienionie";
+            header("Location:../stepOne");     
+        }
+        catch(PDOException $e){
+            $dbh->rollback();
+            $dbh = null;
+            $_SESSION['message'] ="Wystąpił błąd";
+            header("Location:../stepOne");  
+        }
+        $dbh=null;
     }
 
 }
