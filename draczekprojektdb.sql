@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 29 Mar 2023, 21:27
+-- Czas generowania: 01 Kwi 2023, 23:16
 -- Wersja serwera: 10.4.27-MariaDB
 -- Wersja PHP: 8.0.25
 
@@ -48,7 +48,26 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `first_name`, `last_name`, `date_of_birth`, `created_date`, `user_id_created`, `last_modified_date`, `user_id_last_modified`, `status`) VALUES
-(1, 'SYSTEM', 'SYSTEM', 'SYSTEM', 'SYSTEM', '2013-03-01', '2023-03-29 21:19:32', 1, '2023-03-29 21:19:32', 1, 1);
+(1, 'SYSTEM', 'SYSTEM', 'SYSTEM', 'SYSTEM', '2013-03-01', '2023-03-29 21:19:32', 1, '2023-03-29 21:19:32', 1, 1),
+(49, 'godzina.wychowawcza12@gmail.com', '$2y$10$c/0o6ddDlWIdW80CuzDTKO/bjBVV9o6yI3erfustyD/F7Mn/qtR6C', 'Damianawd', 'Raczekawd', '2022-12-30', '2023-04-01 22:02:34', 1, '2023-04-01 22:48:54', 49, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `users_token_action`
+--
+
+CREATE TABLE `users_token_action` (
+  `id` bigint(20) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `action` tinyint(3) UNSIGNED NOT NULL,
+  `user_id` bigint(20) NOT NULL,
+  `created_date` datetime NOT NULL,
+  `user_id_created` bigint(20) NOT NULL,
+  `last_modified_date` datetime NOT NULL,
+  `user_id_last_modified` bigint(20) NOT NULL,
+  `status` tinyint(3) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
 
 --
 -- Indeksy dla zrzutów tabel
@@ -64,6 +83,16 @@ ALTER TABLE `users`
   ADD KEY `user_id_modified` (`user_id_last_modified`);
 
 --
+-- Indeksy dla tabeli `users_token_action`
+--
+ALTER TABLE `users_token_action`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_token_action_token_uidx` (`token`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `user_id_created` (`user_id_created`),
+  ADD KEY `user_id_last_modified` (`user_id_last_modified`);
+
+--
 -- AUTO_INCREMENT dla zrzuconych tabel
 --
 
@@ -71,7 +100,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+
+--
+-- AUTO_INCREMENT dla tabeli `users_token_action`
+--
+ALTER TABLE `users_token_action`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- Ograniczenia dla zrzutów tabel
@@ -84,6 +119,14 @@ ALTER TABLE `users`
   ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`user_id_created`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `users_ibfk_2` FOREIGN KEY (`user_id_created`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `users_ibfk_3` FOREIGN KEY (`user_id_last_modified`) REFERENCES `users` (`id`);
+
+--
+-- Ograniczenia dla tabeli `users_token_action`
+--
+ALTER TABLE `users_token_action`
+  ADD CONSTRAINT `users_token_action_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `users_token_action_ibfk_2` FOREIGN KEY (`user_id_created`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `users_token_action_ibfk_3` FOREIGN KEY (`user_id_last_modified`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
