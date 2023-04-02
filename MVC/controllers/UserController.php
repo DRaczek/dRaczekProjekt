@@ -8,6 +8,7 @@ class UserController{
     public function checkIfLoggedInAndRedirect(){
         if(!isset($_SESSION['user_id'])){
             header("Location:home");
+            exit();
         }
     }
 

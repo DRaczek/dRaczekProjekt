@@ -17,5 +17,14 @@
     '/dRaczekProjekt/user/edit/send' => array('controller' => 'UserController', 'action' => 'editUserDetailsPage'),
     '/dRaczekProjekt/user/changePassword' => array('controller' => 'UserController', 'action' => 'displayChangeUserPasswordPage'),
     '/dRaczekProjekt/user/changePassword/send' => array('controller' => 'UserController', 'action' => 'changeUserPassword'),
+    '/dRaczekProjekt/admin/login' => array('controller' => 'AdminController', 'action' => 'displayLoginAdminPage'),
+    '/dRaczekProjekt/admin/login/send' => array('controller' => 'AdminController', 'action' => 'loginAdmin'),
+    '/dRaczekProjekt/admin/home' => array('controller' => 'AdminController', 'action' => 'displayAdminHomePage'),
+    '/dRaczekProjekt/admin/manage/users' => array('controller' => 'AdminController', 'action' => 'displayManageUsersPage'),
+    '/dRaczekProjekt/admin/manage/users/:pageableUsers' => array('controller' => 'AdminController', 'action' => 'displayManageUsersPage'),
+    '/dRaczekProjekt/admin/manage/users/suspend/:id' => array('controller' => 'AdminController', 'action' => 'suspendUser'),
+    '/dRaczekProjekt/admin/manage/users/activate/:id' => array('controller' => 'AdminController', 'action' => 'activateUser'),
+    '/dRaczekProjekt/admin/manage/products' => array('controller' => 'AdminController', 'action' => 'displayManageProductsPage'),
+    '/dRaczekProjekt/admin/manage/categories' => array('controller' => 'AdminController', 'action' => 'displayManageCategoriesPage'),
 );
 ?>

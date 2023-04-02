@@ -8,6 +8,7 @@ class AuthController{
     public function checkIfLoggedInAndRedirect(){
         if(isset($_SESSION['user_id'])){
             header("Location:home");
+            exit();
         }
     }
 
@@ -95,12 +96,14 @@ class AuthController{
         if(!isset($_POST['email']) || !isset($_POST['password'])){
             $_SESSION['message'] = "Podane dane są nieprawidłowe.";
             header("Location:../login");
+            exit();
         }
         $email = $_POST['email'];
         $password = $_POST['password'];
         if(empty($email) || empty($password)){
             $_SESSION['message'] = "Podane dane są nieprawidłowe.";
             header("Location:../login");
+            exit();
         }
 
         $userModel = new UserModel();
@@ -137,6 +140,7 @@ class AuthController{
         if(!isset($_POST['email']) && !isset($_POST['submit'])){
             $_SESSION['message'] = "Nie wszystkie pola zostały wysłane.";
             header("Location:../stepOne");
+            exit();
         }
         $email = $_POST['email'];
         $userModel = new UserModel();
@@ -180,6 +184,7 @@ class AuthController{
         || !isset($_POST['password'])
         || !isset($_POST['repeatPassword'])){
             header("Location:../stepOne");  
+            exit();
         }
 
         try{
@@ -204,6 +209,7 @@ class AuthController{
                 $_SESSION['message'] = implode("", $violations);
                 header("Location:resetPassword/stepTwo/token/".$token);  
                 $dbh=null;
+                exit();
             }
             $userModel = new UserModel();
             $userModel->resetUserPassword($result['user_id'], $password);
