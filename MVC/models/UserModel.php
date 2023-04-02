@@ -96,8 +96,4 @@ class UserModel{
         $stmt->execute([$firstName, $lastName, $dateOfBirth, $userId, (new DateTime())->format('Y-m-d H:i:s'), $userId]);
         $dbh = null;
     }
-
-    public function displayChangePasswordPage(){
-        
-    }
 }
