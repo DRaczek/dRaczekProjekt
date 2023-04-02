@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 02 Kwi 2023, 19:51
+-- Czas generowania: 02 Kwi 2023, 22:13
 -- Wersja serwera: 10.4.27-MariaDB
 -- Wersja PHP: 8.0.25
 
@@ -22,6 +22,23 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `draczekprojektdb` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_polish_ci;
 USE `draczekprojektdb`;
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `categories`
+--
+
+CREATE TABLE `categories` (
+  `id` bigint(20) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `image_path` varchar(255) NOT NULL,
+  `created_date` datetime NOT NULL,
+  `user_id_created` bigint(20) NOT NULL,
+  `last_modified_date` datetime NOT NULL,
+  `user_id_last_modified` bigint(20) NOT NULL,
+  `status` tinyint(3) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
 
 -- --------------------------------------------------------
 
@@ -97,6 +114,13 @@ CREATE TABLE `users_token_action` (
 --
 
 --
+-- Indeksy dla tabeli `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
 -- Indeksy dla tabeli `users`
 --
 ALTER TABLE `users`
@@ -125,6 +149,12 @@ ALTER TABLE `users_token_action`
 --
 -- AUTO_INCREMENT dla zrzuconych tabel
 --
+
+--
+-- AUTO_INCREMENT dla tabeli `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT dla tabeli `users`

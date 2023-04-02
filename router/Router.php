@@ -16,6 +16,7 @@ class Router {
             $pattern = str_replace(':id', '(\d+)', $route);
             $pattern = str_replace(":token", '([A-Za-z\d]+)', $pattern);
             $pattern = str_replace(":pageableUsers", '((page=(\d)+)(&size=(\d)+)((&email=([A-Za-z\d])+)*)((&firstName=([A-Za-z\d])+)*)((&lastName=([A-Za-z\d])+)*)((&status=(\d)+)*)((&createdDate=([\d-])+)*)((&id=(\d)+)*))', $pattern);
+            $pattern = str_replace(":pageableCategories", '((page=(\d)+)(&size=(\d)+)((&name=([A-Za-z\d])+)*)((&status=(\d)+)*)((&createdDate=([\d-])+)*)((&id=(\d)+)*)((&orderBy=([A-Za-z_])+)*)((&order=([A-Za-z])+)*))', $pattern);
           
             // dopasowuje adres URL do wzorca i pobiera pasujące zmienne
             // ^ - początek łancucha znaków

@@ -26,5 +26,13 @@
     '/dRaczekProjekt/admin/manage/users/activate/:id' => array('controller' => 'AdminController', 'action' => 'activateUser'),
     '/dRaczekProjekt/admin/manage/products' => array('controller' => 'AdminController', 'action' => 'displayManageProductsPage'),
     '/dRaczekProjekt/admin/manage/categories' => array('controller' => 'AdminController', 'action' => 'displayManageCategoriesPage'),
+    '/dRaczekProjekt/admin/manage/categories/:pageableCategories' => array('controller' => 'AdminController', 'action' => 'displayManageCategoriesPage'),
+    '/dRaczekProjekt/admin/manage/categories/suspend/:id' => array('controller' => 'AdminController', 'action' => 'suspendCategory'),
+    '/dRaczekProjekt/admin/manage/categories/activate/:id' => array('controller' => 'AdminController', 'action' => 'activateCategory'),
+    '/dRaczekProjekt/admin/manage/categories/add' => array('controller' => 'AdminController', 'action' => 'displayAddCategoryPage'),
+    '/dRaczekProjekt/admin/manage/categories/add/send' => array('controller' => 'AdminController', 'action' => 'addCategory'),
+    '/dRaczekProjekt/admin/manage/categories/delete/:id' => array('controller' => 'AdminController', 'action' => 'deleteCategory'),
+    '/dRaczekProjekt/admin/manage/categories/edit/form/:id' => array('controller' => 'AdminController', 'action' => 'displayEditCategoryPage'),
+    '/dRaczekProjekt/admin/manage/categories/edit/send' => array('controller' => 'AdminController', 'action' => 'editCategory')
 );
 ?>
