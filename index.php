@@ -16,6 +16,8 @@
     
     include("MVC/models/MailSender.php");
 
+    include("MVC/models/FileUploadValidationHelper.php");
+
     session_start();
     
     $router = new Router('/app');
