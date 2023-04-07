@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 02 Kwi 2023, 22:13
+-- Czas generowania: 07 Kwi 2023, 10:48
 -- Wersja serwera: 10.4.27-MariaDB
 -- Wersja PHP: 8.0.25
 
@@ -39,6 +39,18 @@ CREATE TABLE `categories` (
   `user_id_last_modified` bigint(20) NOT NULL,
   `status` tinyint(3) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
+
+--
+-- Zrzut danych tabeli `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`, `image_path`, `created_date`, `user_id_created`, `last_modified_date`, `user_id_last_modified`, `status`) VALUES
+(19, 'kat1', 'img/uploads/categories/2023-04-06-23-47-52_img1.png', '2023-04-06 23:47:52', 49, '2023-04-06 23:48:23', 49, 2),
+(20, 'kat2', 'img/uploads/categories/2023-04-06-23-47-57_img2.png', '2023-04-06 23:47:57', 49, '2023-04-06 23:47:57', 49, 1),
+(21, 'kat3', 'img/uploads/categories/2023-04-06-23-48-02_img3.png', '2023-04-06 23:48:02', 49, '2023-04-06 23:48:02', 49, 1),
+(22, 'kat4', 'img/uploads/categories/2023-04-06-23-48-07_img4.png', '2023-04-06 23:48:07', 49, '2023-04-06 23:48:07', 49, 1),
+(23, 'kat5', 'img/uploads/categories/2023-04-06-23-48-12_img5.png', '2023-04-06 23:48:12', 49, '2023-04-06 23:48:12', 49, 1),
+(24, 'kat6', 'img/uploads/categories/2023-04-06-23-48-17_img6.png', '2023-04-06 23:48:17', 49, '2023-04-06 23:48:17', 49, 1);
 
 -- --------------------------------------------------------
 
@@ -154,7 +166,7 @@ ALTER TABLE `users_token_action`
 -- AUTO_INCREMENT dla tabeli `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT dla tabeli `users`
