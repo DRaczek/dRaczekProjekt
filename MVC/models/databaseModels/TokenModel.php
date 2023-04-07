@@ -5,7 +5,7 @@ class TokenModel{
 
     }
     public function saveToken($token, $action, $user_id, $user_id_created){
-        $dbh = include("MVC/models/Database.php");
+        $dbh = include("MVC/models/databaseModels/Database.php");
         $stmt = $dbh->prepare("INSERT INTO users_token_action (token, action, user_id, created_date, user_id_created, last_modified_date, user_id_last_modified, status) VALUES (?,?,?,?,?,?,?,?)");
         $stmt->execute([
             $token,
@@ -17,7 +17,7 @@ class TokenModel{
         $dbh = null;
     }
     public function checkToken($token){
-        $dbh = include("MVC/models/Database.php");
+        $dbh = include("MVC/models/databaseModels/Database.php");
         $stmt = $dbh->prepare("SELECT action, user_id FROM users_token_action where token = ?");
         $stmt->execute([$token]);
         $dbh = null;
@@ -29,7 +29,7 @@ class TokenModel{
         }
     }
     public function deleteToken($token){
-        $dbh = include("MVC/models/Database.php");
+        $dbh = include("MVC/models/databaseModels/Database.php");
         $stmt = $dbh->prepare("DELETE FROM users_token_action WHERE token = ?");
         $stmt->execute([$token]);
         $dbh = null;

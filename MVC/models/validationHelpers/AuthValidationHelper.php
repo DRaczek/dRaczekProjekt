@@ -1,28 +1,9 @@
 <?php
+include_once("MVC/models/validationHelpers/PasswordValidationHelper.php");
 
 class AuthValidationHelper{
     public function __construct(){
         
-    }
-
-    public function validateChangePasswordForm(){
-        $violations = array();
-        if(!isset($_POST['submit'])
-        || !isset($_POST['oldPassword'])
-        || !isset($_POST['password'])
-        || !isset($_POST['repeatPassword'])){
-            array_push($violations, "Nie wszystkie pola zostały przesłane<br>");
-        }
-        else{
-            $oldPassword = $_POST['oldPassword'];
-            $newPassword = $_POST['password'];
-            $repearNewPassword = $_POST['repeatPassword'];
-            $this->validatePassword($newPassword, $repearNewPassword, $violations);
-            $this->validatePassword($oldPassword, $oldPassword, $violations);
-        }
-        if(count($violations)>0){
-            throw new Exception(implode(" ", $violations));
-        }
     }
 
     public function validateEditUserForm(){
@@ -66,7 +47,8 @@ class AuthValidationHelper{
             $this->validateEmail($email, $violations);
             $this->validateName($firstName, $lastName, $violations);
             $this->validateDateOfBirth($dateOfBirth, $violations);
-            $this->validatePassword($password, $repeatPassword, $violations);
+            $passwordValidationHelper = new PasswordValidationHelper();
+            $passwordValidationHelper->validatePassword($password, $repeatPassword, $violations);
         }
         if(count($violations)>0){
             throw new Exception(implode(" ", $violations));
@@ -115,18 +97,6 @@ class AuthValidationHelper{
             if(strtotime("1850-01-01")>$date){
                 array_push($violations, "Podana data urodzenia jest niepoprawna.<br>");
             }
-        }
-    }
-
-    public function validatePassword($password, $repeatPassword, &$violations){
-        if(empty($password)){
-            array_push($violations, "Nie podano hasła<br>");
-        }
-        if($password!=$repeatPassword){
-            array_push($violations, "Podane hasła nie są take same.<br>");
-        }
-        if (!preg_match( '/^[A-Za-z\d]{8,40}$/', $password)) {
-            array_push($violations, "Podane hasło nie jest poprawne. Hasło powinno składać się z wyłącznie liczb lub cyfr od 8 do 40<br>");
         }
     }
 }

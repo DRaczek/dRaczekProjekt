@@ -16,7 +16,9 @@ class FileUploadValidationHelper{
             if($this->checkAcceptableExtensions($file_name, $violations)){
                 $this->checkImageSize($file['tmp_name'], $violations);
             }
-            
+            if(strlen($target_file)>250){
+                array_push($violations, "Nazwa pliku jest za długa.<br>");
+            }
         }
         else{
             array_push($violations, "Podczas przesyłania pliku wystąpił błąd.<br>");
