@@ -2,21 +2,17 @@
     require_once("router/routes.php");
     require_once("router/Router.php");
 
-    include("MVC/controllers/HomeController.php");
-    include("MVC/controllers/AuthController.php");
-    include("MVC/controllers/UserController.php");
-    include("MVC/controllers/AdminController.php");
+    include_once("MVC/controllers/HomeController.php");
+    include_once("MVC/controllers/AuthController.php");
+    include_once("MVC/controllers/UserController.php");
+    include_once("MVC/controllers/AdminController.php");
+    include_once("MVC/controllers/AdminCategoryController.php");
+    include_once("MVC/controllers/AdminProductController.php");
 
-    include("MVC/models/StatusEnum.php");
-    include("MVC/models/TokenActionEnum.php");
-
-    include("MVC/models/UserModel.php");
-    include("MVC/models/TokenModel.php");
-    include("MVC/models/AdminModel.php");
-    
-    include("MVC/models/MailSender.php");
-
-    include("MVC/models/FileUploadValidationHelper.php");
+    include_once("MVC/models/enumerated/StatusEnum.php");
+    include_once("MVC/models/enumerated/TokenActionEnum.php");
+    include_once("MVC/models/enumerated/ProductColourEnum.php");
+    include_once("MVC/models/enumerated/ProductSizeEnum.php");
 
     session_start();
     

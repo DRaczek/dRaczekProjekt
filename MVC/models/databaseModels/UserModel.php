@@ -5,7 +5,7 @@ class UserModel{
     }
 
     public function registerUser($email, $firstName, $lastName, $dateOfBirth, $password, $user_id){
-        $dbh = include("MVC/models/Database.php");
+        $dbh = include("MVC/models/databaseModels/Database.php");
         $query = "INSERT INTO users(email, password, first_name, last_name, date_of_birth, created_date, user_id_created, last_modified_date, user_id_last_modified, status) ";
         $query .= "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $dbh->prepare($query);
@@ -29,7 +29,7 @@ class UserModel{
     }
 
     public function activateUser($user_id){
-        $dbh = include("MVC/models/Database.php");
+        $dbh = include("MVC/models/databaseModels/Database.php");
         $acitveStatus = (int)StatusEnum::ACTIVE;
         $query = "UPDATE users SET status = ? WHERE id = ?";
         $stmt = $dbh->prepare($query);
@@ -38,7 +38,7 @@ class UserModel{
     }
 
     public function isEmailTaken($email){
-        $dbh = include("MVC/models/Database.php");
+        $dbh = include("MVC/models/databaseModels/Database.php");
         $query = "SELECT COUNT(*) FROM users WHERE email = ?";
         $stmt = $dbh->prepare($query);
         $stmt->execute([$email]);
@@ -54,7 +54,7 @@ class UserModel{
     }
 
     public function loginUser($email){
-        $dbh = include("MVC/models/Database.php");
+        $dbh = include("MVC/models/databaseModels/Database.php");
         $query = "SELECT id, first_name, email, password FROM users WHERE email = ? AND status = ?";
         $stmt = $dbh->prepare($query);
         $stmt->execute([$email, (int)StatusEnum::ACTIVE]);
@@ -63,7 +63,7 @@ class UserModel{
     }
 
     public function getActiveUserIdByEmail($email){
-        $dbh = include("MVC/models/Database.php");
+        $dbh = include("MVC/models/databaseModels/Database.php");
         $query = "SELECT id, email FROM users WHERE email = ? AND status = ?";
         $stmt = $dbh->prepare($query);
         $stmt->execute([$email, (int)StatusEnum::ACTIVE]);
@@ -72,7 +72,7 @@ class UserModel{
     }
 
     public function resetUserPassword($user_id, $password){
-        $dbh = include("MVC/models/Database.php");
+        $dbh = include("MVC/models/databaseModels/Database.php");
         $query = "UPDATE users SET password = ? WHERE id = ?";
         $stmt = $dbh->prepare($query);
         $password = password_hash($password, PASSWORD_DEFAULT);
@@ -81,7 +81,7 @@ class UserModel{
     }
 
     public function getUser($userId){
-        $dbh = include("MVC/models/Database.php");
+        $dbh = include("MVC/models/databaseModels/Database.php");
         $query = "SELECT email, first_name, last_name, date_of_birth FROM users WHERE id = ? AND status = ?";
         $stmt = $dbh->prepare($query);
         $stmt->execute([$userId, (int)StatusEnum::ACTIVE]);
@@ -90,7 +90,7 @@ class UserModel{
     }
 
     public function editUser($firstName, $lastName, $dateOfBirth, $userId){
-        $dbh = include("MVC/models/Database.php");
+        $dbh = include("MVC/models/databaseModels/Database.php");
         $query = "UPDATE users SET first_name = ?, last_name = ?, date_of_birth = ?, user_id_last_modified = ?, last_modified_date = ? WHERE id = ?";
         $stmt = $dbh->prepare($query);
         $stmt->execute([$firstName, $lastName, $dateOfBirth, $userId, (new DateTime())->format('Y-m-d H:i:s'), $userId]);
