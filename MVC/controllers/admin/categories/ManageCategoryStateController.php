@@ -1,6 +1,7 @@
 <?php
 include_once("MVC/models/databaseModels/AdminCategoryModel.php");
 include_once("MVC/controllers/admin/categories/AdminCategoryController.php");
+include_once("MVC/models/validationHelpers/DeleteCategoryValidationHelper.php");
 
 class ManageCategoryStateController extends AdminCategoryController{
     public function __construct(){
@@ -44,6 +45,15 @@ class ManageCategoryStateController extends AdminCategoryController{
         $this->RedirectIfAdminNotLoggedIn();
         $adminCategoryModel = new AdminCategoryModel();
         $location="../../categories".((isset($_COOKIE['category_pageable']))?"?".$_COOKIE['category_pageable']:"");
+        try{
+            $deleteCategoryValidationHelper = new DeleteCategoryValidationHelper();
+            $deleteCategoryValidationHelper->validate($id);
+        }
+        catch(Exception $e){
+            $_SESSION['message'] = $e->getMessage();
+            header("Location:$location");
+            exit();
+        }
         try{
             $path = $adminCategoryModel->deleteCategory($id);
             if(file_exists($path)){
