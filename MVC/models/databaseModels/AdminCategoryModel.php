@@ -179,4 +179,14 @@ class AdminCategoryModel{
         $dbh = null;
         return $path;
     }
+
+    public function getProdutsCount($categoryId){
+        $dbh = include("MVC/models/databaseModels/Database.php");
+        $query = "SELECT COUNT(id) FROM products WHERE category_id = ?";
+        $stmt = $dbh->prepare($query);
+        $stmt->execute([$categoryId]);
+        $count = $stmt->fetch()[0];
+        $dbh = null;
+        return $count;
+    }
 }
