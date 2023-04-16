@@ -15,9 +15,9 @@ class Router {
             //np. '/users/123' na '/users/(\d+)', co później jest wykorzystane do przypisania argumentu do wyrażenia regularnego
             $pattern = str_replace(':id', '(\d+)', $route);
             $pattern = str_replace(":token", '([A-Za-z\d]+)', $pattern);
-            $pattern = str_replace(":pageableUsers", '((page=(\d)+)(&size=(\d)+)((&email=([A-Za-z\d])+)*)((&firstName=([A-Za-z\d])+)*)((&lastName=([A-Za-z\d])+)*)((&status=(\d)+)*)((&createdDate=([\d-])+)*)((&id=(\d)+)*))', $pattern);
-            $pattern = str_replace(":pageableCategories", '((page=(\d)+)(&size=(\d)+)((&name=([A-Za-z\d])+)*)((&status=(\d)+)*)((&createdDate=([\d-])+)*)((&id=(\d)+)*)((&orderBy=([A-Za-z_])+)*)((&order=([A-Za-z])+)*))', $pattern);
-            $pattern = str_replace(":pageableProducts", '((page=(\d)+)(&size=(\d)+)((&name=([A-Za-z\d])+)*)((&categoryId=(\d)+)*)((&description=([a-zA-Z0-9.,:;"\'() \n-])+)*)((&priceFrom=(\d+(?:\.\d+)?))*)((&priceTo=(\d+(?:\.\d+)?))*)((&quantityFrom=(\d)+)*)((&quantityTo=(\d)+)*)((&productSize=(\d)+)*)((&colour=(\d)+)*)((&viewCountFrom=(\d)+)*)((&viewCountTo=(\d)+)*)((&status=(\d)+)*)((&createdDate=([\d-])+)*)((&id=(\d)+)*)((&orderBy=([A-Za-z_])+)*)((&order=([A-Za-z])+)*))', $pattern);
+            $pattern = str_replace(":pageableUsers", '\?((page=(\d)+)(&size=(\d)+)((&email=([A-Za-z\d])+)*)((&firstName=([A-Za-z\d])+)*)((&lastName=([A-Za-z\d])+)*)((&status=(\d)+)*)((&createdDate=([\d-])+)*)((&id=(\d)+)*)((&orderBy=([A-Za-z_])+)*)((&order=([A-Za-z])+)*))', $pattern);
+            $pattern = str_replace(":pageableCategories", '\?((page=(\d)+)(&size=(\d)+)((&name=([A-Za-z\d])+)*)((&status=(\d)+)*)((&createdDate=([\d-])+)*)((&id=(\d)+)*)((&orderBy=([A-Za-z_])+)*)((&order=([A-Za-z])+)*))', $pattern);
+            $pattern = str_replace(":pageableProducts", '\?((page=(\d)+)(&size=(\d)+)((&name=([A-Za-z\d])+)*)((&categoryId=(\d)+)*)((&description=([a-zA-Z0-9.,:;"\'() \n-])+)*)((&priceFrom=(\d+(?:\.\d+)?))*)((&priceTo=(\d+(?:\.\d+)?))*)((&quantityFrom=(\d)+)*)((&quantityTo=(\d)+)*)((&productSize=(\d)+)*)((&colour=(\d)+)*)((&viewCountFrom=(\d)+)*)((&viewCountTo=(\d)+)*)((&status=(\d)+)*)((&createdDate=([\d-])+)*)((&id=(\d)+)*)((&orderBy=([A-Za-z_])+)*)((&order=([A-Za-z])+)*))', $pattern);
           
             // dopasowuje adres URL do wzorca i pobiera pasujące zmienne
             // ^ - początek łancucha znaków
@@ -27,6 +27,11 @@ class Router {
             // która jest tablicą asocjacyjną, w której klucze odpowiadają kolejnym dopasowanym wyrażeniom regularnym w $pattern,
             // a wartości to pasujące wartości w adresie URL.
             if (preg_match('#^'.$pattern.'$#', $requestUri, $matches)) {
+                $controllerUri="";
+                if(isset($params['path']))$controllerUri = $params['path'];
+                else $controllerUri = "MVC/controllers/";
+                $controllerUri.=$params['controller'];
+                include_once($controllerUri.".php");
                 $controller = new $params['controller']();
                 $action = $params['action'];
                 // usuwa pierwszy element, bo pierwszy element zawiera cały URL.

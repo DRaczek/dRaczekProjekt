@@ -1,12 +1,20 @@
-<?php
+?<?php
+include_once("MVC/controllers/user/userPanel/UserController.php");
 include_once("MVC/models/databaseModels/UserModel.php");
 include_once("MVC/models/validationHelpers/ChangePasswordValidationHelper.php");
 
-class ChangeUserPasswordService{
+class ChangeUserPasswordController extends UserController{
     public function __construct(){
 
     }
-    public function changePassword(){
+
+    public function displayChangeUserPasswordPage(){
+        $this->RedirectIfNotLoggedIn();
+        include("MVC/views/user/changePassword.php");
+    }
+
+    public function changeUserPassword(){
+        $this->RedirectIfNotLoggedIn();
         try{
             $validationHelper = new ChangePasswordValidationHelper();
             $validationHelper->validateChangePasswordForm();

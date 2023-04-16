@@ -1,12 +1,22 @@
 <?php
+include_once("MVC/controllers/user/auth/AuthController.php");
 include_once("MVC/models/databaseModels/UserModel.php");
 
-class LoginService{
+class LoginUserController extends AuthController{
     public function __construct(){
 
     }
 
-    public function login(){
+    public function displayLoginPage(){
+        $this->RedirectIfLoggedIn();
+        if(isset($_SESSION['user_id'])){
+            header("Location:home");
+        }
+        include("MVC/views/auth/login.php");
+    }
+
+    public function loginProcess(){
+        $this->RedirectIfLoggedIn();
         if(!isset($_POST['email']) || !isset($_POST['password'])){
             $_SESSION['message'] = "Podane dane są nieprawidłowe.";
             header("Location:../login");
@@ -33,5 +43,4 @@ class LoginService{
             header("Location:../login");
         }
     }
-    
 }
