@@ -1,13 +1,20 @@
 <?php
+include_once("MVC/controllers/admin/categories/AdminCategoryController.php");
 include_once("MVC/models/databaseModels/AdminCategoryModel.php");
 include_once("MVC/models/validationHelpers/FileUploadValidationHelper.php");
 
-class AddCategoryService{
+class AddCategoryController extends AdminCategoryController{
     public function __construct(){
 
     }
 
+    public function displayAddCategoryPage(){
+        $this->RedirectIfAdminNotLoggedIn();
+        include("MVC/views/admin/addCategoryPage.php");
+    }
+
     public function addCategory(){
+        $this->RedirectIfAdminNotLoggedIn();
         if(!isset($_FILES['image'])
         || !isset($_POST['submit'])
         || !isset($_POST['name'])){
@@ -46,4 +53,6 @@ class AddCategoryService{
         $_SESSION['message'] = "Poprawnie dodano kategorię.";
         header("Location:../add");
     }
+
+    
 }

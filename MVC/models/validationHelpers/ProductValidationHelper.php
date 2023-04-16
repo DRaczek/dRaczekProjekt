@@ -8,7 +8,7 @@ class ProductValidationHelper{
 
     }
 
-    public function validate(){
+    public function validate($edit=false){
         $violations = array();
         $targetFiles = null;
         if(!isset($_POST['submit'])
@@ -21,8 +21,10 @@ class ProductValidationHelper{
         || !isset($_POST['price'])
         || !isset($_POST['quantity'])
         || !isset($_POST['size'])
-        || !isset($_POST['colour'])
-        || !isset($_POST['id'])){
+        || !isset($_POST['colour'])){
+            array_push($violations, "Nie wszystkie pola zostały przesłane<br>");
+        }
+        else if($edit===true && !isset($_POST['id'])){
             array_push($violations, "Nie wszystkie pola zostały przesłane<br>");
         }
         else{

@@ -1,13 +1,22 @@
 <?php
+include_once("MVC/controllers/user/userPanel/UserController.php");
 include_once("MVC/models/databaseModels/UserModel.php");
 include_once("MVC/models/validationHelpers/AuthValidationHelper.php");
 
-class EditUserDetailsService{
+class EditUserDetailsController extends UserController{
     public function __construct(){
 
     }
 
-    public function edit(){
+    public function displayEditUserDetailsPage(){
+        $this->RedirectIfNotLoggedIn();
+        $userModel = new UserModel();
+        $user = $userModel->getUser($_SESSION['user_id']);
+        include("MVC/views/user/editUserDetails.php");
+    }
+
+    public function editUserDetailsPage(){
+        $this->RedirectIfNotLoggedIn();
         try{
             $validationHelper = new AuthValidationHelper();
             $validationHelper->validateEditUserForm();
@@ -26,6 +35,6 @@ class EditUserDetailsService{
             $_SESSION['message'] = "Nie udało się edytować danych użytkownika";
         }
         $_SESSION['message'] = "Poprawnie zedytowano dane użytkownika";
-        header("Location:../../user");
+        header("Location:../../user");    
     }
 }

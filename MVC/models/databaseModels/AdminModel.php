@@ -17,10 +17,13 @@ class AdminModel{
      * User management.
      */
 
-    public function searchUsersCount($email=null, $firstName=null, $lastName=null, $status=null, $createdDate=null){
+    public function searchUsersCount($email=null, $firstName=null, $lastName=null, $status=null, $createdDate=null, $id=null){
         $dbh = include("MVC/models/databaseModels/Database.php");
         include("config/predefindedUsers.php");
         $query = "SELECT Count(*) FROM users WHERE id != :id";
+        if($id===0 || !empty($id)){
+            $query.=" AND `id` = :userId ";
+        }
         if(!empty($email)){
             $query.=" AND `email` LIKE(:email) ";
         }
@@ -30,7 +33,7 @@ class AdminModel{
         if(!empty($lastName)){
             $query.=" AND `last_name` LIKE(:lastName) ";
         }
-        if(!empty($status)){
+        if($status===0 || !empty($status)){
             $query.=" AND `status` LIKE(:status) ";
         }
         if(!empty($createdDate)){
@@ -40,6 +43,10 @@ class AdminModel{
         $stmt = $dbh->prepare($query);
 
         $stmt->bindParam(':id', $System_user_id, PDO::PARAM_INT);
+
+        if($id===0 || !empty($id)){
+            $stmt->bindParam(':userId', $id, PDO::PARAM_INT);
+        }
         if(!empty($email)){
             $email = "%$email%";
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
@@ -52,7 +59,7 @@ class AdminModel{
             $lastName = "%$lastName%";
             $stmt->bindParam(':lastName', $lastName, PDO::PARAM_STR);
         }
-        if(!empty($status)){
+        if($status===0 || !empty($status)){
             $status = "%$status%";
             $stmt->bindParam(':status', $status, PDO::PARAM_STR);
         }
@@ -66,11 +73,14 @@ class AdminModel{
         return $stmt->fetch();
     }
 
-    public function searchUsers($firstResultIdx, $pageSIze, $email=null, $firstName=null, $lastName=null, $status=null, $createdDate=null){
+    public function searchUsers($firstResultIdx, $pageSIze, $email=null, $firstName=null, $lastName=null, $status=null, $createdDate=null, $id=null, $orderBy=null, $order=null){
         $dbh = include("MVC/models/databaseModels/Database.php");
         include("config/predefindedUsers.php");
         $query = "SELECT id, email, first_name, last_name, status, created_date FROM users WHERE `id`!=:id";
 
+        if($id===0 || !empty($id)){
+            $query.=" AND `id` = :userId ";
+        }
         if(!empty($email)){
             $query.=" AND `email` LIKE(:email) ";
         }
@@ -80,11 +90,14 @@ class AdminModel{
         if(!empty($lastName)){
             $query.=" AND `last_name` LIKE(:lastName) ";
         }
-        if(!empty($status)){
+        if($status===0 || !empty($status)){
             $query.=" AND `status` LIKE(:status) ";
         }
         if(!empty($createdDate)){
             $query.=" AND `created_date` LIKE(:createdDate) ";
+        }
+        if(!empty($orderBy) && !empty($order)){
+            $query.=" ORDER BY $orderBy $order ";
         }
 
         $query.=" LIMIT :firstResult, :pageSize";
@@ -95,6 +108,9 @@ class AdminModel{
         $stmt->bindParam(':firstResult', $firstResultIdx, PDO::PARAM_INT);
         $stmt->bindParam(':pageSize', $pageSIze, PDO::PARAM_INT);
 
+        if($id===0 || !empty($id)){
+            $stmt->bindParam(':userId', $id, PDO::PARAM_INT);
+        }
         if(!empty($email)){
             $email = "%$email%";
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
@@ -107,7 +123,7 @@ class AdminModel{
             $lastName = "%$lastName%";
             $stmt->bindParam(':lastName', $lastName, PDO::PARAM_STR);
         }
-        if(!empty($status)){
+        if($status===0 || !empty($status)){
             $status = "%$status%";
             $stmt->bindParam(':status', $status, PDO::PARAM_STR);
         }

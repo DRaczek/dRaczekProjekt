@@ -1,13 +1,19 @@
 <?php
 include_once("MVC/models/databaseModels/AdminCategoryModel.php");
 include_once("MVC/models/validationHelpers/FileUploadValidationHelper.php");
+include_once("MVC/controllers/admin/categories/AdminCategoryController.php");
 
-class EditCategoryService{
+class EditCategoryController extends AdminCategoryController{
     public function __construct(){
 
     }
-    
-    public function edit(){
+
+    public function displayEditCategoryPage($id){
+        include("MVC/views/admin/editCategoryPage.php");
+    }
+
+    public function editCategory(){
+        $this->RedirectIfAdminNotLoggedIn();
         if(!isset($_FILES['image'])
         || !isset($_POST['submit'])
         || !isset($_POST['name'])
@@ -52,4 +58,5 @@ class EditCategoryService{
         $_SESSION['message'] = "Poprawnie zmieniono kategorię.";
         header("Location:../edit/form/$id");
     }
+
 }

@@ -117,7 +117,7 @@
             </table>
             <?php
                     if($page>1){
-                        echo "<a href=\"/dRaczekProjekt/admin/manage/products/page=".($page-1)."&size=$pageSize";
+                        echo "<a href=\"/dRaczekProjekt/admin/manage/products?page=".($page-1)."&size=$pageSize";
                         if($name!==null)echo "&name=$name";
                         if($categoryId!==null)echo "&categoryId=$categoryId";
                         if($description!==null)echo "&description=$description";
@@ -138,7 +138,7 @@
                     }
                     echo $page;
                     if($page*$pageSize < $resultCount){
-                        echo "<a href=\"/dRaczekProjekt/admin/manage/products/page=".($page+1)."&size=$pageSize";
+                        echo "<a href=\"/dRaczekProjekt/admin/manage/products?page=".($page+1)."&size=$pageSize";
                         if($name!==null)echo "&name=$name";
                         if($categoryId!==null)echo "&categoryId=$categoryId";
                         if($description!==null)echo "&description=$description";
@@ -165,9 +165,10 @@
             <?php
                 }
                 echo "<h3>Filter</h3>";
-                echo " <form action=\"/dRaczekProjekt/admin/manage/products/page=".($page)."&size=$pageSize\" method=\"post\">"   
+                echo " <form action=\"/dRaczekProjekt/admin/manage/products\" method=\"get\" id=\"filterForm\">"   
             ?>
-                    Id:<input type="text" name="id" <?php echo "value=\"$id\""; ?>><br>
+                    <input type="hidden" name="page" value = <?php echo $page; ?>>
+                    <input type="hidden" name="size" value = <?php echo $pageSize; ?>>
                     Nazwa:<input type="text" name="name" <?php echo "value=\"$name\""; ?>><br>
                     Kategoria:<select name="categoryId">
                         <option value="999">ALL</option>
@@ -206,7 +207,8 @@
                         <option value="1" <?php if($status===1)echo "selected";?>>ACTIVE</option>
                         <option value="2" <?php if($status===2)echo "selected";?>>SUSPENDED</option>
                     </select> <br>
-                    Created date:<input type="date" name="created_date" <?php echo "value=\"$createdDate\""; ?>><br>
+                    Created date:<input type="date" name="createdDate" <?php echo "value=\"$createdDate\""; ?>><br>
+                    Id:<input type="text" name="id" <?php echo "value=\"$id\""; ?>><br>
                     Sortowanie : <Br>
                     <select name="orderBy">
                         <option value="created_date" <?php if($orderBy=="created_date")echo "selected";?>>Data utworzenia</option>
@@ -227,6 +229,30 @@
                     <input type="submit" name="submit" value="Szukaj">
                 </form>
                 <a href="/dRaczekProjekt/admin/manage/products">Wyczyść filtry</a>
+
+                <script>
+                document.querySelector("#filterForm input[name=submit]").addEventListener("click", submitForm);
+                function submitForm(event) {
+                    event.preventDefault(); // Zapobieganie domyślnej akcji wysłania formularza
+                    var form = document.getElementById("filterForm");
+                    var inputs = form.querySelectorAll("input, select");
+                    var queryString = "";
+
+                    // Pobieranie wartości wprowadzonych przez użytkownika i tworzenie ciągu zapytania
+                    // jezeli pole jest puste, to nie jest przesyłane
+                    for (var i = 0; i < inputs.length; i++) {
+                        if (inputs[i].value !== "" && inputs[i].name !== "submit") {
+                            if (queryString !== "") {
+                                queryString += "&";
+                            }
+                            queryString += inputs[i].name + "=" + encodeURIComponent(inputs[i].value);
+                        }
+                    }
+
+                    // Przekierowanie do nowego adresu URL z użyciem tylko uzupełnionych pól
+                    window.location.href = form.action + "?" + queryString;
+                }
+            </script>
     </div>
 </body>
 </html>

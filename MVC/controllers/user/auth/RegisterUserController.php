@@ -1,16 +1,23 @@
 <?php
+include_once("MVC/controllers/user/auth/AuthController.php");
 include_once("MVC/models/validationHelpers/AuthValidationHelper.php");
 include_once("MVC/models/databaseModels/UserModel.php");
 include_once("MVC/models/databaseModels/TokenModel.php");
 include_once("MVC/models/MailSender.php");
 
-class RegistrationService{
+class RegisterUserController extends AuthController{
     public function __construct(){
 
     }
 
-    public function registerUser(){
-        if(isset($_POST['submit'])){
+    public function displayRegisterPage(){
+        $this->RedirectIfLoggedIn();
+        include("MVC/views/auth/register.php");
+    }
+
+    public function registrationProcess(){
+        $this->RedirectIfLoggedIn();
+      if(isset($_POST['submit'])){
             try{
                 $validationHelper = new AuthValidationHelper();
                 $validationHelper->registrationValidation();
@@ -21,7 +28,7 @@ class RegistrationService{
                 exit();
             }
             try{
-                $dbh = include("MVC/models/Database.php");
+                $dbh = include("MVC/models/databaseModels/Database.php");
                 $dbh->beginTransaction();
 
                 include("config/predefindedUsers.php");
@@ -49,7 +56,8 @@ class RegistrationService{
         }
     }
 
-    public function verifyRegistration($token){
+    public function registrationVerify($token){
+        $this->RedirectIfLoggedIn();
         $tokenModel = new TokenModel();
         $result = $tokenModel->checkToken($token);
         if($result===false){

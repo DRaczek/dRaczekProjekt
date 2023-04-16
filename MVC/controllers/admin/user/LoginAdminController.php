@@ -1,12 +1,20 @@
 <?php
+include_once("MVC/controllers/admin/user/AdminController.php");
 include_once("MVC/models/databaseModels/AdminModel.php");
 
-class LoginAdminService{
+class LoginAdminController extends AdminController{
     public function __construct(){
-
+        
     }
 
-    public function login(){
+    public function displayLoginAdminPage(){
+        if(isset($_SESSION['user_is_admin']) && $_SESSION['user_is_admin']===true)header("Location:home");
+        include("MVC/views/admin/loginPage.php");
+    }
+
+    public function loginAdmin(){
+        if(isset($_SESSION['user_is_admin']) && $_SESSION['user_is_admin']===true)header("Location:../home");
+        
         if(!isset($_POST['submit']) || !isset($_POST['email']) || !isset($_POST['password'])){
             $_SESSION['message'] = "Nie wszystkie dane zostały przesłane.";
             header("Location:../login");
@@ -38,5 +46,4 @@ class LoginAdminService{
             header("Location:../login");
         }
     }
-
 }

@@ -1,18 +1,27 @@
 <?php
+include_once("MVC/controllers/admin/products/AdminProductController.php");
+include_once("MVC/models/databaseModels/CategoryModel.php");
 include_once("MVC/models/validationHelpers/ProductValidationHelper.php");
 include_once("MVC/models/databaseModels/AdminProductModel.php");
-include_once("MVC/models/databaseModels/CategoryModel.php");
 
-class AddProductService{
+class AddProductController extends AdminProductController{
     public function __construct(){
 
     }
 
-    public function add(){
+    public function displayAddProductPage(){
+        $this->RedirectIfAdminNotLoggedIn();
+        $categoryModel = new CategoryModel();
+        $categories = $categoryModel->getCategories();
+        include("MVC/views/admin/addProductPage.php");
+    }
+
+    public function addProduct(){
+        $this->RedirectIfAdminNotLoggedIn();
         //walidacja
         try{
             $validationHelper = new ProductValidationHelper();
-            $targetFiles = $validationHelper->validate();
+            $targetFiles = $validationHelper->validate(false);
             
         }
         catch(Exception $e){
