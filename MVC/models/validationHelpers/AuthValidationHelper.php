@@ -76,10 +76,10 @@ class AuthValidationHelper{
         if(empty($lastName)){
             array_push($violations, "Nie podano nazwiska<br>");
         }
-        if (!preg_match('/^[a-zA-Z]{2,50}$/', $firstName)) {
+        if (!preg_match('/^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]{2,50}$/', $firstName)) {
             array_push($violations, "Podane imię jest niepoprawne.<br>");
         }
-        if (!preg_match('/^[a-zA-Z]{2,50}+$/', $lastName)) {
+        if (!preg_match('/^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]{2,50}+$/', $lastName)) {
             array_push($violations, "Podane nazwisko jest niepoprawne.<br>");
         }
     }

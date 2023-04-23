@@ -55,6 +55,8 @@
     
     <div class ="summary">
         <div id = "price"><?php echo $summary ?></div>
+
+        <a href="order/data">Złóż zamówienie</a>
     </div>
 
     <script>

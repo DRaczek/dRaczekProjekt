@@ -47,6 +47,9 @@
     '/dRaczekProjekt/cart' => array('controller' => 'DisplayCartViewController', 'action' => 'displayCartView', 'path' => 'MVC/controllers/cart/'),
     '/dRaczekProjekt/cart/delete/:id' => array('controller' => 'DeleteFromCartController', 'action' => 'delete', 'path' => 'MVC/controllers/cart/'),
     '/dRaczekProjekt/cart/update' => array('controller' => 'UpdateCartValueController', 'action' => 'update', 'path' => 'MVC/controllers/cart/'),
-    
+    '/dRaczekProjekt/order/data' => array('controller' => 'TakeOrderController', 'action' => 'displayOrderPage', 'path' => 'MVC/controllers/order/'),
+    '/dRaczekProjekt/order/summary' => array('controller' => 'OrderSummaryController', 'action' => 'displayOrderSummaryPage', 'path' => 'MVC/controllers/order/'),
+    '/dRaczekProjekt/order/submit' => array('controller' => 'SubmitOrderController', 'action' => 'submit', 'path' => 'MVC/controllers/order/'),
+    '/dRaczekProjekt/order/:id' => array('controller' => 'DisplayOrderPageController', 'action' => 'displayOrderPage', 'path' => 'MVC/controllers/order/'),
 );
 ?>

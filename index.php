@@ -6,6 +6,8 @@
     include_once("MVC/models/enumerated/TokenActionEnum.php");
     include_once("MVC/models/enumerated/ProductColourEnum.php");
     include_once("MVC/models/enumerated/ProductSizeEnum.php");
+    include_once("MVC/models/enumerated/OrderStatusEnum.php");
+    include_once("MVC/models/enumerated/PaymentStatusEnum.php");
 
     session_start();
     
