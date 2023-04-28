@@ -1,7 +1,8 @@
 <?php
 include_once("MVC/models/databaseModels/UserModel.php");
+include_once("MVC/controllers/Controller.php");
 
-class UserController{
+class UserController extends Controller{
     public function __construct(){
 
     }

@@ -1,0 +1,10 @@
+:root{
+    --header-height:75px;
+}
+
+header{
+    background-color: red;
+    height: var(--header-height);
+    position:fixed;
+    width: 100%;
+}

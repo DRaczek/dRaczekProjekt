@@ -1,7 +1,8 @@
 <?php
 include_once("MVC/models/databaseModels/ProductModel.php");
+include_once("MVC/controllers/cart/CartController.php");
 
-class DisplayCartViewController{
+class DisplayCartViewController extends CartController{
     public function __construct(){
 
     }

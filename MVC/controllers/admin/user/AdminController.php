@@ -1,6 +1,6 @@
 <?php
-
-class AdminController{
+include_once("MVC/controllers/Controller.php");
+class AdminController extends Controller{
     public function __construct(){
 
     }

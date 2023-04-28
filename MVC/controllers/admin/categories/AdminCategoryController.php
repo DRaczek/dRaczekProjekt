@@ -1,6 +1,6 @@
 <?php
-
-class AdminCategoryController{
+include_once("MVC/controllers/Controller.php");
+class AdminCategoryController extends Controller{
     public function __construct(){
 
     }

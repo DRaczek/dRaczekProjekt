@@ -1,6 +1,7 @@
 <?php
+include_once("MVC/controllers/Controller.php");
 
-class AuthController{
+class AuthController extends Controller{
     public function __construct(){
 
     }

@@ -1,6 +1,7 @@
 <?php
+include_once("MVC/controllers/cart/CartController.php");
 
-class DeleteFromCartController{
+class DeleteFromCartController extends CartController{
     public function __construct(){
         
     }

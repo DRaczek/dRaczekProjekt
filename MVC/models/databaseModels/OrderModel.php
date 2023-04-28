@@ -54,6 +54,78 @@ class OrderModel{
         $dbh = null;
     }
 
-  
-   
+    public function getOrder($id){
+        $dbh = include("MVC/models/databaseModels/Database.php");
+        $query = "SELECT * FROM orders WHERE id = ? AND status = ?";
+        $stmt = $dbh->prepare($query);
+        $stmt->execute([$id, StatusEnum::ACTIVE]);
+        
+        $result = array();
+        $result['order'] = $stmt->fetch();
+        if(!is_array($result['order'])){
+            $dbh=null;
+            return false;
+            exit();
+        }
+
+        $query = "SELECT products.id as id, image_path_1, name, orders_products.quantity as quantity FROM orders_products INNER JOIN products ON products.id=orders_products.product_id WHERE order_id = ? AND orders_products.status = ?";
+        $stmt = $dbh->prepare($query);
+        $stmt->execute([$id, StatusEnum::ACTIVE]);
+        
+        $result['products'] = $stmt->fetchAll();
+
+        $dbh = null;
+        return $result;
+    }
+
+    public function getOrderValue($id){
+        $dbh = include("MVC/models/databaseModels/Database.php");
+        $query = "SELECT SUM(p.price*op.quantity) FROM orders_products op INNER JOIN products p ON p.id=op.product_id WHERE order_id = ? AND op.status = ?";
+        $stmt = $dbh->prepare($query);
+        $stmt->execute([$id, StatusEnum::ACTIVE]);
+
+        $sum = $stmt->fetch()[0];
+
+        $query = "SELECT price FROM delivery_methods WHERE delivery_methods.id = (SELECT delivery_id FROM orders o WHERE o.id = ? AND o.status = ? LIMIT 1)";
+        $stmt = $dbh->prepare($query);
+        $stmt->execute([$id, StatusEnum::ACTIVE]);
+    
+        $sum += $stmt->fetch()[0];
+
+        $dbh = null;
+        return $sum;
+    }
+
+    public function orderExistsAndIsAvailable($id, $userId){
+        $dbh = include("MVC/models/databaseModels/Database.php");
+        $query = "SELECT COUNT(id) as liczba FROM orders WHERE id = ? AND status = ? AND user_id = ?";
+        $stmt = $dbh->prepare($query);
+        $stmt->execute([$id, StatusEnum::ACTIVE, $userId]);;
+        $result = $stmt->fetch()['liczba'];
+        $dbh = null;
+        if($result==1){
+            return true;
+        }
+        return false;
+    }
+
+    public function getOrderPaymentStatus($id){
+        $dbh = include("MVC/models/databaseModels/Database.php");
+        $query = "SELECT payment_status FROM orders WHERE id = ? AND status = ?";
+        $stmt = $dbh->prepare($query);
+        $stmt->execute([$id, StatusEnum::ACTIVE]);;
+        $result = $stmt->fetch()['payment_status'];
+        $dbh = null;
+        return $result;
+    }
+
+    public function simulateOrderPayment($id){
+        $dbh = include("MVC/models/databaseModels/Database.php");
+        $query = "UPDATE orders SET payment_status = ? WHERE id = ?";
+        $stmt = $dbh->prepare($query);
+        $stmt->execute([PaymentStatusEnum::PAID, $id]);
+        $dbh = null;
+    }
+
+    
 }

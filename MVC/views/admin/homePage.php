@@ -23,5 +23,6 @@
     <p><a href="../admin/manage/users">Manage users</a></p>
     <p><a href="../admin/manage/categories">Manage categories</a></p>
     <p><a href="../admin/manage/products">Manage products</a></p>
+    <p><a href="../admin/manage/orders">Manage orders</a></p>
 </body>
 </html>

@@ -1,8 +1,9 @@
 <?php
 include_once("MVC/models/validationHelpers/OrderValidationHelper.php");
 include_once("MVC/models/databaseModels/OrderModel.php");
+include_once("MVC/controllers/order/OrderController.php");
 
-class SubmitOrderController{
+class SubmitOrderController extends OrderController{
     public function __construct(){
 
     }

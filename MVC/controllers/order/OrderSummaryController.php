@@ -3,8 +3,9 @@ include_once("MVC/models/databaseModels/ProductModel.php");
 include_once("MVC/models/databaseModels/DeliveryModel.php");
 include_once("MVC/models/databaseModels/PaymentMethodsModel.php");
 include_once("MVC/models/validationHelpers/OrderValidationHelper.php");
+include_once("MVC/controllers/order/OrderController.php");
 
-class OrderSummaryController{
+class OrderSummaryController extends OrderController{
     public function __construct(){
 
     }

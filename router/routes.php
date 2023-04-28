@@ -51,5 +51,9 @@
     '/dRaczekProjekt/order/summary' => array('controller' => 'OrderSummaryController', 'action' => 'displayOrderSummaryPage', 'path' => 'MVC/controllers/order/'),
     '/dRaczekProjekt/order/submit' => array('controller' => 'SubmitOrderController', 'action' => 'submit', 'path' => 'MVC/controllers/order/'),
     '/dRaczekProjekt/order/:id' => array('controller' => 'DisplayOrderPageController', 'action' => 'displayOrderPage', 'path' => 'MVC/controllers/order/'),
+    '/dRaczekProjekt/order/payment/:id' => array('controller' => 'OrderPaymentController', 'action' => 'displayPaymentPage', 'path' => 'MVC/controllers/order/'),
+    '/dRaczekProjekt/order/pay/:id' => array('controller' => 'OrderPaymentController', 'action' => 'pay', 'path' => 'MVC/controllers/order/'),
+    '/dRaczekProjekt/admin/manage/orders' => array('controller' => 'ManageOrdersController', 'action' => 'displayManageOrdersPage', 'path' => 'MVC/controllers/admin/order/'),
+    '/dRaczekProjekt/admin/manage/orders?:pageableOrders' => array('controller' => 'ManageOrdersController', 'action' => 'displayManageOrdersPage', 'path' => 'MVC/controllers/admin/order/'),
 );
 ?>
