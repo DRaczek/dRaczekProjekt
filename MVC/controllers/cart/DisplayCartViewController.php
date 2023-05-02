@@ -1,6 +1,7 @@
 <?php
 include_once("MVC/models/databaseModels/ProductModel.php");
 include_once("MVC/controllers/cart/CartController.php");
+include_once("MVC/models/databaseModels/CategoryModel.php");
 
 class DisplayCartViewController extends CartController{
     public function __construct(){
@@ -22,10 +23,20 @@ class DisplayCartViewController extends CartController{
             $summary+=$product['price']* $product['quantity'];
         }
         unset($product);
-        // uniewaznienie referencji
-        echo "<pre>";
-        print_r($koszyk);
-        echo "</pre>";
-        include("MVC/views/cart/cartView.php");
+
+        $data = array();
+        $categoryModel = new CategoryModel();
+        $headerData = array(
+            "categories"=>$categoryModel->getCategories()
+        );
+        $data['summary'] = $summary;
+        $data['cart'] = $koszyk;
+        $data['categories'] = $headerData['categories'];
+        $data['header']=$this->loadView("MVC/views/common/header", $headerData, true);
+        $data['footer']=$this->loadView("MVC/views/common/footer", null, true);
+        $data['styles']='<link rel="stylesheet" href="/dRaczekProjekt/css/header.css">
+        <link rel="stylesheet" href="/dRaczekProjekt/css/footer.css">
+        <link rel="stylesheet" href="/dRaczekProjekt/css/basicLayout.css">';
+        $this->loadView("MVC/views/cart/cartView", $data, false);
     }
 }

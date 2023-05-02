@@ -7,12 +7,11 @@ class AdminProductModel{
 
     public function isProductNameTaken($name, $id=null){
         $dbh = include("MVC/models/databaseModels/Database.php");
-        $query = "SELECT COUNT(*) FROM products WHERE LOWER(name) LIKE ?";
+        $query = "SELECT COUNT(*) FROM products WHERE LOWER(name) = ?";
         if($id!=null && !empty($id)){
             $query.=" AND id != ? ";
         }
         $stmt = $dbh->prepare($query);
-        $name = "%$name%";
         $name = mb_strtolower($name);
         $params = array($name);
         if($id!=null && !empty($id)){
@@ -39,10 +38,11 @@ class AdminProductModel{
                                     $quantity,
                                     $size,
                                     $colour,
-                                    $user_id){
+                                    $user_id,
+                                    $gender){
         $dbh = include("MVC/models/databaseModels/Database.php");
-        $query = "INSERT INTO `products` (`name`, `category_id`, `image_path_1`, `image_path_2`, `image_path_3`, `description`, `price`, `quantity`, `size`, `colour`, `view_count`, `last_modified_date`, `user_id_last_modified`, `created_date`, `user_id_created`, `status`) ";
-        $query .= "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO `products` (`name`, `category_id`, `image_path_1`, `image_path_2`, `image_path_3`, `description`, `price`, `quantity`, `size`, `colour`, `gender`, `view_count`, `last_modified_date`, `user_id_last_modified`, `created_date`, `user_id_created`, `status`) ";
+        $query .= "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $dbh->prepare($query);
         $stmt->execute([
             $name,
@@ -55,6 +55,7 @@ class AdminProductModel{
             $quantity,
             $size,
             $colour,
+            $gender,
             0,
             (new DateTime())->format('Y-m-d H:i:s'),
             $user_id,
@@ -74,13 +75,14 @@ class AdminProductModel{
                                     $quantity_from=null, $quantity_to=null,
                                     $size=null,
                                     $colour=null,
+                                    $gender=null,
                                     $viewCount_from=null, $viewCount_to=null,
                                     $status=null,
                                     $createdDate=null,
                                     $orderBy=null,
                                     $order=null){
         $dbh = include("MVC/models/databaseModels/Database.php");
-        $query = "SELECT products.id, products.name, category_id, categories.name as category_name, image_path_1, image_path_2, image_path_3, description, price, quantity, size, colour, view_count, products.status, products.created_date FROM products INNER JOIN categories ON categories.id=products.category_id WHERE 1=1";
+        $query = "SELECT products.id, products.name, category_id, categories.name as category_name, image_path_1, image_path_2, image_path_3, description, price, quantity, size, colour, gender, view_count, products.status, products.created_date FROM products INNER JOIN categories ON categories.id=products.category_id WHERE 1=1";
 
         if($id===0 || !empty($id)){
             $query.=" AND products.id = :productId ";
@@ -118,6 +120,9 @@ class AdminProductModel{
         }
         if($colour===0 || !empty($colour)){
             $query.=" AND `colour` = :colour ";
+        }
+        if($gender===0 || !empty($gender)){
+            $query.=" AND `gender` = :gender ";
         }
         if(!empty($viewCount_from) && !empty($viewCount_to)){
             $query.=" AND `view_count` BETWEEN :viewCount_from AND :viewCount_to ";
@@ -177,6 +182,9 @@ class AdminProductModel{
         if($colour===0 || !empty($colour)){
             $stmt->bindParam(':colour', $colour, PDO::PARAM_INT);
         }
+        if($gender===0 || !empty($gender)){
+            $stmt->bindParam(':gender', $gender, PDO::PARAM_INT);
+        }
         if(!empty($viewCount_from)){
             $stmt->bindParam(':viewCount_from', $viewCount_from, PDO::PARAM_INT);
         }
@@ -204,6 +212,7 @@ class AdminProductModel{
                                         $quantity_from=null, $quantity_to=null,
                                         $size=null,
                                         $colour=null,
+                                        $gender=null,
                                         $viewCount_from=null, $viewCount_to=null,
                                         $status=null,
                                         $createdDate=null){
@@ -245,6 +254,9 @@ class AdminProductModel{
         }
         if(!empty($colour)){
             $query.=" AND `colour` = :colour ";
+        }
+        if(!empty($gender)){
+            $query.=" AND `gender` = :gender ";
         }
         if(!empty($viewCount_from) && !empty($viewCount_to)){
             $query.=" AND `view_count` BETWEEN :viewCount_from AND :viewCount_to ";
@@ -295,6 +307,9 @@ class AdminProductModel{
         }
         if(!empty($colour)){
             $stmt->bindParam(':colour', $colour, PDO::PARAM_INT);
+        }
+        if(!empty($gender)){
+            $stmt->bindParam(':gender', $gender, PDO::PARAM_INT);
         }
         if(!empty($viewCount_from)){
             $stmt->bindParam(':viewCount_from', $viewCount_from, PDO::PARAM_INT);
@@ -366,9 +381,10 @@ class AdminProductModel{
                                 $quantity,
                                 $size,
                                 $colour,
+                                $gender,
                                 $user_id){
         $dbh = include("MVC/models/databaseModels/Database.php");
-        $query = "UPDATE `products` SET name = ?, category_id = ?, image_path_1 = ?, image_path_2 = ?, image_path_3 = ?, description = ?, price = ?, quantity = ?, size = ?, colour = ?, last_modified_date = ?, user_id_last_modified = ? WHERE id = ? ";
+        $query = "UPDATE `products` SET name = ?, category_id = ?, image_path_1 = ?, image_path_2 = ?, image_path_3 = ?, description = ?, price = ?, quantity = ?, size = ?, colour = ?, gender = ?, last_modified_date = ?, user_id_last_modified = ? WHERE id = ? ";
         $stmt = $dbh->prepare($query);
         $stmt->execute([
             $name,
@@ -381,6 +397,7 @@ class AdminProductModel{
             $quantity,
             $size,
             $colour,
+            $gender,
             (new DateTime())->format('Y-m-d H:i:s'),
             $user_id,
             $id]);

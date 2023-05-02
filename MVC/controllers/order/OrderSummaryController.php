@@ -4,6 +4,7 @@ include_once("MVC/models/databaseModels/DeliveryModel.php");
 include_once("MVC/models/databaseModels/PaymentMethodsModel.php");
 include_once("MVC/models/validationHelpers/OrderValidationHelper.php");
 include_once("MVC/controllers/order/OrderController.php");
+include_once("MVC/models/databaseModels/CategoryModel.php");    
 
 class OrderSummaryController extends OrderController{
     public function __construct(){
@@ -46,6 +47,21 @@ class OrderSummaryController extends OrderController{
         $deliveryModel = new DeliveryModel();
         $delivery = $deliveryModel->getPriceAndName($_POST['delivery_id']);
 
-        include("MVC/views/order/OrderSummaryPage.php");
+        $data = array();
+        $categoryModel = new CategoryModel();
+        $headerData = array(
+            "categories"=>$categoryModel->getCategories()
+        );
+        $data['cart'] = $koszyk;
+        $data['summary'] = $summary;
+        $data['delivery'] = $delivery;
+        $data['paymentMethodName'] = $paymentMethodName;
+        $data['categories'] = $headerData['categories'];
+        $data['header']=$this->loadView("MVC/views/common/header", $headerData, true);
+        $data['footer']=$this->loadView("MVC/views/common/footer", null, true);
+        $data['styles']='<link rel="stylesheet" href="/dRaczekProjekt/css/header.css">
+        <link rel="stylesheet" href="/dRaczekProjekt/css/footer.css">
+        <link rel="stylesheet" href="/dRaczekProjekt/css/basicLayout.css">';
+        $this->loadView("MVC/views/order/OrderSummaryPage", $data, false);
     }
 }

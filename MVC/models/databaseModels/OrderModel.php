@@ -54,11 +54,11 @@ class OrderModel{
         $dbh = null;
     }
 
-    public function getOrder($id){
+    public function getOrder($id, $userId){
         $dbh = include("MVC/models/databaseModels/Database.php");
-        $query = "SELECT * FROM orders WHERE id = ? AND status = ?";
+        $query = "SELECT * FROM orders WHERE id = ? AND status = ? AND user_id = ? ";
         $stmt = $dbh->prepare($query);
-        $stmt->execute([$id, StatusEnum::ACTIVE]);
+        $stmt->execute([$id, StatusEnum::ACTIVE, $userId]);
         
         $result = array();
         $result['order'] = $stmt->fetch();
@@ -68,7 +68,7 @@ class OrderModel{
             exit();
         }
 
-        $query = "SELECT products.id as id, image_path_1, name, orders_products.quantity as quantity FROM orders_products INNER JOIN products ON products.id=orders_products.product_id WHERE order_id = ? AND orders_products.status = ?";
+        $query = "SELECT products.id as id, image_path_1, name, orders_products.quantity as quantity, price FROM orders_products INNER JOIN products ON products.id=orders_products.product_id WHERE order_id = ? AND orders_products.status = ?";
         $stmt = $dbh->prepare($query);
         $stmt->execute([$id, StatusEnum::ACTIVE]);
         

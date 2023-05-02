@@ -65,6 +65,7 @@ class EditProductController extends AdminProductController{
                 $_POST['quantity'],
                 $_POST['size'],
                 $_POST['colour'],
+                $_POST['gender'],
                 $_SESSION['user_id']);
         }
         catch(Exception $e){

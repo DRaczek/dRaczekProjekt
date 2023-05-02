@@ -1,10 +1,99 @@
 :root{
     --header-height:75px;
+    --header-color:#393e46;
+    --header-details-color:#5c6470;
 }
 
 header{
-    background-color: red;
+    background-color: var(--header-color);
     height: var(--header-height);
     position:fixed;
     width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    z-index: 999;
 }
+
+header #logo{
+    position: relative;
+    height:var(--header-height);
+    width: auto;
+    padding: 10px;
+
+}
+header #searchbar-wrapper{
+    flex:1;
+    margin:0px 100px;
+}
+header #searchbar-wrapper form{
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex: 1;
+}
+
+header #searchbar-wrapper form input[type=text]{
+    flex: 1;
+}
+
+header #searchbar-wrapper form input,
+header #searchbar-wrapper form select{
+    border: 1px solid lightgray;
+    border-radius: 0px;
+    height: 40px;
+}
+
+header #header-items-wrapper{
+    display: flex;
+    min-width: 150px;
+    justify-content: space-evenly;
+    margin: 0px 20px;
+}
+
+header #header-items-wrapper .item img{
+    height: calc(0.5 * var(--header-height));
+    width: auto;
+}
+
+header #header-items-wrapper .item .details{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: none;
+    transform: translate(-90%, 0);
+    position: absolute;
+    height: auto;
+    padding: 10px;
+    background-color: var(--header-details-color);
+    color: white;
+    box-shadow: black 0px 0px 5px;
+    width: 400px;
+    flex-direction: column;
+}
+
+header #header-items-wrapper .item:hover > .details{
+    display: flex;
+}
+
+
+header #header-items-wrapper .item .details .user-details{
+    color: lightgray;
+}
+
+header #header-items-wrapper .item .details a {
+    padding: 10px 30px;
+    background-color: white;
+    text-decoration: none;
+    letter-spacing: 5px;    
+    box-shadow: black 0px 5px 2px;
+    margin: 10px;
+    transform: 0.2s;
+    text-align: center;
+}
+
+header #header-items-wrapper .item .details a:active{
+    transform: translate(0, 5px);
+    box-shadow: black 0px 0px 2px;
+}
+

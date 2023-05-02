@@ -37,6 +37,13 @@
                 }
             ?>
         </select><br>
+        Podaj płeć: <select name="gender">
+            <?php
+                foreach (GenderEnum::getConstants() as $constantName => $constantValue) {
+                    echo "<option value=\"$constantName\">$constantValue</option>";
+                }
+            ?>
+        </select><br>
         <input type="submit" value="Dodaj Produkt" name="submit">
     </form>
     <?php

@@ -1,0 +1,81 @@
+main{
+    margin: calc(var(--header-height) + 1%) 10%;
+    padding: 20px;
+    border: 1px solid lightgray;
+    box-shadow: lightgray 5px 5px 5px, lightgray -5px 5px 5px;
+}
+
+main .data{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+main .data .title, main .data .subtitle{
+    grid-column-end: span 2;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 600;
+    box-shadow: lightgray 5px 5px 5px, lightgray -5px 5px 5px !important;
+}
+
+main .data > span{
+    min-height: 30px;
+    padding: 10px 20px;
+}
+
+main .data .title{
+    background-color: gray;
+    color: white;
+}
+main .data .subtitle{
+    background-color: lightgray;
+}
+
+main .data span.value{  
+    border-bottom: 1px solid lightgray;
+    border-top: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+    box-shadow: lightgray 5px 5px 5px;
+}
+main .data span.caption{  
+    border-bottom: 1px solid lightgray;
+    border-top: 1px solid lightgray;
+    border-left: 1px solid lightgray;
+    box-shadow: lightgray -5px 5px 5px;
+}
+
+main .data span.caption{
+    font-weight: 600;
+    font-size: 18px;
+}
+
+main .items{
+    padding: 10px;
+}
+
+main .items .item{
+    padding: 10px;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid lightgray;
+    box-shadow: lightgray 5px 5px 5px, lightgray -5px 5px 5px;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-decoration: none;
+    color:black;
+}
+main .items .item .product-name{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    flex: 1;
+    min-width: 150px;
+    text-align: center;
+}
+
+main .items .item > *{
+    padding: 5px;
+    margin: 0px 10px;
+}

@@ -8,6 +8,7 @@
     include_once("MVC/models/enumerated/ProductSizeEnum.php");
     include_once("MVC/models/enumerated/OrderStatusEnum.php");
     include_once("MVC/models/enumerated/PaymentStatusEnum.php");
+    include_once("MVC/models/enumerated/GenderEnum.php");
 
     session_start();
     

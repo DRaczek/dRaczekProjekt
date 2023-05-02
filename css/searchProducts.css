@@ -1,0 +1,74 @@
+main{
+    margin: 0px 3% ;
+    display: grid;
+    grid-template-columns: 0.3fr 1fr;
+    
+}
+.filter{
+    padding: 20px;
+    background-color: #cab7b7;
+}
+.results{
+    padding: 30px;
+    background-color: lightgray;
+    display: flex;
+}
+
+.filter select{
+    width: 100%;
+    padding: 20px;
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid white;
+}
+
+.filter .przedzial{
+    display: flex;
+}
+
+.filter .przedzial input[type=number]{
+    height: 50px;
+    width: 70px;    
+}
+
+.results{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.results .product{
+    display: grid;
+    grid-template-columns: 200px 1fr 1fr;
+    margin-bottom: 20px;
+    background-color: #c3b0b0;
+}
+.results .product .img-wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.results .product img{
+    width: 100%;
+    object-fit: cover;
+}
+
+.results .product .main-info, .results .product .additional-info{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+.results .product span, .results .product li{
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.results .product .product-name{
+    font-size:22px;
+}
+.results .product .product-price{
+    color: red;
+    font-weight: 600;
+    font-size: 18px;
+}
+

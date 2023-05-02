@@ -11,7 +11,13 @@ class StepOnePasswordResetController extends AuthController{
 
     public function displayStepOnePasswordReset(){
         $this->RedirectIfLoggedIn();
-        include("MVC/views/auth/stepOneResetPassword.php");
+        $data = array();
+        $data['header']=$this->loadView("MVC/views/common/header", null, true);
+        $data['footer']=$this->loadView("MVC/views/common/footer", null, true);
+        $data['styles']='<link rel="stylesheet" href="/dRaczekProjekt/css/header.css">
+        <link rel="stylesheet" href="/dRaczekProjekt/css/footer.css">
+        <link rel="stylesheet" href="/dRaczekProjekt/css/basicLayout.css">';
+        $this->loadView("MVC/views/auth/stepOneResetPassword", $data, false);
     }
 
     public function stepOnePasswordReset(){

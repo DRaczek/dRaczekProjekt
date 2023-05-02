@@ -1,0 +1,101 @@
+main .quantity{
+    display: flex;
+    flex-direction: row;
+}
+main .quantity button, main .quantity span{
+    border: 1px solid lightgrey;
+    background-color: white;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+main .quantity span{
+    width: 70px;
+}
+
+main .steps{
+    display: flex;
+    margin: 10px 0px 50px 0px;
+}
+
+main .steps .step{
+    flex: 1;
+    text-align: center;
+    border-bottom: 5px solid lightgrey;
+    margin: 0px 5px;
+}
+
+main .steps .step.active{
+    border-bottom-color: var(--header-color);
+    font-size: 20px;
+    font-weight: 600;
+}
+
+main{
+    padding: 20px;
+    margin: 10%;
+    border: 1px solid lightgray;
+    box-shadow: lightgray 5px 5px 5px,lightgray -5px 5px 5px;
+    display: grid;
+    grid-template-columns: 0.7fr 0.3fr;
+    grid-gap: 10px;
+}
+
+main .menu{
+    background-color: lightgray;
+    padding: 20px;
+}
+
+main .item{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid lightgray;
+    box-shadow: lightgray 5px 5px 5px, lightgray -5px 5px 5px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+main .item .product-name{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    flex: 1;
+    min-width: 150px;
+    text-align: center;
+}
+main #price{
+    display: flex;
+}
+main #total{
+    flex: 1;
+    text-align: end;
+    font-weight: 600;
+    color: red;
+    font-size: 18px;
+}
+
+main .order-button{
+    background-color: var(--header-color);
+    color: white;
+    font-weight: 600;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 20px 30px;
+    width: fit-content;
+    display: block;
+    margin: 30px auto;
+    transition: 0.3s;
+}
+
+main .order-button:hover{
+    transform: scale(1.1);
+}
+
+
+

@@ -28,10 +28,6 @@ class SubmitOrderController extends OrderController{
             exit();
         }
 
-        echo "<pre>";
-        print_r($_POST);
-        echo "</pre>";
-
         $produkty = array();
         foreach(unserialize($_COOKIE['cart']) as $item){
             array_push($produkty, ['id'=>$item['productId'], "quantity"=>$item['quantity']]);
@@ -39,7 +35,7 @@ class SubmitOrderController extends OrderController{
 
         $data = [
             "user_id"=>$_SESSION['user_id'],
-            "is_company"=>$_POST['is_company'],
+            "is_company"=>($_POST['is_company']=="on")?true:false,
             "first_name"=>$_POST['first_name'],
             "last_name"=>$_POST['last_name'],
             "street"=>$_POST['street'],

@@ -2,6 +2,7 @@
 include_once("MVC/controllers/user/userPanel/UserController.php");
 include_once("MVC/models/databaseModels/UserModel.php");
 include_once("MVC/models/validationHelpers/AuthValidationHelper.php");
+include_once("MVC/models/databaseModels/CategoryModel.php");
 
 class EditUserDetailsController extends UserController{
     public function __construct(){
@@ -11,8 +12,18 @@ class EditUserDetailsController extends UserController{
     public function displayEditUserDetailsPage(){
         $this->RedirectIfNotLoggedIn();
         $userModel = new UserModel();
-        $user = $userModel->getUser($_SESSION['user_id']);
-        include("MVC/views/user/editUserDetails.php");
+        $data = array();
+        $categoryModel = new CategoryModel();
+        $headerData = array(
+            "categories"=>$categoryModel->getCategories()
+        );
+        $data['user'] = $userModel->getUser($_SESSION['user_id']);
+        $data['header']=$this->loadView("MVC/views/common/header", $headerData, true);
+        $data['footer']=$this->loadView("MVC/views/common/footer", null, true);
+        $data['styles']='<link rel="stylesheet" href="/dRaczekProjekt/css/header.css">
+        <link rel="stylesheet" href="/dRaczekProjekt/css/footer.css">
+        <link rel="stylesheet" href="/dRaczekProjekt/css/basicLayout.css">';
+        $this->loadView("MVC/views/user/editUserDetails", $data, false);
     }
 
     public function editUserDetailsPage(){

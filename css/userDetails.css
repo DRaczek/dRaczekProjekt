@@ -1,0 +1,67 @@
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100vw;
+    padding-top: 200px;
+    padding-bottom: 200px;
+}
+#user{
+    padding: 50px;
+    padding-top: 0px;
+    width: clamp(10vw, 70%, 80vw);
+    height: auto;
+    border-radius:30px;
+    border: 1px solid lightgrey;
+    box-shadow: lightgray 5px 5px 5px, lightgray -5px 5px 5px;
+}
+#user p, #user a, #user td{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#user .account-img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#user .account-img img{
+ transform: translate(0,-50%);
+ background-color: gray;
+ padding: 10px;
+ min-width: 100px;
+ border-radius: 50%;
+ box-shadow: gray 0px 2px 10px;
+}
+#user table{
+    width: 100%;
+    border-spacing: 0px 30px;
+}
+
+#user table tr td.title{
+    font-weight: 900;
+    font-size: 18px;
+}
+#user table td{
+    border-bottom: 2px solid lightgray;
+}
+
+#editIcon-wrapper img{
+    width: 70px;
+    background-color: lightblue;
+}
+
+#editIcon-wrapper img:hover{
+    background-color: #79cde9;;
+}
+
+.icon{
+    display: inline-block;
+    height: 70px;
+    padding: 10px;
+    border-radius: 20%;
+    background-color: lightgreen;
+    font-size: 20px;
+    text-decoration: none;
+    white-space: nowrap;
+}

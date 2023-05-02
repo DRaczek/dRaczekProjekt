@@ -12,7 +12,14 @@ class LoginUserController extends AuthController{
         if(isset($_SESSION['user_id'])){
             header("Location:home");
         }
-        include("MVC/views/auth/login.php");
+
+        $data = array();
+        $data['header']=$this->loadView("MVC/views/common/header", null, true);
+        $data['footer']=$this->loadView("MVC/views/common/footer", null, true);
+        $data['styles']='<link rel="stylesheet" href="/dRaczekProjekt/css/header.css">
+        <link rel="stylesheet" href="/dRaczekProjekt/css/footer.css">
+        <link rel="stylesheet" href="/dRaczekProjekt/css/basicLayout.css">';
+        $this->loadView("MVC/views/auth/login", $data, false);
     }
 
     public function loginProcess(){

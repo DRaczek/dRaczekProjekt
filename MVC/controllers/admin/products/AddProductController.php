@@ -62,7 +62,8 @@ class AddProductController extends AdminProductController{
                 $_POST['quantity'],
                 $_POST['size'],
                 $_POST['colour'],
-                $_SESSION['user_id']);
+                $_SESSION['user_id'],
+                $_POST['gender']);
         }
         catch(Exception $e){
             $_SESSION['message'] = $e->getMessage();

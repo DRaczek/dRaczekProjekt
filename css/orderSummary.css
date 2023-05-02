@@ -1,0 +1,116 @@
+main{
+    margin: calc(var(--header-height) + 1%) 10%;
+    padding: 20px;
+    border: 1px solid lightgray;
+    box-shadow: lightgray 5px 5px 5px, lightgray -5px 5px 5px;
+}
+
+main .items .item{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid lightgray;
+    box-shadow: lightgray 5px 5px 5px, lightgray -5px 5px 5px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+main .items .item .product-name{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    flex: 1;
+    min-width: 150px;
+    text-align: center;
+}
+
+main .items .item > *{
+    padding: 5px;
+    margin: 0px 10px;
+}
+
+main .preferences{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+main .preferences >span{
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 5px 20px;
+}
+
+main .preferences >span:nth-child(2n){  
+    border-bottom: 1px solid lightgray;
+    border-top: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+    box-shadow: lightgray 5px 5px 5px;
+}
+main .preferences >span:nth-child(2n+1){  
+    border-bottom: 1px solid lightgray;
+    border-top: 1px solid lightgray;
+    border-left: 1px solid lightgray;
+    box-shadow: lightgray -5px 5px 5px;
+}
+
+main .preferences .total{
+    background-color: lightgray;
+    border: 1px solid black !important;
+    font-weight: 600;
+}
+
+main .data{
+    display: flex;
+    flex-wrap: wrap;
+    flex-basis: 50%;
+    justify-content: center;
+}
+
+main .data .card{
+    margin:10px;
+    border: 1px solid lightgray;
+    box-shadow: lightgray 5px 5px 5px, lightgray -5px 5px 5px;
+    width: fit-content;
+    padding: 30px;
+}
+
+main form{
+    margin:10px;
+    border: 1px solid lightgray;
+    box-shadow: lightgray 5px 5px 5px, lightgray -5px 5px 5px;
+    width: fit-content;
+    padding: 30px;
+    margin:auto;
+}
+
+main form input[type=submit]{
+    border: 1px solid lightgray;
+    box-shadow: lightgray 5px 5px 5px, lightgray -5px 5px 5px;
+    padding: 10px 20px;
+    font-weight: 600;
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+main form input[type=submit]:hover{
+   background-color: rgb(229, 227, 227);
+   transform: scale(1.1);
+}
+
+main .steps{
+    display: flex;
+    margin: 10px 0px 50px 0px;
+}
+
+main .steps .step{
+    flex: 1;
+    text-align: center;
+    border-bottom: 5px solid lightgrey;
+    margin: 0px 5px;
+}
+
+main .steps .step.active{
+    border-bottom-color: var(--header-color);
+    font-size: 20px;
+    font-weight: 600;
+}

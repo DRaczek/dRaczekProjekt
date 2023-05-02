@@ -38,6 +38,13 @@
                 }
             ?>
         </select><br>
+        Podaj płeć: <select name="gender">
+            <?php
+                foreach (GenderEnum::getConstants() as $constantName => $constantValue) {
+                    echo "<option value=\"$constantName\"".(($product['gender']==$constantName)?"selected":"").">$constantValue</option>";
+                }
+            ?>
+        </select><br>
         <input type="submit" value="Edytuj Produkt" name="submit">
     </form>
     <?php

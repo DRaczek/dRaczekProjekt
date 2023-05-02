@@ -1,0 +1,92 @@
+.order{
+    margin: 20px 10%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid lightgray;
+    box-shadow: lightgray 5px 5px 5px, lightgray -5px 5px 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.order > *{
+    margin:10px;
+    padding: 20px;
+    min-height: 50px;
+}
+.order > input, .order > select{
+    outline: none;
+    border: 1px solid lightgray;
+    box-shadow: lightgray 5px 5px 5px, lightgray -5px 5px 5px;
+    
+}
+
+.order > input[type=submit]{
+    grid-column-end: span 2;
+}
+
+.order >hr{
+    min-height: 2px;
+    margin: 0;
+    padding: 0;
+    border: 3px solid lightgray;
+    grid-column-end: span 2;
+}
+
+main .steps{
+    display: flex;
+    margin: 10px 0px 50px 0px;
+}
+
+main .steps .step{
+    flex: 1;
+    text-align: center;
+    border-bottom: 5px solid lightgrey;
+    margin: 0px 5px;
+}
+
+main .steps .step.active{
+    border-bottom-color: var(--header-color);
+    font-size: 20px;
+    font-weight: 600;
+}
+
+main .switch{
+    border: 1px solid lightgray;
+    box-shadow: lightgray 5px 5px 5px, lightgray -5px 5px 5px;
+    width: 100px;
+    height: 50px;
+    position: relative;
+}
+
+main .switch span{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: blue;
+    top: 0;
+    left:0;
+    transition: 0.3s;
+}
+
+main .switch input[type=checkbox]{
+    display: none;
+}
+
+main .switch input[type=checkbox]:checked + span{
+   transform: translate(100%, 0);
+}
+
+main .switch .off, main .switch .on{
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+
+main .switch .off{
+    top: 50%;
+    left: 75%;
+}
+
+main .switch .on{
+    top: 50%;
+    left: 25%;
+}

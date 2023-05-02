@@ -21,13 +21,15 @@ class ProductValidationHelper{
         || !isset($_POST['price'])
         || !isset($_POST['quantity'])
         || !isset($_POST['size'])
-        || !isset($_POST['colour'])){
+        || !isset($_POST['colour'])
+        || !isset($_POST['gender'])){
             array_push($violations, "Nie wszystkie pola zostały przesłane<br>");
         }
         else if($edit===true && !isset($_POST['id'])){
             array_push($violations, "Nie wszystkie pola zostały przesłane<br>");
         }
         else{
+            if($edit===false)$_POST['id']=null;
             $this->validateName($_POST['name'], $violations, $_POST['id']);
             $this->validateCategory($_POST['category'], $violations);
             $targetFiles = $this->validateImages(
@@ -48,7 +50,13 @@ class ProductValidationHelper{
         }
     }
 
-    private function validateName($name, &$violations, $id=null){
+    private function validateGender($gender, &$violations){
+        if(count(GenderEnum::GetConstants())-1<$size || $size<0){
+            array_push($violations,"Podana płeć jest nieprawidłowa<br>");
+        }
+    }
+
+    private function validateName($name, &$violations, $id=null){   
         try{
             $adminProductModel = new AdminProductModel();
             if($adminProductModel->isProductNameTaken($name, $id)){
@@ -143,13 +151,13 @@ class ProductValidationHelper{
     }
 
     private function validateSize($size, &$violations){
-        if(count(ProductSizeEnum::GetConstants())-1<$size){
+        if(count(ProductSizeEnum::GetConstants())-1<$size || $size<0){
             array_push($violations,"Podany rozmiar jest nieprawidłowy<br>");
         }
     }
 
     private function validateColour($colour, &$violations){
-        if(count(ProductColourEnum::GetConstants())-1<$colour){
+        if(count(ProductColourEnum::GetConstants())-1<$colour || $colour<0){
             array_push($violations,"Podany kolor jest nieprawidłowy<br>");
         }
     }

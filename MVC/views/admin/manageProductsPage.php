@@ -60,6 +60,7 @@
                     <th>Ilość</th>
                     <th>Rozmiar</th>
                     <th>Kolor</th>
+                    <th>Płeć</th>
                     <th>Wyświetlenia</th>
                     <th>Status</th>
                     <th>Data utworzenia</th>
@@ -104,6 +105,7 @@
                         createCell($row['quantity']);
                         createCell($row['size']);
                         createCell($row['colour']);
+                        createCell(GenderEnum::GetConstants()[$row['gender']]);
                         createCell($row['view_count']);
                         createCell($row['status']);
                         createCell($row['created_date']);
@@ -127,6 +129,7 @@
                         if($quantityTo!==null)echo "&quantityTo=$quantityTo";
                         if($productSize!==null)echo "&productSize=$productSize";
                         if($colour!==null)echo "&colour=$colour";
+                        if($gender!==null)echo "&gender=$gender";
                         if($viewCountFrom!==null)echo "&viewCountFrom=$viewCountFrom";
                         if($viewCountTo!==null)echo "&viewCountTo=$viewCountTo";
                         if($status!==null)echo "&status=$status";
@@ -148,6 +151,7 @@
                         if($quantityTo!==null)echo "&quantityTo=$quantityTo";
                         if($productSize!==null)echo "&productSize=$productSize";
                         if($colour!==null)echo "&colour=$colour";
+                        if($gender!==null)echo "&gender=$gender";
                         if($viewCountFrom!==null)echo "&viewCountFrom=$viewCountFrom";
                         if($viewCountTo!==null)echo "&viewCountTo=$viewCountTo";
                         if($status!==null)echo "&status=$status";
@@ -195,6 +199,14 @@
                         <option value="999">ALL</option>
                     <?php
                         foreach (ProductColourEnum::getConstants() as $constantName => $constantValue) {
+                            echo "<option value=\"$constantName\"".(($colour===$constantName)?"selected":"").">$constantValue</option>";
+                        }
+                    ?>
+                    </select><br>
+                    Płeć:<select name="gender">
+                        <option value="999">ALL</option>
+                    <?php
+                        foreach (GenderEnum::getConstants() as $constantName => $constantValue) {
                             echo "<option value=\"$constantName\"".(($colour===$constantName)?"selected":"").">$constantValue</option>";
                         }
                     ?>

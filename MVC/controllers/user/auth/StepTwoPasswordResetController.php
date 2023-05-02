@@ -18,8 +18,14 @@ class StepTwoPasswordResetController extends AuthController{
             include("MVC/views/auth/stepTwoResetPassword.php");
             exit();
         }
-        $_SESSION['token']=$token;
-        include("MVC/views/auth/stepTwoResetPassword.php");
+        $data = array();
+        $data['token']=$token;
+        $data['header']=$this->loadView("MVC/views/common/header", null, true);
+        $data['footer']=$this->loadView("MVC/views/common/footer", null, true);
+        $data['styles']='<link rel="stylesheet" href="/dRaczekProjekt/css/header.css">
+        <link rel="stylesheet" href="/dRaczekProjekt/css/footer.css">
+        <link rel="stylesheet" href="/dRaczekProjekt/css/basicLayout.css">';
+        $this->loadView("MVC/views/auth/stepTwoResetPassword", $data, false);
     }
 
     public function stepTwoPasswordReset(){
@@ -41,7 +47,8 @@ class StepTwoPasswordResetController extends AuthController{
             $tokenModel = new TokenModel();
             $result = $tokenModel->checkToken($token);
             if($result===false || $result['action']!=(int)TokenActionEnum::STEP_ONE_RESET_PASSWORD){
-                header("Location:../stepOne");  
+                header("Location:../stepOne");
+                exit();  
             }
             $password = $_POST['password'];
             $repeatPassword = $_POST['repeatPassword'];

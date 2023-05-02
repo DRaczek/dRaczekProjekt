@@ -55,5 +55,6 @@
     '/dRaczekProjekt/order/pay/:id' => array('controller' => 'OrderPaymentController', 'action' => 'pay', 'path' => 'MVC/controllers/order/'),
     '/dRaczekProjekt/admin/manage/orders' => array('controller' => 'ManageOrdersController', 'action' => 'displayManageOrdersPage', 'path' => 'MVC/controllers/admin/order/'),
     '/dRaczekProjekt/admin/manage/orders?:pageableOrders' => array('controller' => 'ManageOrdersController', 'action' => 'displayManageOrdersPage', 'path' => 'MVC/controllers/admin/order/'),
+    '/dRaczekProjekt/products?:pageableProductsUser' => array('controller' => 'SearchProductsController', 'action' => 'search', 'path' => 'MVC/controllers/products/'),
 );
 ?>

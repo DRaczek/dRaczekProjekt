@@ -38,6 +38,7 @@ class ManageProductsController extends AdminProductController{
         $orderBy = null;
         $order = null;
         $id=null;
+        $gender=null;
      
         if(isset($_GET['name'])){
             $name = $_GET['name'];
@@ -65,6 +66,9 @@ class ManageProductsController extends AdminProductController{
         }
         if(isset($_GET['colour'])){
             $colour = intval($_GET['colour']);
+        }
+        if(isset($_GET['gender'])){
+            $gender = intval($_GET['gender']);
         }
         if(isset($_GET['viewCountFrom'])){
             $viewCountFrom = intval($_GET['viewCountFrom']);
@@ -121,6 +125,7 @@ class ManageProductsController extends AdminProductController{
         if($categoryId==999)$categoryId=null; //czyli wszystkie kategorie
         if($productSize==999)$productSize=null;
         if($colour==999)$colour=null;
+        if($gender==999)$gender=null;
         $result = $adminProductModel->searchProducts($firstResult,
                                                     $pageSize,
                                                     $id,
@@ -131,6 +136,7 @@ class ManageProductsController extends AdminProductController{
                                                     $quantityFrom, $quantityTo,
                                                     $productSize,
                                                     $colour,
+                                                    $gender,
                                                     $viewCountFrom, $viewCountTo,
                                                     $status,
                                                     $createdDate,
@@ -144,6 +150,7 @@ class ManageProductsController extends AdminProductController{
                                                                 $quantityFrom, $quantityTo,
                                                                 $productSize,
                                                                 $colour,
+                                                                $gender,
                                                                 $viewCountFrom, $viewCountTo,
                                                                 $status,
                                                                 $createdDate))[0];
