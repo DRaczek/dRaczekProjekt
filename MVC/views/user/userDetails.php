@@ -8,6 +8,7 @@
     <link rel="icon" type="image/x-icon" href="/dRaczekProjekt/img/logo/logo_transparent_img_only.png">
     <?php echo $data['styles']; ?>
     <link rel="stylesheet" href="css/userDetails.css">
+    <link rel="stylesheet" href="css/list.css">
 </head>
 <body>
     <?php echo $data['header']; ?>
@@ -17,24 +18,12 @@
                 <div class="account-img">
                     <img src="img/account-icon.svg">
                 </div>
-                <table>
-                    <tr>
-                        <td class="title">Email</td>
-                        <td><?php echo $user['email']; ?></td>
-                    </tr>
-                    <tr>
-                        <td class="title">Imię</td>
-                        <td><?php echo $user['first_name']; ?></td>
-                    </tr>
-                    <tr>
-                        <td class="title">Nazwisko</td>
-                        <td><?php echo $user['last_name']; ?></td>
-                    </tr>
-                    <tr>
-                        <td class="title">Data urodzenia</td>
-                        <td><?php echo $user['date_of_birth']; ?></td>
-                    </tr>
-                </table>
+                <div class="list">
+                    <span class="caption">Email</span><span class="value"><?php echo $user['email']; ?></span>
+                    <span class="caption">Imię</span><span class="value"><?php echo $user['first_name']; ?></span>
+                    <span class="caption">Nazwisko</span><span class="value"><?php echo $user['last_name']; ?></span>
+                    <span class="caption">Data urodzenia</span><span class="value"><?php echo $user['date_of_birth']; ?></span>
+                </div>
                 <a href="user/edit" id="editIcon-wrapper">
                     <img src="img/edit-icon.svg" class="icon">
                 </a>

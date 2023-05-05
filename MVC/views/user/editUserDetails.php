@@ -8,6 +8,7 @@
     <link rel="icon" type="image/x-icon" href="/dRaczekProjekt/img/logo/logo_transparent_img_only.png">
     <?php echo $data['styles']; ?>
     <link rel="stylesheet" href="/dRaczekProjekt/css/editUser.css">
+    <link rel="stylesheet" href="/dRaczekProjekt/css/list.css">
 </head>
 <body>
     <?php echo $data['header']; ?>
@@ -17,24 +18,11 @@
                 <div class="account-img">
                     <img src="/dRaczekProjekt/img/account-icon.svg">
                 </div>
-                <form action="edit/send" method="post">
-                    <table>
-                        <tr>
-                            <td class="title">Imię</td>
-                            <td><input type="text" name="first_name" placeholder="Imię" value="<?php echo $user['first_name']; ?>"></td>
-                        </tr>
-                        <tr>
-                            <td class="title">Nazwisko</td>
-                            <td><input type="text" name="last_name" placeholder="Nazwisko" value="<?php echo $user['last_name']; ?>"></td>
-                        </tr>
-                        <tr>
-                            <td class="title">Data Urodzenia</td>
-                            <td><input type="date" name="date_of_birth" placeholder="Data urodzenia" value="<?php echo $user['date_of_birth']; ?>"></td>
-                        </tr>
-                        <tr>
-                            <td class="title"><input type="submit" value="Edytuj" name="submit"></td>
-                        </tr>
-                    </table>
+                <form action="edit/send" method="post" class="list">
+                    <span class="caption">Imię</span><span class="value"><input type="text" name="first_name" placeholder="Imię" value="<?php echo $user['first_name']; ?>"></span>
+                    <span class="caption">Nazwisko</span><span class="value"><input type="text" name="last_name" placeholder="Nazwisko" value="<?php echo $user['last_name']; ?>"></span>
+                    <span class="caption">Data Urodzenia</span><span class="value"><input type="date" name="date_of_birth" placeholder="Data urodzenia" value="<?php echo $user['date_of_birth']; ?>"></span>
+                    <span class="caption subtitle"><input type="submit" value="Edytuj" name="submit"></span></span>
                 </form>
                 <?php
                     if(isset($_SESSION['message'])){

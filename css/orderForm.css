@@ -4,8 +4,6 @@
     grid-template-columns: 1fr 1fr;
     border: 1px solid lightgray;
     box-shadow: lightgray 5px 5px 5px, lightgray -5px 5px 5px;
-    justify-content: center;
-    align-items: center;
 }
 
 .order > *{
@@ -17,7 +15,7 @@
     outline: none;
     border: 1px solid lightgray;
     box-shadow: lightgray 5px 5px 5px, lightgray -5px 5px 5px;
-    
+    min-width: 100px;   
 }
 
 .order > input[type=submit]{
@@ -25,29 +23,12 @@
 }
 
 .order >hr{
+    display: none;
     min-height: 2px;
     margin: 0;
     padding: 0;
     border: 3px solid lightgray;
     grid-column-end: span 2;
-}
-
-main .steps{
-    display: flex;
-    margin: 10px 0px 50px 0px;
-}
-
-main .steps .step{
-    flex: 1;
-    text-align: center;
-    border-bottom: 5px solid lightgrey;
-    margin: 0px 5px;
-}
-
-main .steps .step.active{
-    border-bottom-color: var(--header-color);
-    font-size: 20px;
-    font-weight: 600;
 }
 
 main .switch{
@@ -89,4 +70,19 @@ main .switch .off{
 main .switch .on{
     top: 50%;
     left: 25%;
+}
+
+@media screen and (max-width:800px) {
+    .order{
+        grid-template-columns: 1fr;
+    }
+    .order > input[type=submit], .order >hr{
+        grid-column-end: span 1;
+    }
+}
+@media screen and (max-width:500px) {
+    .order{
+        margin: 2%;
+    }
+    
 }

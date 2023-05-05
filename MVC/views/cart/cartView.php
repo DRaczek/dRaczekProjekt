@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Fashion Bay</title>
+    <link rel="icon" type="image/x-icon" href="/dRaczekProjekt/img/logo/logo_transparent_img_only.png">
     <?php echo $data['styles'] ?>
     <link rel="stylesheet" href="/dRaczekProjekt/css/cart.css">
+    <link rel="stylesheet" href="/dRaczekProjekt/css/steps.css">
 </head>
 <body>
     <?php
@@ -27,7 +29,9 @@
             ?>
                 <div class="item">
                     <input type="hidden" name="cart_position_id" value="<?php echo $produkt['id']; ?>">
-                    <img src="/dRaczekProjekt/<?php echo $produkt['image_path']; ?>" alt="obrazek przedmiotu" width="100" height="100">
+                    <a href="/dRaczekProjekt/products/<?php echo $produkt['productId']; ?>">
+                        <img src="/dRaczekProjekt/<?php echo $produkt['image_path']; ?>" alt="obrazek przedmiotu" width="100" height="100">
+                    </a>
                     <p class="product-name"><?php
                         echo $produkt['name'];
                     ?><p>
@@ -57,17 +61,13 @@
                         <span class="product-quantity"><?php echo $produkt['quantity']; ?></span>
                         <button onclick="increase(<?php echo $produkt['id']; ?>)"> + </button>
                     </div>
-                
                     <a href = "cart/delete/<?php echo $produkt['id']; ?>">
                         <img src="/dRaczekProjekt/img/delete-icon.svg">
                     </a>
                 </div>
-
             <?php
                 }
             ?>
-            
-        
         </div>
 
         <div class="menu">

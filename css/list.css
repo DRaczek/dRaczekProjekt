@@ -1,0 +1,75 @@
+main .list{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+main .list .title, main .list .subtitle{
+    grid-column-end: span 2;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 600;
+    box-shadow: lightgray 5px 5px 5px, lightgray -5px 5px 5px !important;
+}
+
+main .list > span{
+    min-height: 30px;
+    padding: 10px 20px;
+}
+
+main .list .title{
+    background-color: gray;
+    color: white;
+}
+main .list .subtitle{
+    background-color: lightgray;
+}
+
+main .list span.value{  
+    border-bottom: 1px solid lightgray;
+    border-top: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+    box-shadow: lightgray 5px 5px 5px;
+}
+main .list span.caption{  
+    border-bottom: 1px solid lightgray;
+    border-top: 1px solid lightgray;
+    border-left: 1px solid lightgray;
+    box-shadow: lightgray -5px 5px 5px;
+}
+
+main .list span.caption{
+    font-weight: 600;
+    font-size: 18px;
+}
+
+main .list .caption, main .list .value{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+main .list .total{
+    background-color: lightgray;
+    border: 1px solid black !important;
+    font-weight: 600;
+}
+
+@media screen and (max-width:800px) {
+    main .list{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    main .list .title, main .list .subtitle{
+        grid-column-end: span 1;
+    }
+    main .list span{
+        border: 1px solid lightgray !important;
+        box-shadow: lightgray 5px 5px 5px, lightgray -5px 5px 5px !important;
+        
+    }
+}
+
+@media screen and (max-width:400px) {
+    main .list > span{
+        padding: 10px 5px;
+    }
+}

@@ -11,6 +11,7 @@ class DisplayOrderPageController extends OrderController{
     }
 
     public function displayOrderPage($id){
+        $this->RedirectIfNotLoggedIn();
         $orderModel = new OrderModel();
         $order = $orderModel->getOrder($id, $_SESSION['user_id']);
         if($order===false || !isset($order['order']) || !isset($order['products'])){

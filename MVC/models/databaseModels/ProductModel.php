@@ -30,6 +30,24 @@ class ProductModel{
         }
     }
 
+    public function getProductAvailableQuantity($id){
+        $dbh = include("MVC/models/databaseModels/Database.php");
+        $query = "SELECT quantity FROM products WHERE id = ? AND status = ?";
+        $stmt = $dbh->prepare($query);
+        $stmt->execute([$id, StatusEnum::ACTIVE]);
+        $result = $stmt->fetch()[0];
+        $dbh = null;
+        return $result;
+    }
+
+    public function updateProductQuantity($id, $quantity){
+        $dbh = include("MVC/models/databaseModels/Database.php");
+        $query = "UPDATE products SET quantity = quantity - ? WHERE id = ?";
+        $stmt = $dbh->prepare($query);
+        $stmt->execute([$quantity, $id]);
+        $dbh = null;
+    }
+
     public function getProductCartData($id){
         $dbh = include("MVC/models/databaseModels/Database.php");
         $query = "SELECT name, image_path_1, price, quantity FROM products WHERE id = ? AND status = ?";

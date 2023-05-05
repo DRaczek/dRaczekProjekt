@@ -12,6 +12,12 @@ class OrderSummaryController extends OrderController{
     }
 
     public function displayOrderSummaryPage(){
+        $this->RedirectIfNotLoggedIn();
+        if(!$this->isCartApproved()){
+            $_SESSION['message'] = "Wystąpił błąd związany z zwartością koszyka.";
+            header("Location:/dRaczekProjekt/cart");
+            exit();
+        }
         //walidacja formularza
         try{
             $validationHelper = new OrderValidationHelper();

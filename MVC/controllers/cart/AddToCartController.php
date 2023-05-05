@@ -13,6 +13,11 @@ class AddToCartController extends CartController{
             header("Location:../../products/$id");
             exit();
         }
+        if(!$this->checkIfProductIsAvailable($id)){
+            $_SESSION['message'] = "Produkt jest już niedostępny";
+            header("Location:../../products/$id");
+            exit();
+        }
         if(isset($_COOKIE['cart'])){
             try{
                 $koszyk = unserialize($_COOKIE['cart']);
@@ -44,6 +49,15 @@ class AddToCartController extends CartController{
     private function checkIfProductExists($productId){
         $productModel = new ProductModel();
         if($productModel->productExistsAndIsAvailable($productId)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    private function checkIfProductIsAvailable($productId){
+        $productModel = new ProductModel();
+        if($productModel->getProductAvailableQuantity($productId)>0){
             return true;
         }
         else{

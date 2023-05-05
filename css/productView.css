@@ -1,7 +1,5 @@
 main{
-    margin: 10%;
-    margin-top: 100px;
-    padding-top: 0px;
+    margin: calc(var(--header-height) + 1%) 10%;
     display: grid;
     grid-template-columns: 0.4fr 0.6fr;
     border: 2px solid lightgray;
@@ -38,13 +36,17 @@ main .imgs img{
     border-collapse: collapse;
 }
 main .main-img{
-    max-height: 500px;
+    width: 100%;
+    aspect-ratio: 1 / 1;
 }
 
 main .main-info{
     padding: 50px;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+main .main-info .product-name{
+   display: inline;
 }
 
 main .main-info .product-price{
@@ -95,3 +97,26 @@ main .cartbtn:active{
 main .server-info{
     margin-top: 40px;
 }
+
+@media screen and (max-width:800px) {
+    main{
+        grid-template-columns: 1fr;
+    }
+    main .additional-info{
+        grid-column-end: span 1;
+    }
+}
+
+@media screen and (max-width:600px) {
+    main{
+        margin: calc(var(--header-height) + 1%) 1%;
+    }
+    main .cartbtn{
+        margin: auto;
+        padding:10px 20px;
+    }
+    main .additional-info, main .main-info{
+        padding: 10px;
+    }
+}
+

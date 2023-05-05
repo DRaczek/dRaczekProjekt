@@ -14,6 +14,8 @@ main .items .item{
     box-shadow: lightgray 5px 5px 5px, lightgray -5px 5px 5px;
     flex-wrap: wrap;
     justify-content: center;
+    text-decoration: none;
+    color: black;
 }
 main .items .item .product-name{
     white-space: nowrap;
@@ -29,41 +31,13 @@ main .items .item > *{
     margin: 0px 10px;
 }
 
-main .preferences{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-main .preferences >span{
-    min-height: 50px;
-    display: flex;
-    align-items: center;
-    padding: 5px 20px;
-}
-
-main .preferences >span:nth-child(2n){  
-    border-bottom: 1px solid lightgray;
-    border-top: 1px solid lightgray;
-    border-right: 1px solid lightgray;
-    box-shadow: lightgray 5px 5px 5px;
-}
-main .preferences >span:nth-child(2n+1){  
-    border-bottom: 1px solid lightgray;
-    border-top: 1px solid lightgray;
-    border-left: 1px solid lightgray;
-    box-shadow: lightgray -5px 5px 5px;
-}
-
-main .preferences .total{
-    background-color: lightgray;
-    border: 1px solid black !important;
-    font-weight: 600;
-}
-
 main .data{
     display: flex;
     flex-wrap: wrap;
     flex-basis: 50%;
     justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
 }
 
 main .data .card{
@@ -72,10 +46,12 @@ main .data .card{
     box-shadow: lightgray 5px 5px 5px, lightgray -5px 5px 5px;
     width: fit-content;
     padding: 30px;
+    overflow:auto;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 main form{
-    margin:10px;
     border: 1px solid lightgray;
     box-shadow: lightgray 5px 5px 5px, lightgray -5px 5px 5px;
     width: fit-content;
@@ -90,6 +66,7 @@ main form input[type=submit]{
     font-weight: 600;
     font-size: 20px;
     transition: 0.3s;
+    min-width: 100px;
 }
 
 main form input[type=submit]:hover{
@@ -97,20 +74,20 @@ main form input[type=submit]:hover{
    transform: scale(1.1);
 }
 
-main .steps{
-    display: flex;
-    margin: 10px 0px 50px 0px;
-}
-
-main .steps .step{
-    flex: 1;
-    text-align: center;
-    border-bottom: 5px solid lightgrey;
-    margin: 0px 5px;
-}
-
-main .steps .step.active{
-    border-bottom-color: var(--header-color);
-    font-size: 20px;
-    font-weight: 600;
+@media screen and (max-width:600px) {
+    main{
+        margin: calc(var(--header-height) + 1%) 1%;
+        padding: 5px;
+    }
+    main form input[type=submit]{
+        padding: 5px;
+        font-size: 16px;
+    }
+    main form{
+        padding: 0px
+    }
+    main .data .card{
+        margin:0px;
+        padding: 10px;
+    }
 }

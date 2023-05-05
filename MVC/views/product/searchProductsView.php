@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Fashion Bay</title>
+    <link rel="icon" type="image/x-icon" href="/dRaczekProjekt/img/logo/logo_transparent_img_only.png">
     <?php echo $data['styles']; ?>
     <link rel="stylesheet" href="/dRaczekProjekt/css/searchProducts.css">
 </head>
@@ -84,7 +85,7 @@
            
 
             <?php foreach($data['products'] as $product): ?>
-                <div class="product">
+                <a class="product" href="/dRaczekProjekt/products/<?php echo $product['id']; ?>">
                     <div class="img-wrapper">
                         <img src="/dRaczekProjekt/<?php echo $product['image_path_1']; ?>">
                     </div>
@@ -93,7 +94,6 @@
                         <span class="product-price"><?php echo $product['price']."PLN"; ?></span>
                         <span class="product-views"><?php echo "Ilość wyświetleń : ".$product['view_count']; ?></span>
                         <span class="product-quantity"><?php echo "Ilość wyświetleń : ".$product['quantity']; ?></span>
-                        <a href="/dRaczekProjekt/products/<?php echo $product['id']; ?>"> Przejdź do strony produktu</a>
                     </div>
                     <div class="additional-info">
                         <ul>
@@ -102,7 +102,7 @@
                             <li>Kolor : <?php echo ProductColourEnum::GetConstants()[$product['colour']]; ?></li>
                         </ul>
                     </div>
-                </div>
+                </a>
             <?php endforeach; ?>
 
             <div class="pages">

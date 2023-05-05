@@ -127,5 +127,15 @@ class OrderModel{
         $dbh = null;
     }
 
+    public function getOrders($userId){
+        $dbh = include("MVC/models/databaseModels/Database.php");
+        $query = "SELECT id, created_date, order_status, payment_status FROM orders WHERE user_id = ? AND status = ? ORDER BY created_date DESC";
+        $stmt = $dbh->prepare($query);
+        $stmt->execute([$userId, StatusEnum::ACTIVE]);;
+        $result = $stmt->fetchAll();
+        $dbh = null;
+        return $result;
+    }
+
     
 }

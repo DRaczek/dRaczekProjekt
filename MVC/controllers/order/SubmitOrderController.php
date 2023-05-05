@@ -1,22 +1,21 @@
 <?php
 include_once("MVC/models/validationHelpers/OrderValidationHelper.php");
 include_once("MVC/models/databaseModels/OrderModel.php");
+include_once("MVC/models/databaseModels/ProductModel.php");
 include_once("MVC/controllers/order/OrderController.php");
 
 class SubmitOrderController extends OrderController{
     public function __construct(){
 
     }
-    private function checkIfLoggedInAndRedirect(){
-        if(!isset($_SESSION['user_id'])){
-            header("Location:/dRaczekProjekt/login");
-            exit();
-        }
-    }
 
     public function submit(){
-        $this->checkIfLoggedInAndRedirect();
-
+        $this->RedirectIfNotLoggedIn();
+        if(!$this->isCartApproved()){
+            $_SESSION['message'] = "Wystąpił błąd związany z zwartością koszyka.";
+            header("Location:/dRaczekProjekt/cart");
+            exit();
+        }
         try{
             $validationHelper = new OrderValidationHelper();
             $validationHelper->validate();
@@ -59,6 +58,11 @@ class SubmitOrderController extends OrderController{
         try{
             $orderModel = new OrderModel();
             $result = $orderModel->submitOrder($data);
+            $productModel = new ProductModel();
+            foreach ($produkty as $produkt) {
+                $productModel->updateProductQuantity($produkt['id'], $produkt['quantity']);
+            }   
+            setcookie("cart", serialize([]), time()+30*24*60*60*60, "/");
             $dbh->commit();
         }
         catch(Exception $e){

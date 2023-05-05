@@ -8,6 +8,7 @@
     <link rel="icon" type="image/x-icon" href="/dRaczekProjekt/img/logo/logo_transparent_img_only.png">
     <?php echo $data['styles']; ?>
     <link rel="stylesheet" href="/dRaczekProjekt/css/changePassword.css">
+    <link rel="stylesheet" href="/dRaczekProjekt/css/list.css">
 </head>
 <body>
     <?php echo $data['header']; ?>
@@ -16,24 +17,11 @@
             <div class="account-img">
                 <img src="/dRaczekProjekt/img/account-icon.svg">
             </div>
-            <form action="changePassword/send" method="post">
-                <table>
-                    <tr>
-                        <td class="title">Aktualne hasło</td>
-                        <td> <input type="password" name="oldPassword" placeholder="Podaj dotychczasowe hasło"></td>
-                    </tr>
-                    <tr>
-                        <td class="title">Nowe hasło</td>
-                        <td> <input type="password" name="password" placeholder="Podaj nowe hasło"></td>
-                    </tr>
-                    <tr>
-                        <td class="title">Powtórz nowe hasło</td>
-                        <td><input type="password" name="repeatPassword" placeholder="Powtórz nowe hasło"></td>
-                    </tr>
-                    <tr>
-                        <td class="title"><input type="submit" value="Zmień hasło" name="submit"></td>
-                    </tr>
-                </table>
+            <form action="changePassword/send" method="post" class="list">
+                    <span class="caption">Aktualne hasło</span><span class="value"><input type="password" name="oldPassword" placeholder="Podaj dotychczasowe hasło"></span>
+                    <span class="caption">Nowe hasło</span><span class="value"><input type="password" name="password" placeholder="Podaj nowe hasło"></span>
+                    <span class="caption">Powtórz nowe hasło</span><span class="value"><input type="password" name="repeatPassword" placeholder="Powtórz nowe hasło"></span>
+                    <span class="caption subtitle"><input type="submit" value="Zmień hasło" name="submit"></span></span>
             </form>
             <?php
                 if(isset($_SESSION['message'])){

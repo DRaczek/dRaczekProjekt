@@ -54,3 +54,22 @@ main .form h1{
     text-shadow: black 0px 1px 1px;
     margin: 20px;
 }
+
+@media screen and (max-width:600px){
+    main{
+        padding: 100px 10px;
+    }
+    .form{
+        padding: 10px;
+        width: 98vw;
+    }
+    main .form input{
+        padding: 10px;
+    }
+
+    main p{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}

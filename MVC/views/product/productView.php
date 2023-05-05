@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Fashion Bay</title>
+    <link rel="icon" type="image/x-icon" href="/dRaczekProjekt/img/logo/logo_transparent_img_only.png">
     <?php echo $data['styles']; ?>
     <link rel="stylesheet" href="/dRaczekProjekt/css/productView.css">
 </head>
@@ -13,8 +14,7 @@
     <?php echo $data['header']; ?>
     <main>
         <div class="img-wrapper">
-          
-        <img src="<?php echo "/dRaczekProjekt/".$product['image_path_1']; ?>" class="main-img">
+            <img src="<?php echo "/dRaczekProjekt/".$product['image_path_1']; ?>" class="main-img">
             <div class="imgs">
                 <?php
                     if(!empty($product['image_path_1'])){
@@ -28,13 +28,12 @@
                     }
                 ?>
             </div>
-           
         </div>
         <div class="main-info">
-            <h1 class="product-name"><?php echo $product['name']; ?></h1>
+            <h1 class="product-name" style="font-size:24px"><?php echo $product['name']; ?></h1>
             <h2 class="product-price"><?php echo $product['price']."PLN"; ?></h2>
             <span class="product-quantity">Dostępna ilość : <b><?php echo $product['quantity']; ?> sztuk</b></span><br>
-            <span class="product-views">Ilość wyświetleń produktu :  <b><?php echo $product['view_count']; ?> wyświetlenia</b></span><br><br><br>
+            <span class="product-views">Ilość wyświetleń produktu :  <b><?php echo $product['view_count']; ?> wyświetleń</b></span><br><br><br>
             <a href="/dRaczekProjekt/cart/add/<?php echo $product['id']; ?>" class="cartbtn">Dodaj do koszyka</a>
             <div class="server-info">
                 <?php

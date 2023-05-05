@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 23, 2023 at 06:37 PM
+-- Generation Time: Maj 05, 2023 at 11:02 PM
 -- Wersja serwera: 10.4.28-MariaDB
 -- Wersja PHP: 8.2.4
 
@@ -49,7 +49,8 @@ INSERT INTO `categories` (`id`, `name`, `image_path`, `created_date`, `user_id_c
 (20, 'kat2', 'img/uploads/categories/2023-04-06-23-47-57_img2.png', '2023-04-06 23:47:57', 49, '2023-04-06 23:47:57', 49, 1),
 (21, 'kat3', 'img/uploads/categories/2023-04-06-23-48-02_img3.png', '2023-04-06 23:48:02', 49, '2023-04-06 23:48:02', 49, 1),
 (23, 'kat5', 'img/uploads/categories/2023-04-06-23-48-12_img5.png', '2023-04-06 23:48:12', 49, '2023-04-06 23:48:12', 49, 1),
-(24, 'test', 'img/uploads/categories/2023-04-15-23-25-30_frlif.png', '2023-04-06 23:48:17', 49, '2023-04-15 23:25:30', 49, 1);
+(24, 'test', 'img/uploads/categories/2023-04-15-23-25-30_frlif.png', '2023-04-06 23:48:17', 49, '2023-04-15 23:25:30', 49, 1),
+(29, 'katąćę', 'img/uploads/categories/2023-04-29-16-47-53_img5.png', '2023-04-29 16:47:53', 49, '2023-04-29 16:47:53', 49, 1);
 
 -- --------------------------------------------------------
 
@@ -113,8 +114,20 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `user_id`, `is_company`, `first_name`, `last_name`, `street`, `street_number`, `postal_code`, `postal_city`, `country`, `nip`, `company_name`, `delivery_id`, `delivery_tracking`, `payment_method_id`, `payment_status`, `order_status`, `created_date`, `user_id_created`, `last_modified_date`, `user_id_last_modified`, `status`) VALUES
-(40, 49, 0, 'Damian', 'Raczek', 'Mordarka', 344, '34-600', 'Limanowa', 'PL', '5240257126', 'awdawd', 2, 'Brak danych', 1, 0, 0, '2023-04-23 17:53:48', 49, '2023-04-23 17:53:48', 49, 1),
-(41, 49, 0, 'Damian', 'Raczek', 'Mordarka', 344, '34-600', 'Limanowa', 'PL', '5240257126', 'awdawd', 2, 'Brak danych', 1, 0, 0, '2023-04-23 17:56:03', 49, '2023-04-23 17:56:03', 49, 1);
+(53, 59, 1, 'Damian', 'Raczek', 'Mordarka', 344, '34-600', 'Limanowa', 'PL', '5240257126', 'awdawd', 2, 'Brak danych', 3, 0, 0, '2023-05-02 16:09:26', 59, '2023-05-02 16:09:26', 59, 1),
+(54, 59, 0, 'Damian', 'Raczek', 'Mordarka', 344, '34-600', 'Limanowa', 'PL', '5240257126', 'awdawd', 3, 'Brak danych', 1, 1, 0, '2023-05-02 19:15:28', 59, '2023-05-02 19:15:28', 59, 1),
+(55, 59, 0, 'Damian', 'Raczek', 'Mordarka', 344, '34-600', 'Limanowa', 'PL', '5240257126', 'awdawd', 3, 'Brak danych', 2, 0, 0, '2023-05-02 19:15:37', 59, '2023-05-02 19:15:37', 59, 1),
+(56, 59, 0, 'Damian', 'Raczek', 'Mordarka', 344, '34-600', 'Limanowa', 'PL', '5240257126', 'awdawd', 3, 'Brak danych', 2, 0, 0, '2023-05-02 19:15:44', 59, '2023-05-02 19:15:44', 59, 1),
+(57, 59, 0, 'Damian', 'Raczek', 'Mordarka', 344, '34-600', 'Limanowa', 'PL', '5240257126', 'awdawd', 3, 'Brak danych', 2, 0, 0, '2023-05-02 19:15:57', 59, '2023-05-02 19:15:57', 59, 1),
+(58, 59, 0, 'Łukasz', 'Raczek', 'Mordarka', 344, '34-600', 'Limanowa', 'PL', '5240257126', 'awdawd', 2, 'Brak danych', 1, 1, 0, '2023-05-03 13:22:11', 59, '2023-05-03 13:22:11', 59, 1),
+(59, 59, 1, 'Damian', 'Raczek', 'Mordarka', 344, '34-600', 'Limanowa', 'PL', '5240257126', 'awdawd', 3, 'Brak danych', 3, 0, 0, '2023-05-03 13:26:30', 59, '2023-05-03 13:26:30', 59, 1),
+(60, 59, 1, 'Damian', 'Raczek', 'Mordarka', 344, '34-600', 'Limanowa', 'PL', '5240257126', 'awdawd', 3, 'Brak danych', 3, 1, 0, '2023-05-03 13:26:56', 59, '2023-05-03 13:26:56', 59, 1),
+(61, 59, 1, 'Damian', 'Raczek', 'Mordarka', 344, '34-600', 'Limanowa', 'PL', '5240257126', 'awdawd', 2, 'Brak danych', 3, 1, 0, '2023-05-03 13:28:16', 59, '2023-05-03 13:28:16', 59, 1),
+(62, 59, 1, 'Damian', 'Raczek', 'Mordarka', 344, '34-600', 'Limanowa', 'PL', '5240257126', 'awdawd', 3, 'Brak danych', 2, 0, 0, '2023-05-03 13:29:15', 59, '2023-05-03 13:29:15', 59, 1),
+(63, 59, 1, 'Damian', 'Raczek', 'Mordarka', 344, '34-600', 'Limanowa', 'PL', '5240257126', 'awdawd', 2, 'Brak danych', 3, 0, 0, '2023-05-05 17:05:47', 59, '2023-05-05 17:05:47', 59, 1),
+(64, 59, 1, 'Damian', 'Raczek', 'Mordarka', 344, '34-600', 'Limanowa', 'PL', '5240257126', 'awdawd', 2, 'Brak danych', 3, 0, 0, '2023-05-05 17:08:48', 59, '2023-05-05 17:08:48', 59, 1),
+(65, 59, 1, 'Damian', 'Raczek', 'Mordarka', 344, '34-600', 'Limanowa', 'PL', '5240257126', 'awdawd', 2, 'Brak danych', 1, 1, 0, '2023-05-05 17:46:20', 59, '2023-05-05 17:46:20', 59, 1),
+(66, 59, 1, 'Damian', 'Raczek', 'Mordarka', 344, '34-600', 'Limanowa', 'PL', '5240257126', 'awdawd', 2, 'Brak danych', 3, 1, 0, '2023-05-05 22:59:15', 59, '2023-05-05 22:59:15', 59, 1);
 
 -- --------------------------------------------------------
 
@@ -139,10 +152,30 @@ CREATE TABLE `orders_products` (
 --
 
 INSERT INTO `orders_products` (`id`, `order_id`, `product_id`, `quantity`, `created_date`, `user_id_created`, `last_modified_date`, `user_id_last_modified`, `status`) VALUES
-(14, 40, 15, 4, '2023-04-23 17:53:48', 49, '2023-04-23 17:53:48', 49, 1),
-(15, 40, 13, 8, '2023-04-23 17:53:48', 49, '2023-04-23 17:53:48', 49, 1),
-(16, 41, 15, 4, '2023-04-23 17:56:04', 49, '2023-04-23 17:56:04', 49, 1),
-(17, 41, 13, 8, '2023-04-23 17:56:04', 49, '2023-04-23 17:56:04', 49, 1);
+(40, 53, 13, 33, '2023-05-02 16:09:26', 59, '2023-05-02 16:09:26', 59, 1),
+(41, 53, 13, 49, '2023-05-02 16:09:26', 59, '2023-05-02 16:09:26', 59, 1),
+(42, 54, 13, 33, '2023-05-02 19:15:28', 59, '2023-05-02 19:15:28', 59, 1),
+(43, 54, 13, 49, '2023-05-02 19:15:28', 59, '2023-05-02 19:15:28', 59, 1),
+(44, 55, 13, 33, '2023-05-02 19:15:37', 59, '2023-05-02 19:15:37', 59, 1),
+(45, 55, 13, 49, '2023-05-02 19:15:37', 59, '2023-05-02 19:15:37', 59, 1),
+(46, 56, 13, 33, '2023-05-02 19:15:44', 59, '2023-05-02 19:15:44', 59, 1),
+(47, 56, 13, 49, '2023-05-02 19:15:44', 59, '2023-05-02 19:15:44', 59, 1),
+(48, 57, 13, 33, '2023-05-02 19:15:58', 59, '2023-05-02 19:15:58', 59, 1),
+(49, 57, 13, 49, '2023-05-02 19:15:58', 59, '2023-05-02 19:15:58', 59, 1),
+(50, 58, 13, 1, '2023-05-03 13:22:11', 59, '2023-05-03 13:22:11', 59, 1),
+(51, 59, 13, 1, '2023-05-03 13:26:30', 59, '2023-05-03 13:26:30', 59, 1),
+(52, 60, 13, 1, '2023-05-03 13:26:56', 59, '2023-05-03 13:26:56', 59, 1),
+(53, 61, 13, 1, '2023-05-03 13:28:16', 59, '2023-05-03 13:28:16', 59, 1),
+(54, 62, 13, 1, '2023-05-03 13:29:15', 59, '2023-05-03 13:29:15', 59, 1),
+(55, 63, 15, 7, '2023-05-05 17:05:47', 59, '2023-05-05 17:05:47', 59, 1),
+(56, 63, 16, 9, '2023-05-05 17:05:47', 59, '2023-05-05 17:05:47', 59, 1),
+(57, 64, 16, 22, '2023-05-05 17:08:48', 59, '2023-05-05 17:08:48', 59, 1),
+(58, 65, 16, 9, '2023-05-05 17:46:21', 59, '2023-05-05 17:46:21', 59, 1),
+(59, 65, 15, 5, '2023-05-05 17:46:21', 59, '2023-05-05 17:46:21', 59, 1),
+(60, 65, 17, 80, '2023-05-05 17:46:21', 59, '2023-05-05 17:46:21', 59, 1),
+(61, 65, 18, 11, '2023-05-05 17:46:21', 59, '2023-05-05 17:46:21', 59, 1),
+(62, 66, 15, 7, '2023-05-05 22:59:15', 59, '2023-05-05 22:59:15', 59, 1),
+(63, 66, 17, 12, '2023-05-05 22:59:15', 59, '2023-05-05 22:59:15', 59, 1);
 
 -- --------------------------------------------------------
 
@@ -187,6 +220,7 @@ CREATE TABLE `products` (
   `quantity` bigint(20) NOT NULL,
   `size` varchar(50) NOT NULL,
   `colour` varchar(50) NOT NULL,
+  `gender` tinyint(3) UNSIGNED NOT NULL,
   `view_count` bigint(20) NOT NULL,
   `last_modified_date` datetime NOT NULL,
   `user_id_last_modified` bigint(20) NOT NULL,
@@ -199,9 +233,12 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `name`, `category_id`, `image_path_1`, `image_path_2`, `image_path_3`, `description`, `price`, `quantity`, `size`, `colour`, `view_count`, `last_modified_date`, `user_id_last_modified`, `created_date`, `user_id_created`, `status`) VALUES
-(13, 'produkt 3 super cena lux premiumawdawdawdawd', 24, 'img/uploads/products/2023-04-16-15-35-40_img1.png', 'img/uploads/products/2023-04-16-15-35-40_img5.png', NULL, 'opis', 0.22, 1, '2', '3', 0, '2023-04-16 15:35:40', 49, '2023-04-11 14:45:48', 49, 1),
-(15, 'produkt1', 23, 'img/uploads/products/2023-04-16-15-39-06_img6.png', NULL, NULL, '123', 123.00, 123, '1', '1', 0, '2023-04-20 15:40:55', 49, '2023-04-16 15:39:06', 49, 1);
+INSERT INTO `products` (`id`, `name`, `category_id`, `image_path_1`, `image_path_2`, `image_path_3`, `description`, `price`, `quantity`, `size`, `colour`, `gender`, `view_count`, `last_modified_date`, `user_id_last_modified`, `created_date`, `user_id_created`, `status`) VALUES
+(13, 'produkt 3 super cena lux premiumawdawdawdawd', 24, 'img/uploads/products/2023-04-29-21-26-25_clothing-png-pic.png', 'img/uploads/products/2023-04-29-21-26-25_881f615abd6b80ee5c33f13ad22eadbd.png', 'img/uploads/products/2023-04-29-21-26-25_5-2-clothes-free-png-image.png', 'opis', 0.22, 0, '2', '3', 0, 302, '2023-04-29 21:26:25', 49, '2023-04-11 14:45:48', 49, 1),
+(15, 'produkt1', 23, 'img/uploads/products/2023-04-28-14-17-15_img3.png', NULL, NULL, '123', 123.00, 104, '1', '1', 2, 14, '2023-04-28 14:17:15', 49, '2023-04-16 15:39:06', 49, 1),
+(16, 'produkt1qwe', 19, 'img/uploads/products/2023-04-28-13-29-52_web_site.jpg', NULL, NULL, 'opis', 123.00, 5083, '3', '2', 0, 19, '2023-04-28 13:29:52', 49, '2023-04-28 13:29:52', 49, 1),
+(17, 'kattestZmienione', 19, 'img/uploads/products/2023-04-28-14-14-50_frlif.png', NULL, NULL, '123123', 1231.00, 123031, '0', '0', 1, 6, '2023-04-28 14:14:50', 49, '2023-04-28 13:56:34', 49, 1),
+(18, 'produkt1123', 24, 'img/uploads/products/2023-04-28-14-12-38_img5.png', NULL, NULL, 'awd', 123.00, 121, '2', '1', 2, 9, '2023-04-28 14:12:38', 49, '2023-04-28 14:01:28', 49, 1);
 
 -- --------------------------------------------------------
 
@@ -229,13 +266,13 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `email`, `password`, `first_name`, `last_name`, `date_of_birth`, `created_date`, `user_id_created`, `last_modified_date`, `user_id_last_modified`, `status`) VALUES
 (1, 'SYSTEM', 'SYSTEM', 'SYSTEM', 'SYSTEM', '2013-03-01', '2023-03-29 21:19:32', 1, '2023-03-29 21:19:32', 1, 1),
-(49, 'godzina.wychowawcza12@gmail.com', '$2y$10$e1gtlUufqOzZHxYDz2.ZvOO8jNkpMpcrwXMBPwZNY8lZUHE6HCuga', 'Damian', 'Raczek', '2022-12-30', '2023-04-01 22:02:34', 1, '2023-04-16 11:49:12', 49, 1),
+(49, 'godzina.wychowawcza12@gmail.com', '$2y$10$e1gtlUufqOzZHxYDz2.ZvOO8jNkpMpcrwXMBPwZNY8lZUHE6HCuga', 'Damian', 'Raczek', '2022-12-30', '2023-04-01 22:02:34', 1, '2023-05-01 16:53:47', 49, 1),
 (50, 'test1', 'test', 'test', 'test', '2023-04-02', '2023-04-02 14:23:32', 1, '2023-04-02 15:14:47', 49, 1),
 (51, 'test2', 'test', 'test', 'test', '2023-04-02', '2023-04-02 14:23:32', 1, '2023-04-16 11:58:20', 49, 1),
 (52, 'test3', 'test', 'test', 'test', '2023-04-02', '2023-04-02 14:23:32', 1, '2023-04-16 12:08:34', 49, 2),
 (53, 'test4', 'test', 'test', 'test', '2023-04-02', '2023-04-02 14:23:32', 1, '2023-04-10 19:38:30', 49, 1),
 (54, 'test5', 'test', 'test', 'test', '2023-04-02', '2023-04-02 14:23:32', 1, '2023-04-10 19:38:31', 49, 1),
-(59, 'draczekprojekt@gmail.com', '$2y$10$ZY/0Sefed9Rg7wAH6YSzbOVDnfLp10XDelIwnjTWOoR/4Dfvy28cW', 'Damian', 'Raczek', '2023-03-31', '2023-04-10 15:47:17', 1, '2023-04-16 11:58:24', 49, 1),
+(59, 'draczekprojekt@gmail.com', '$2y$10$VdcnF/x6CVWihhaXjTN1meqf.iJBL.p38amXN3rMJN0l6xkc8w8kS', 'Damian', 'Raczek', '2023-03-31', '2023-04-10 15:47:17', 1, '2023-05-05 12:42:31', 59, 1),
 (60, 'damian.raczek4206695@gmail.com', '$2y$10$hUIhLo7gAGA7P93X3WiUuuTZ3i8CBZcj7LX8PPXfe7W9P/XvjhOde', 'DamianZmienione', 'RaczekZmienione', '2023-04-01', '2023-04-16 16:12:13', 1, '2023-04-16 16:22:18', 60, 1);
 
 -- --------------------------------------------------------
@@ -273,6 +310,14 @@ CREATE TABLE `users_token_action` (
   `user_id_last_modified` bigint(20) NOT NULL,
   `status` tinyint(3) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
+
+--
+-- Dumping data for table `users_token_action`
+--
+
+INSERT INTO `users_token_action` (`id`, `token`, `action`, `user_id`, `created_date`, `user_id_created`, `last_modified_date`, `user_id_last_modified`, `status`) VALUES
+(45, 'eebfd35fbc654200c34253a8e05710afea32432c4b9b8110bfade1afa009a07f', 1, 59, '2023-05-03 12:46:37', 1, '2023-05-03 12:46:37', 1, 1),
+(46, '69b8ad459ad7e07a416ad59f0eaf249c0fe20ecfebf2c1fda316db219bb5a2a7', 1, 59, '2023-05-05 12:51:34', 1, '2023-05-05 12:51:34', 1, 1);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -369,7 +414,7 @@ ALTER TABLE `users_token_action`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `delivery_methods`
@@ -381,13 +426,13 @@ ALTER TABLE `delivery_methods`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT for table `orders_products`
 --
 ALTER TABLE `orders_products`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT for table `payment_methods`
@@ -399,7 +444,7 @@ ALTER TABLE `payment_methods`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -417,7 +462,7 @@ ALTER TABLE `users_admin`
 -- AUTO_INCREMENT for table `users_token_action`
 --
 ALTER TABLE `users_token_action`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- Constraints for dumped tables

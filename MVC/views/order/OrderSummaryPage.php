@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Fashion Bay</title>
+    <link rel="icon" type="image/x-icon" href="/dRaczekProjekt/img/logo/logo_transparent_img_only.png">
     <?php echo $data['styles']; ?>
     <link rel="stylesheet" href="/dRaczekProjekt/css/orderSummary.css">
+    <link rel="stylesheet" href="/dRaczekProjekt/css/steps.css">
+    <link rel="stylesheet" href="/dRaczekProjekt/css/list.css">
 </head>
 <body>
     <?php
@@ -27,7 +30,7 @@
             <?php
                 foreach($koszyk as $produkt){
             ?>
-               <div class="item">
+                <a class="item" href="/dRaczekProjekt/products/<?php echo $produkt['productId']; ?>">
                     <input type="hidden" name="cart_position_id" value="<?php echo $produkt['id']; ?>">
                     <img src="/dRaczekProjekt/<?php echo $produkt['image_path']; ?>" alt="obrazek przedmiotu" width="100" height="100">
                     <p class="product-name"><?php
@@ -57,17 +60,18 @@
                     <div class="quantity">
                         <span class="product-quantity">Ilość : <?php echo $produkt['quantity']; ?></span>
                     </div>
-                </div>
+                </a>
             <?php
                 }
             ?>
         </div>
-        <div class="preferences">
-            <span>Wybrany sposób dostawy</span><span> <?php echo $delivery['name']; ?></span>
-            <span>Wybrany sposób płatnośći</span><span><?php echo $paymentMethodName; ?></span>
-            <span>Cena przedmiotów</span><span><?php echo $summary."PLN"; ?></span>
-            <span>Dostawa</span><span><?php echo $delivery['price']."PLN"; ?></span>
-            <span class="total">Cena końcowa</span><span class="total"><?php echo ($summary+$delivery['price'])."PLN"; ?></span>
+
+        <div class="list">
+            <span class="caption">Wybrany sposób dostawy</span><span class="value"><?php echo $delivery['name']; ?></span>
+            <span class="caption">Wybrany sposób płatności</span><span class="value"><?php echo $paymentMethodName; ?></span>
+            <span class="caption">Cena przedmiotów</span><span class="value"><?php echo $summary."PLN"; ?></span>
+            <span class="caption">Dostawa</span><span class="value"><?php echo ($summary+$delivery['price'])."PLN"; ?></span>
+            <span class="caption total">Cena końcowa</span><span class="value total"><?php echo ($summary+$delivery['price'])."PLN"; ?></span>
         </div>
         <div class="data">
             <div class="card">

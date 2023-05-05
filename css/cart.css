@@ -18,32 +18,16 @@ main .quantity span{
     width: 70px;
 }
 
-main .steps{
-    display: flex;
-    margin: 10px 0px 50px 0px;
-}
-
-main .steps .step{
-    flex: 1;
-    text-align: center;
-    border-bottom: 5px solid lightgrey;
-    margin: 0px 5px;
-}
-
-main .steps .step.active{
-    border-bottom-color: var(--header-color);
-    font-size: 20px;
-    font-weight: 600;
-}
-
 main{
     padding: 20px;
     margin: 10%;
+    margin-top: calc(var(--header-height) + 1%);
     border: 1px solid lightgray;
     box-shadow: lightgray 5px 5px 5px,lightgray -5px 5px 5px;
     display: grid;
     grid-template-columns: 0.7fr 0.3fr;
     grid-gap: 10px;
+    justify-content: center;
 }
 
 main .menu{
@@ -60,6 +44,8 @@ main .item{
     box-shadow: lightgray 5px 5px 5px, lightgray -5px 5px 5px;
     flex-wrap: wrap;
     justify-content: center;
+    color: black;
+    text-decoration: none;
 }
 main .item .product-name{
     white-space: nowrap;
@@ -97,5 +83,31 @@ main .order-button:hover{
     transform: scale(1.1);
 }
 
+
+@media screen and (max-width:800px){
+    main{
+       grid-template-columns: 1fr;
+       padding: 5px;
+       margin: calc(var(--header-height) + 1%) 1%;
+    }
+}
+
+@media screen and (max-width:400px){
+    main .menu{
+        padding: 5px;
+    }
+    main .order-button{
+        margin: 10px auto;
+        font-size: 18px;
+        padding: 10px;
+    }
+    main #price{
+        display: block;
+    }
+    main #price > *{
+        display: block;
+        text-align: start !important;
+    }
+}
 
 

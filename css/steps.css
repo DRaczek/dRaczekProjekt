@@ -1,0 +1,40 @@
+main .steps{
+    display: flex;
+    margin: none;
+}
+
+main .steps .step{
+    flex: 1;
+    text-align: center;
+    border-bottom: 5px solid lightgrey;
+    margin: 0px 5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+main .steps .step.active{
+    border-color: var(--header-color);
+    font-size: 20px;
+    font-weight: 600;
+}
+
+@media screen and (max-width:800px) {
+    main .steps{
+        flex-direction: column;
+        width: 100%;
+        margin: auto;
+    }
+    main .steps .step{
+        min-height: 50px;
+        border-bottom: none;
+        border-left: 20px solid lightgrey;
+        border-bottom: 3px solid lightgray;
+        padding: 5px;
+        margin-bottom: 2px;
+        font-size: 14px;
+    }
+    main .steps .step.active{
+        font-size: 16px;
+    }
+}

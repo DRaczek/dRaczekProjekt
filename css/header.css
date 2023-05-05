@@ -14,6 +14,7 @@ header{
     align-items: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     z-index: 999;
+    max-width: 100vw;
 }
 
 header #logo{
@@ -21,6 +22,7 @@ header #logo{
     height:var(--header-height);
     width: auto;
     padding: 10px;
+    max-height: 75px;
 
 }
 header #searchbar-wrapper{
@@ -47,13 +49,14 @@ header #searchbar-wrapper form select{
 
 header #header-items-wrapper{
     display: flex;
-    min-width: 150px;
+    min-width: 100px;
     justify-content: space-evenly;
     margin: 0px 20px;
 }
 
 header #header-items-wrapper .item img{
     height: calc(0.5 * var(--header-height));
+    max-height: 40px;
     width: auto;
 }
 
@@ -79,6 +82,9 @@ header #header-items-wrapper .item:hover > .details{
 
 header #header-items-wrapper .item .details .user-details{
     color: lightgray;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 header #header-items-wrapper .item .details a {
@@ -97,3 +103,50 @@ header #header-items-wrapper .item .details a:active{
     box-shadow: black 0px 0px 2px;
 }
 
+@media (max-width: 1000px){
+    header #searchbar-wrapper{
+        margin: 0;
+    }
+}
+
+@media (max-width: 600px){
+    header{
+        flex-wrap: wrap;
+    }
+    header #searchbar-wrapper{
+        order: 3;
+        min-width: 100vw !important; 
+    }
+    :root{
+        --header-height:125px;
+    }
+    header #header-items-wrapper{
+        flex: 1;
+        justify-content: end;
+        min-width: 0px;
+    }
+    header #header-items-wrapper .item .details{
+        width: 100vw;
+        transform: none;
+        left: 0;
+    }
+}
+
+@media (max-width: 400px){
+    :root{
+        --header-height:165px;
+    }
+    header form input[type=text]{
+        width: 100vw !important;
+    }
+    header form{
+        flex-wrap: wrap;
+    }
+    header form *{
+        flex: 1;
+    }
+    header #header-items-wrapper .item .details a{
+        padding: 10px;
+        letter-spacing: 1px;
+    }
+}

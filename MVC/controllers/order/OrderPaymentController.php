@@ -1,21 +1,16 @@
 <?php
 include_once("MVC/models/databaseModels/OrderModel.php");
 include_once("MVC/controllers/order/OrderController.php");
+include_once("MVC/models/databaseModels/CategoryModel.php");
 
 class OrderPaymentController extends OrderController{
     public function __construct(){
 
     }
     
-    private function checkIfLoggedInAndRedirect(){
-        if(!isset($_SESSION['user_id'])){
-            header("/dRaczekProjekt/login");
-            exit();
-        }
-    }
 
     public function displayPaymentPage($id){
-        $this->checkIfLoggedInAndRedirect();
+        $this->RedirectIfNotLoggedIn();
         $orderModel = new OrderModel();
         if(!$orderModel->orderExistsAndIsAvailable($id, $_SESSION['user_id'])){
             echo "Zasób nie istnieje!";
@@ -27,11 +22,24 @@ class OrderPaymentController extends OrderController{
             http_response_code(404);
             exit();
         }
-        include("MVC/views/order/PaymentPage.php");
+
+        $data = array();
+        $categoryModel = new CategoryModel();
+        $headerData = array(
+            "categories"=>$categoryModel->getCategories()
+        );
+        $data['id'] = $id;
+        $data['categories'] = $headerData['categories'];
+        $data['header']=$this->loadView("MVC/views/common/header", $headerData, true);
+        $data['footer']=$this->loadView("MVC/views/common/footer", null, true);
+        $data['styles']='<link rel="stylesheet" href="/dRaczekProjekt/css/header.css">
+        <link rel="stylesheet" href="/dRaczekProjekt/css/footer.css">
+        <link rel="stylesheet" href="/dRaczekProjekt/css/basicLayout.css">';
+        $this->loadView("MVC/views/order/PaymentPage", $data, false);
     }
 
     public function pay($id){
-        $this->checkIfLoggedInAndRedirect();
+        $this->RedirectIfNotLoggedIn();
         $orderModel = new OrderModel();
         if(!$orderModel->orderExistsAndIsAvailable($id, $_SESSION['user_id'])){
             echo "Zasób nie istnieje!";
