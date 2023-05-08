@@ -1,0 +1,104 @@
+main .banner{
+    width: 100%;
+    min-height: 500px;
+    background-image: url("/dRaczekProjekt/img/bg.png");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+main .banner img{
+    max-width: 200px;
+    height: auto;
+    border-radius: 50%;
+}
+main .oferta{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 10px 0;
+}
+main .oferta a{
+    color: black;
+    text-decoration: none;
+    min-height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 600;
+    transition: 0.3s;
+    border-bottom: 5px solid lightgray;;
+}
+main .oferta a:hover{
+    border-bottom-color: var(--header-color);
+}
+main .newest .slide{
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    border: 1px solid lightgray;
+    box-shadow: lightgray 5px 5px 5px,lightgray -5px 5px 5px ;
+    padding: 5px;
+    gap: 5px;
+    position: relative;
+}
+main .newest{
+    position: relative;
+}
+main .newest .item{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 200px;
+    border: 1px solid lightgray;
+    text-decoration: none;
+    color: black;
+}
+main .newest .item img{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    aspect-ratio: 1/1;
+    padding: 1px;
+}
+main .newest .item .price{
+    color: red;
+}
+main .newest .item .name{
+    font-weight: 600;
+}
+main .newest .move{
+    position: absolute;
+    width: 50px;
+    height: 100px;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translate(0,-50%);
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 600;
+}
+main .newest .left{
+    top: 50%;
+    left: 5px;
+}
+main .newest .right{
+    top: 50%;
+    right: 5px;
+}
+main .header{
+    text-align: center;
+}
+@media screen and (max-width:600px) {
+    main .banner{
+        min-height: 300px;
+    }
+    main .newest .move{
+        width: 30px;
+        height: 60px;
+    }
+}

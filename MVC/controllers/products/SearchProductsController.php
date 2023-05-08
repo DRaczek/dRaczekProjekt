@@ -8,7 +8,7 @@ class SearchProductsController extends Controller{
 
     }
     
-    public function search($pageable){
+    public function search($pageable = "page=1&size=20"){
 
         $pageable = explode("&", $pageable);
         $pageable=array_slice($pageable,2);
