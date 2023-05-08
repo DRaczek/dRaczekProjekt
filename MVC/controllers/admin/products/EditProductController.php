@@ -15,7 +15,19 @@ class EditProductController extends AdminProductController{
         $product = $adminProductModel->getProduct($id);
         $categoryModel = new CategoryModel();
         $categories = $categoryModel->getCategories();
-        include("MVC/views/admin/editProductPage.php");
+        $data = array();
+        $headerData = array(
+            "categories"=>$categories
+        );
+        $data['product'] = $product;
+        $data['categories'] = $categories;
+        $data['id'] = $id;
+        $data['header']=$this->loadView("MVC/views/common/header", $headerData, true);
+        $data['footer']=$this->loadView("MVC/views/common/footer", null, true);
+        $data['styles']='<link rel="stylesheet" href="/dRaczekProjekt/css/header.css">
+        <link rel="stylesheet" href="/dRaczekProjekt/css/footer.css">
+        <link rel="stylesheet" href="/dRaczekProjekt/css/basicLayout.css">';
+        $this->loadView("MVC/views/admin/editProductPage", $data, false);
     }
 
     public function editProduct(){
@@ -31,6 +43,16 @@ class EditProductController extends AdminProductController{
             header("Location:../../../products");
             exit();
         }
+
+        $adminProductModel = new AdminProductModel();
+        $images = $adminProductModel->getProductImages($_POST['id']);
+        foreach($images as $image){
+            if($image==null || empty($image))continue;
+            if(file_exists($image)){
+                unlink($image);
+            }
+        }
+
 
         //zapis zdjęć na serwerze
         $added = array();

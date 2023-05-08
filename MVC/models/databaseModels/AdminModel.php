@@ -153,4 +153,6 @@ class AdminModel{
         $stmt->execute([StatusEnum::ACTIVE, (new DateTime())->format('Y-m-d H:i:s'), $userIdModified, $userId]);
         $dbh = null;
     }
+
+
 }

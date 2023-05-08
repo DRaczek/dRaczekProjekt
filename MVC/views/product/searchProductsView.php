@@ -93,7 +93,7 @@
                         <span class="product-name"><?php echo $product['name']; ?></span>
                         <span class="product-price"><?php echo $product['price']."PLN"; ?></span>
                         <span class="product-views"><?php echo "Ilość wyświetleń : ".$product['view_count']; ?></span>
-                        <span class="product-quantity"><?php echo "Ilość wyświetleń : ".$product['quantity']; ?></span>
+                        <span class="product-quantity"><?php echo "Dostępna ilość : ".$product['quantity']; ?></span>
                     </div>
                     <div class="additional-info">
                         <ul>

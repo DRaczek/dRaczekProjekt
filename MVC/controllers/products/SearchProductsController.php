@@ -21,6 +21,7 @@ class SearchProductsController extends Controller{
             $_GET['size']=10;
         }
         $page = intval($_GET['page']);
+        if($page<1)$page=1;
         $pageSize = intval($_GET['size']);
         $name= null;
         $categoryId=null;

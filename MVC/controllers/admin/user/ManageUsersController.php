@@ -1,6 +1,7 @@
 <?php
 include_once("MVC/controllers/admin/user/AdminController.php");
 include_once("MVC/models/databaseModels/AdminModel.php");
+include_once("MVC/models/databaseModels/CategoryModel.php");
 
 class ManageUsersController extends AdminController{
     public function __construct(){
@@ -9,6 +10,7 @@ class ManageUsersController extends AdminController{
 
     public function displayManageUsersPage($pageable = "page=1&size=10"){
         $this->RedirectIfAdminNotLoggedIn();
+        if($pageable[0]=='?')$pageable=substr($pageable,1);
         setcookie("admin_users_pageable", $pageable, time()+1*60*60, "/");
         if(!isset($_GET['page'])){
             $_GET['page']=1;
@@ -18,6 +20,7 @@ class ManageUsersController extends AdminController{
         }
 
         $page = intval($_GET['page']);
+        if($page<1)$page=1;
         $pageSize = intval($_GET['size']);
         $id=null;
         $email= null;
@@ -78,6 +81,30 @@ class ManageUsersController extends AdminController{
         $result = $adminModel->searchUsers($firstResult, $pageSize, $email, $firstName, $lastName, $status, $createdDate, $id, $orderBy, $order);
         $resultCount = ($adminModel->searchUsersCount($email, $firstName, $lastName, $status, $createdDate, $id))[0];
 
-        include("MVC/views/admin/manageUsersPage.php");
+        $data = array();
+        $categoryModel = new CategoryModel();
+        $headerData = array(
+            "categories"=>$categoryModel->getCategories()
+        );
+        $data['result'] = $result;
+        $data['resultCount'] = $resultCount;
+        $data['filter'] = [
+            "page"=>$page,
+            "pageSize"=>$pageSize,
+            "id"=>$id,
+            "email"=>$email,
+            "firstName"=>$firstName,
+            "lastName"=>$lastName,
+            "status"=>$status,
+            "createdDate"=>$createdDate,
+            "orderBy"=>$orderBy,
+            "order"=>$order
+        ];
+        $data['header']=$this->loadView("MVC/views/common/header", $headerData, true);
+        $data['footer']=$this->loadView("MVC/views/common/footer", null, true);
+        $data['styles']='<link rel="stylesheet" href="/dRaczekProjekt/css/header.css">
+        <link rel="stylesheet" href="/dRaczekProjekt/css/footer.css">
+        <link rel="stylesheet" href="/dRaczekProjekt/css/basicLayout.css">';
+        $this->loadView("MVC/views/admin/manageUsersPage", $data, false);
     }
 }

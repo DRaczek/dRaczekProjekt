@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Maj 05, 2023 at 11:02 PM
+-- Generation Time: Maj 08, 2023 at 10:09 PM
 -- Wersja serwera: 10.4.28-MariaDB
 -- Wersja PHP: 8.2.4
 
@@ -45,12 +45,11 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`, `image_path`, `created_date`, `user_id_created`, `last_modified_date`, `user_id_last_modified`, `status`) VALUES
-(19, 'kat1', 'img/uploads/categories/2023-04-06-23-47-52_img1.png', '2023-04-06 23:47:52', 49, '2023-04-10 19:40:57', 49, 1),
-(20, 'kat2', 'img/uploads/categories/2023-04-06-23-47-57_img2.png', '2023-04-06 23:47:57', 49, '2023-04-06 23:47:57', 49, 1),
-(21, 'kat3', 'img/uploads/categories/2023-04-06-23-48-02_img3.png', '2023-04-06 23:48:02', 49, '2023-04-06 23:48:02', 49, 1),
-(23, 'kat5', 'img/uploads/categories/2023-04-06-23-48-12_img5.png', '2023-04-06 23:48:12', 49, '2023-04-06 23:48:12', 49, 1),
-(24, 'test', 'img/uploads/categories/2023-04-15-23-25-30_frlif.png', '2023-04-06 23:48:17', 49, '2023-04-15 23:25:30', 49, 1),
-(29, 'katąćę', 'img/uploads/categories/2023-04-29-16-47-53_img5.png', '2023-04-29 16:47:53', 49, '2023-04-29 16:47:53', 49, 1);
+(30, 'Bluzy', 'img/uploads/categories/2023-05-06-20-42-26_g185b_charcoal_ff.png', '2023-05-06 20:42:26', 49, '2023-05-06 20:42:26', 49, 1),
+(31, 'T-shirty', 'img/uploads/categories/2023-05-06-20-43-32_tshirtpng.parspng.com_.png', '2023-05-06 20:43:32', 49, '2023-05-06 20:43:32', 49, 1),
+(32, 'Spodnie', 'img/uploads/categories/2023-05-06-20-44-43_khaki-pant-png-transparent-image.png', '2023-05-06 20:44:43', 49, '2023-05-06 20:44:43', 49, 1),
+(33, 'Kurtki', 'img/uploads/categories/2023-05-06-20-45-30_helly-hansen-verglas-down-jacket-png.png', '2023-05-06 20:45:30', 49, '2023-05-06 20:45:30', 49, 1),
+(34, 'Obuwie', 'img/uploads/categories/2023-05-06-20-47-39_buty-meskie-air-force-1-07-gjgxsp.png', '2023-05-06 20:47:39', 49, '2023-05-06 20:47:39', 49, 1);
 
 -- --------------------------------------------------------
 
@@ -114,20 +113,9 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `user_id`, `is_company`, `first_name`, `last_name`, `street`, `street_number`, `postal_code`, `postal_city`, `country`, `nip`, `company_name`, `delivery_id`, `delivery_tracking`, `payment_method_id`, `payment_status`, `order_status`, `created_date`, `user_id_created`, `last_modified_date`, `user_id_last_modified`, `status`) VALUES
-(53, 59, 1, 'Damian', 'Raczek', 'Mordarka', 344, '34-600', 'Limanowa', 'PL', '5240257126', 'awdawd', 2, 'Brak danych', 3, 0, 0, '2023-05-02 16:09:26', 59, '2023-05-02 16:09:26', 59, 1),
-(54, 59, 0, 'Damian', 'Raczek', 'Mordarka', 344, '34-600', 'Limanowa', 'PL', '5240257126', 'awdawd', 3, 'Brak danych', 1, 1, 0, '2023-05-02 19:15:28', 59, '2023-05-02 19:15:28', 59, 1),
-(55, 59, 0, 'Damian', 'Raczek', 'Mordarka', 344, '34-600', 'Limanowa', 'PL', '5240257126', 'awdawd', 3, 'Brak danych', 2, 0, 0, '2023-05-02 19:15:37', 59, '2023-05-02 19:15:37', 59, 1),
-(56, 59, 0, 'Damian', 'Raczek', 'Mordarka', 344, '34-600', 'Limanowa', 'PL', '5240257126', 'awdawd', 3, 'Brak danych', 2, 0, 0, '2023-05-02 19:15:44', 59, '2023-05-02 19:15:44', 59, 1),
-(57, 59, 0, 'Damian', 'Raczek', 'Mordarka', 344, '34-600', 'Limanowa', 'PL', '5240257126', 'awdawd', 3, 'Brak danych', 2, 0, 0, '2023-05-02 19:15:57', 59, '2023-05-02 19:15:57', 59, 1),
-(58, 59, 0, 'Łukasz', 'Raczek', 'Mordarka', 344, '34-600', 'Limanowa', 'PL', '5240257126', 'awdawd', 2, 'Brak danych', 1, 1, 0, '2023-05-03 13:22:11', 59, '2023-05-03 13:22:11', 59, 1),
-(59, 59, 1, 'Damian', 'Raczek', 'Mordarka', 344, '34-600', 'Limanowa', 'PL', '5240257126', 'awdawd', 3, 'Brak danych', 3, 0, 0, '2023-05-03 13:26:30', 59, '2023-05-03 13:26:30', 59, 1),
-(60, 59, 1, 'Damian', 'Raczek', 'Mordarka', 344, '34-600', 'Limanowa', 'PL', '5240257126', 'awdawd', 3, 'Brak danych', 3, 1, 0, '2023-05-03 13:26:56', 59, '2023-05-03 13:26:56', 59, 1),
-(61, 59, 1, 'Damian', 'Raczek', 'Mordarka', 344, '34-600', 'Limanowa', 'PL', '5240257126', 'awdawd', 2, 'Brak danych', 3, 1, 0, '2023-05-03 13:28:16', 59, '2023-05-03 13:28:16', 59, 1),
-(62, 59, 1, 'Damian', 'Raczek', 'Mordarka', 344, '34-600', 'Limanowa', 'PL', '5240257126', 'awdawd', 3, 'Brak danych', 2, 0, 0, '2023-05-03 13:29:15', 59, '2023-05-03 13:29:15', 59, 1),
-(63, 59, 1, 'Damian', 'Raczek', 'Mordarka', 344, '34-600', 'Limanowa', 'PL', '5240257126', 'awdawd', 2, 'Brak danych', 3, 0, 0, '2023-05-05 17:05:47', 59, '2023-05-05 17:05:47', 59, 1),
-(64, 59, 1, 'Damian', 'Raczek', 'Mordarka', 344, '34-600', 'Limanowa', 'PL', '5240257126', 'awdawd', 2, 'Brak danych', 3, 0, 0, '2023-05-05 17:08:48', 59, '2023-05-05 17:08:48', 59, 1),
-(65, 59, 1, 'Damian', 'Raczek', 'Mordarka', 344, '34-600', 'Limanowa', 'PL', '5240257126', 'awdawd', 2, 'Brak danych', 1, 1, 0, '2023-05-05 17:46:20', 59, '2023-05-05 17:46:20', 59, 1),
-(66, 59, 1, 'Damian', 'Raczek', 'Mordarka', 344, '34-600', 'Limanowa', 'PL', '5240257126', 'awdawd', 2, 'Brak danych', 3, 1, 0, '2023-05-05 22:59:15', 59, '2023-05-05 22:59:15', 59, 1);
+(68, 49, 0, 'Damian Zmienione', 'Raczek Zmienione', 'Mordarka Zmienione', 344, '34-601', 'Limanowa  Zmienione', 'PL', '5240257126', 'awdawd  Zmienione', 1, 'https://allegro.pl/moje-allegro/zakupy/kupione/278e6890-e2ac-11ed-9386-55551c9662ed', 3, 0, 2, '2023-05-08 13:32:33', 49, '2023-05-08 14:44:30', 49, 1),
+(69, 59, 1, 'aaa', 'aaa', 'aaa', 344, '34-600', 'aaa', 'PL', '5240257126', 'aaa', 2, 'Brak danych', 3, 1, 0, '2023-05-08 17:41:06', 59, '2023-05-08 17:41:06', 59, 1),
+(70, 59, 1, 'bbb', 'bbb', 'bbbb', 344, '34-600', 'bbb', 'PL', '5240257126', 'bbbb', 2, 'Brak danych', 1, 1, 0, '2023-05-08 17:44:49', 59, '2023-05-08 17:44:49', 59, 1);
 
 -- --------------------------------------------------------
 
@@ -152,30 +140,16 @@ CREATE TABLE `orders_products` (
 --
 
 INSERT INTO `orders_products` (`id`, `order_id`, `product_id`, `quantity`, `created_date`, `user_id_created`, `last_modified_date`, `user_id_last_modified`, `status`) VALUES
-(40, 53, 13, 33, '2023-05-02 16:09:26', 59, '2023-05-02 16:09:26', 59, 1),
-(41, 53, 13, 49, '2023-05-02 16:09:26', 59, '2023-05-02 16:09:26', 59, 1),
-(42, 54, 13, 33, '2023-05-02 19:15:28', 59, '2023-05-02 19:15:28', 59, 1),
-(43, 54, 13, 49, '2023-05-02 19:15:28', 59, '2023-05-02 19:15:28', 59, 1),
-(44, 55, 13, 33, '2023-05-02 19:15:37', 59, '2023-05-02 19:15:37', 59, 1),
-(45, 55, 13, 49, '2023-05-02 19:15:37', 59, '2023-05-02 19:15:37', 59, 1),
-(46, 56, 13, 33, '2023-05-02 19:15:44', 59, '2023-05-02 19:15:44', 59, 1),
-(47, 56, 13, 49, '2023-05-02 19:15:44', 59, '2023-05-02 19:15:44', 59, 1),
-(48, 57, 13, 33, '2023-05-02 19:15:58', 59, '2023-05-02 19:15:58', 59, 1),
-(49, 57, 13, 49, '2023-05-02 19:15:58', 59, '2023-05-02 19:15:58', 59, 1),
-(50, 58, 13, 1, '2023-05-03 13:22:11', 59, '2023-05-03 13:22:11', 59, 1),
-(51, 59, 13, 1, '2023-05-03 13:26:30', 59, '2023-05-03 13:26:30', 59, 1),
-(52, 60, 13, 1, '2023-05-03 13:26:56', 59, '2023-05-03 13:26:56', 59, 1),
-(53, 61, 13, 1, '2023-05-03 13:28:16', 59, '2023-05-03 13:28:16', 59, 1),
-(54, 62, 13, 1, '2023-05-03 13:29:15', 59, '2023-05-03 13:29:15', 59, 1),
-(55, 63, 15, 7, '2023-05-05 17:05:47', 59, '2023-05-05 17:05:47', 59, 1),
-(56, 63, 16, 9, '2023-05-05 17:05:47', 59, '2023-05-05 17:05:47', 59, 1),
-(57, 64, 16, 22, '2023-05-05 17:08:48', 59, '2023-05-05 17:08:48', 59, 1),
-(58, 65, 16, 9, '2023-05-05 17:46:21', 59, '2023-05-05 17:46:21', 59, 1),
-(59, 65, 15, 5, '2023-05-05 17:46:21', 59, '2023-05-05 17:46:21', 59, 1),
-(60, 65, 17, 80, '2023-05-05 17:46:21', 59, '2023-05-05 17:46:21', 59, 1),
-(61, 65, 18, 11, '2023-05-05 17:46:21', 59, '2023-05-05 17:46:21', 59, 1),
-(62, 66, 15, 7, '2023-05-05 22:59:15', 59, '2023-05-05 22:59:15', 59, 1),
-(63, 66, 17, 12, '2023-05-05 22:59:15', 59, '2023-05-05 22:59:15', 59, 1);
+(67, 68, 27, 4, '2023-05-08 13:32:34', 49, '2023-05-08 13:32:34', 49, 1),
+(68, 68, 24, 3, '2023-05-08 13:32:34', 49, '2023-05-08 13:32:34', 49, 1),
+(69, 68, 23, 1, '2023-05-08 13:32:34', 49, '2023-05-08 13:32:34', 49, 1),
+(70, 69, 23, 3, '2023-05-08 17:41:06', 59, '2023-05-08 17:41:06', 59, 1),
+(71, 69, 24, 3, '2023-05-08 17:41:06', 59, '2023-05-08 17:41:06', 59, 1),
+(72, 69, 26, 3, '2023-05-08 17:41:06', 59, '2023-05-08 17:41:06', 59, 1),
+(73, 69, 27, 2, '2023-05-08 17:41:06', 59, '2023-05-08 17:41:06', 59, 1),
+(74, 70, 23, 1, '2023-05-08 17:44:49', 59, '2023-05-08 17:44:49', 59, 1),
+(75, 70, 24, 1, '2023-05-08 17:44:49', 59, '2023-05-08 17:44:49', 59, 1),
+(76, 70, 25, 8, '2023-05-08 17:44:49', 59, '2023-05-08 17:44:49', 59, 1);
 
 -- --------------------------------------------------------
 
@@ -234,11 +208,11 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `category_id`, `image_path_1`, `image_path_2`, `image_path_3`, `description`, `price`, `quantity`, `size`, `colour`, `gender`, `view_count`, `last_modified_date`, `user_id_last_modified`, `created_date`, `user_id_created`, `status`) VALUES
-(13, 'produkt 3 super cena lux premiumawdawdawdawd', 24, 'img/uploads/products/2023-04-29-21-26-25_clothing-png-pic.png', 'img/uploads/products/2023-04-29-21-26-25_881f615abd6b80ee5c33f13ad22eadbd.png', 'img/uploads/products/2023-04-29-21-26-25_5-2-clothes-free-png-image.png', 'opis', 0.22, 0, '2', '3', 0, 302, '2023-04-29 21:26:25', 49, '2023-04-11 14:45:48', 49, 1),
-(15, 'produkt1', 23, 'img/uploads/products/2023-04-28-14-17-15_img3.png', NULL, NULL, '123', 123.00, 104, '1', '1', 2, 14, '2023-04-28 14:17:15', 49, '2023-04-16 15:39:06', 49, 1),
-(16, 'produkt1qwe', 19, 'img/uploads/products/2023-04-28-13-29-52_web_site.jpg', NULL, NULL, 'opis', 123.00, 5083, '3', '2', 0, 19, '2023-04-28 13:29:52', 49, '2023-04-28 13:29:52', 49, 1),
-(17, 'kattestZmienione', 19, 'img/uploads/products/2023-04-28-14-14-50_frlif.png', NULL, NULL, '123123', 1231.00, 123031, '0', '0', 1, 6, '2023-04-28 14:14:50', 49, '2023-04-28 13:56:34', 49, 1),
-(18, 'produkt1123', 24, 'img/uploads/products/2023-04-28-14-12-38_img5.png', NULL, NULL, 'awd', 123.00, 121, '2', '1', 2, 9, '2023-04-28 14:12:38', 49, '2023-04-28 14:01:28', 49, 1);
+(23, 'Bluza The North Face r L BINER GRAPHIC | L', 30, 'img/uploads/products/2023-05-07-11-31-12_bluza-rozpinana-meska-the-nort-face-biner-graphic.png', 'img/uploads/products/2023-05-07-11-31-12_bluza-rozpinana-meska-the-nort-face-biner-graphic-rodzaj-rozpinane-z-kapturem.png', NULL, 'Przyciągająca wzrok w 100% bawełniana bluza z kapturem zapinana na zamek błyskawiczny Biner Graphic z kultowym logo The North Face jest idealna na codzienne letnie wyprawy.', 299.99, 994, '3', '0', 0, 18, '2023-05-07 22:45:11', 49, '2023-05-07 11:29:42', 49, 1),
+(24, 'Bluza The North Face r L BINER GRAPHIC | S', 30, 'img/uploads/products/2023-05-07-11-31-49_bluza-rozpinana-meska-the-nort-face-biner-graphic.png', 'img/uploads/products/2023-05-07-11-31-49_bluza-rozpinana-meska-the-nort-face-biner-graphic-rodzaj-rozpinane-z-kapturem.png', NULL, 'Przyciągająca wzrok w 100% bawełniana bluza z kapturem zapinana na zamek błyskawiczny Biner Graphic z kultowym logo The North Face jest idealna na codzienne letnie wyprawy.', 299.99, 993, '1', '0', 0, 9, '2023-05-07 22:45:13', 49, '2023-05-07 11:31:49', 49, 1),
+(25, 'Bluza The North Face Resolve Fleece | S', 30, 'img/uploads/products/2023-05-07-11-33-26_polar-damski-the-north-face-resolve.png', NULL, NULL, 'Trzymaj mróz na dystans nawet na eksponowanych górskich szlakach.', 299.99, 991, '3', '0', 1, 7, '2023-05-07 22:49:15', 49, '2023-05-07 11:33:26', 49, 1),
+(26, 'Bluza The North Face Half Dome | S', 30, 'img/uploads/products/2023-05-07-11-36-32_bluza-z-kapturem-damska-the-north-face-half-dome.png', 'img/uploads/products/2023-05-07-11-36-32_bluza-z-kapturem-damska-the-north-face-half-dome-marka-the-north-face.png', NULL, 'Bluza z kapturem Half Dome to lekka warstwa ubioru, którą zechcesz mieć zawsze przy sobie.', 349.99, 44, '1', '7', 1, 5, '2023-05-07 22:49:18', 49, '2023-05-07 11:36:32', 49, 1),
+(27, 'Polar The North Face niebieski | L', 30, 'img/uploads/products/2023-05-07-11-41-14_polar-meski-the-north-face-resolve-fleece.png', 'img/uploads/products/2023-05-07-11-41-14_polar-meski-the-north-face-resolve-fleece-plec-produkt-meski.png', NULL, 'Nasza bluza polarowa Resolve to idealna warstwa na piesze wędrówki – jest ciepła, szybkoschnąca i odprowadza wilgoć.', 299.99, 994, '3', '3', 0, 7, '2023-05-08 12:54:46', 49, '2023-05-07 11:41:14', 49, 1);
 
 -- --------------------------------------------------------
 
@@ -266,14 +240,14 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `email`, `password`, `first_name`, `last_name`, `date_of_birth`, `created_date`, `user_id_created`, `last_modified_date`, `user_id_last_modified`, `status`) VALUES
 (1, 'SYSTEM', 'SYSTEM', 'SYSTEM', 'SYSTEM', '2013-03-01', '2023-03-29 21:19:32', 1, '2023-03-29 21:19:32', 1, 1),
-(49, 'godzina.wychowawcza12@gmail.com', '$2y$10$e1gtlUufqOzZHxYDz2.ZvOO8jNkpMpcrwXMBPwZNY8lZUHE6HCuga', 'Damian', 'Raczek', '2022-12-30', '2023-04-01 22:02:34', 1, '2023-05-01 16:53:47', 49, 1),
-(50, 'test1', 'test', 'test', 'test', '2023-04-02', '2023-04-02 14:23:32', 1, '2023-04-02 15:14:47', 49, 1),
-(51, 'test2', 'test', 'test', 'test', '2023-04-02', '2023-04-02 14:23:32', 1, '2023-04-16 11:58:20', 49, 1),
-(52, 'test3', 'test', 'test', 'test', '2023-04-02', '2023-04-02 14:23:32', 1, '2023-04-16 12:08:34', 49, 2),
+(49, 'godzina.wychowawcza12@gmail.com', '$2y$10$e1gtlUufqOzZHxYDz2.ZvOO8jNkpMpcrwXMBPwZNY8lZUHE6HCuga', 'Damian', 'Raczek', '2022-12-30', '2023-04-01 22:02:34', 1, '2023-05-06 16:22:05', 49, 1),
+(50, 'test1', 'test', 'test', 'test', '2023-04-02', '2023-04-02 14:23:32', 1, '2023-05-06 17:00:48', 49, 1),
+(51, 'test2', 'test', 'test', 'test', '2023-04-02', '2023-04-02 14:23:32', 1, '2023-05-06 17:00:49', 49, 1),
+(52, 'test3', 'test', 'test', 'test', '2023-04-02', '2023-04-02 14:23:32', 1, '2023-05-06 17:00:25', 49, 1),
 (53, 'test4', 'test', 'test', 'test', '2023-04-02', '2023-04-02 14:23:32', 1, '2023-04-10 19:38:30', 49, 1),
-(54, 'test5', 'test', 'test', 'test', '2023-04-02', '2023-04-02 14:23:32', 1, '2023-04-10 19:38:31', 49, 1),
-(59, 'draczekprojekt@gmail.com', '$2y$10$VdcnF/x6CVWihhaXjTN1meqf.iJBL.p38amXN3rMJN0l6xkc8w8kS', 'Damian', 'Raczek', '2023-03-31', '2023-04-10 15:47:17', 1, '2023-05-05 12:42:31', 59, 1),
-(60, 'damian.raczek4206695@gmail.com', '$2y$10$hUIhLo7gAGA7P93X3WiUuuTZ3i8CBZcj7LX8PPXfe7W9P/XvjhOde', 'DamianZmienione', 'RaczekZmienione', '2023-04-01', '2023-04-16 16:12:13', 1, '2023-04-16 16:22:18', 60, 1);
+(54, 'test5', 'test', 'test', 'test', '2023-04-02', '2023-04-02 14:23:32', 1, '2023-05-06 16:22:25', 49, 1),
+(59, 'draczekprojekt@gmail.com', '$2y$10$VdcnF/x6CVWihhaXjTN1meqf.iJBL.p38amXN3rMJN0l6xkc8w8kS', 'Damian', 'Raczek', '2023-03-31', '2023-04-10 15:47:17', 1, '2023-05-06 17:00:48', 49, 1),
+(60, 'damian.raczek4206695@gmail.com', '$2y$10$hUIhLo7gAGA7P93X3WiUuuTZ3i8CBZcj7LX8PPXfe7W9P/XvjhOde', 'DamianZmienione', 'RaczekZmienione', '2023-04-01', '2023-04-16 16:12:13', 1, '2023-05-06 17:00:47', 49, 1);
 
 -- --------------------------------------------------------
 
@@ -291,7 +265,8 @@ CREATE TABLE `users_admin` (
 --
 
 INSERT INTO `users_admin` (`id`, `user_id`) VALUES
-(7, 49);
+(7, 49),
+(8, 59);
 
 -- --------------------------------------------------------
 
@@ -356,10 +331,10 @@ ALTER TABLE `orders`
 --
 ALTER TABLE `orders_products`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `order_id` (`order_id`),
-  ADD KEY `product_id` (`product_id`),
   ADD KEY `user_id_created` (`user_id_created`),
-  ADD KEY `user_id_last_modified` (`user_id_last_modified`);
+  ADD KEY `user_id_last_modified` (`user_id_last_modified`),
+  ADD KEY `orders_products_ibfk_1` (`order_id`),
+  ADD KEY `orders_products_ibfk_2` (`product_id`);
 
 --
 -- Indeksy dla tabeli `payment_methods`
@@ -414,7 +389,7 @@ ALTER TABLE `users_token_action`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `delivery_methods`
@@ -426,13 +401,13 @@ ALTER TABLE `delivery_methods`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `orders_products`
 --
 ALTER TABLE `orders_products`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT for table `payment_methods`
@@ -444,7 +419,7 @@ ALTER TABLE `payment_methods`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -456,7 +431,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users_admin`
 --
 ALTER TABLE `users_admin`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users_token_action`
@@ -496,8 +471,8 @@ ALTER TABLE `orders`
 -- Constraints for table `orders_products`
 --
 ALTER TABLE `orders_products`
-  ADD CONSTRAINT `orders_products_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`),
-  ADD CONSTRAINT `orders_products_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
+  ADD CONSTRAINT `orders_products_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `orders_products_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `orders_products_ibfk_3` FOREIGN KEY (`user_id_created`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `orders_products_ibfk_4` FOREIGN KEY (`user_id_last_modified`) REFERENCES `users` (`id`);
 

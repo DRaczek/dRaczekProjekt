@@ -352,7 +352,7 @@ class AdminProductModel{
         $query = "SELECT image_path_1, image_path_2, image_path_3 FROM products WHERE id = ?";
         $stmt = $dbh->prepare($query);
         $stmt->execute([$productId]);
-        $imagePaths = $stmt->fetch()[0];
+        $imagePaths = $stmt->fetch();
         $query = "DELETE FROM products WHERE id = ?";
         $stmt = $dbh->prepare($query);
         $stmt->execute([$productId]);
@@ -402,5 +402,15 @@ class AdminProductModel{
             $user_id,
             $id]);
         $dbh = null;
+    }
+
+    public function getProductImages($id){
+        $dbh = include("MVC/models/databaseModels/Database.php");
+        $query = "SELECT image_path_1, image_path_2, image_path_3 FROM products WHERE id = ?";
+        $stmt = $dbh->prepare($query);
+        $stmt->execute([$id]);
+        $result = $stmt->fetch();
+        $dbh = null;
+        return $result;
     }
 }

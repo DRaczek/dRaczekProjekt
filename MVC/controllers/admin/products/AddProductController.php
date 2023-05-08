@@ -13,7 +13,17 @@ class AddProductController extends AdminProductController{
         $this->RedirectIfAdminNotLoggedIn();
         $categoryModel = new CategoryModel();
         $categories = $categoryModel->getCategories();
-        include("MVC/views/admin/addProductPage.php");
+        $data = array();
+        $headerData = array(
+            "categories"=>$categories
+        );
+        $data['categories'] = $categories;
+        $data['header']=$this->loadView("MVC/views/common/header", $headerData, true);
+        $data['footer']=$this->loadView("MVC/views/common/footer", null, true);
+        $data['styles']='<link rel="stylesheet" href="/dRaczekProjekt/css/header.css">
+        <link rel="stylesheet" href="/dRaczekProjekt/css/footer.css">
+        <link rel="stylesheet" href="/dRaczekProjekt/css/basicLayout.css">';
+        $this->loadView("MVC/views/admin/addProductPage", $data, false);
     }
 
     public function addProduct(){

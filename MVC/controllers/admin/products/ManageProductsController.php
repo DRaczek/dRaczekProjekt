@@ -10,7 +10,7 @@ class ManageProductsController extends AdminProductController{
 
     public function displayManageProductsPage($pageable = "page=1&size=10"){
         $this->RedirectIfAdminNotLoggedIn();
-     
+        if($pageable[0]=='?')$pageable=substr($pageable,1);
         setcookie("admin_product_pageable", $pageable, time()+1*60*60, "/");
 
         if(!isset($_GET['page'])){
@@ -21,6 +21,7 @@ class ManageProductsController extends AdminProductController{
         }
 
         $page = intval($_GET['page']);
+        if($page<1)$page=1;
         $pageSize = intval($_GET['size']);
         $name = null;    
         $categoryId =null;
@@ -158,6 +159,39 @@ class ManageProductsController extends AdminProductController{
         $categoryModel = new CategoryModel();
         $categories = $categoryModel->getCategories();
 
-        include("MVC/views/admin/manageProductsPage.php");
+        $data = array();
+        $categoryModel = new CategoryModel();
+        $headerData = array(
+            "categories"=>$categoryModel->getCategories()
+        );
+        $data['result'] = $result;
+        $data['resultCount'] = $resultCount;
+        $data['filter'] = [
+            "page" => $page,
+            "pageSize" => $pageSize,
+            "name" => $name,
+            "categoryId" => $categoryId,
+            "description" => $description,
+            "priceFrom" => $priceFrom,
+            "priceTo" => $priceTo,
+            "quantityFrom" => $quantityFrom,
+            "quantityTo" => $quantityTo,
+            "productSize" => $productSize,
+            "colour" => $colour,
+            "viewCountFrom" => $viewCountFrom ,
+            "viewCountTo" => $viewCountTo,
+            "status" => $status,
+            "createdDate" => $createdDate,
+            "orderBy" => $orderBy ,
+            "order" => $order ,
+            "id" => $id,
+            "gender" => $gender
+        ];
+        $data['header']=$this->loadView("MVC/views/common/header", $headerData, true);
+        $data['footer']=$this->loadView("MVC/views/common/footer", null, true);
+        $data['styles']='<link rel="stylesheet" href="/dRaczekProjekt/css/header.css">
+        <link rel="stylesheet" href="/dRaczekProjekt/css/footer.css">
+        <link rel="stylesheet" href="/dRaczekProjekt/css/basicLayout.css">';
+        $this->loadView("MVC/views/admin/manageProductsPage", $data, false);
     }
 }

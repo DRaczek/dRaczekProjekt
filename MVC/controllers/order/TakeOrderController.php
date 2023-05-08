@@ -16,6 +16,12 @@ class TakeOrderController extends OrderController{
             header("Location:/dRaczekProjekt/cart");
             exit();
         }
+        $koszyk = unserialize($_COOKIE['cart']);
+        if(count($koszyk)==0){
+            $_SESSION['message'] = "Dodaj produkty do koszyka aby złożyć zamówienie";
+            header("Location:/dRaczekProjekt/cart");
+            exit();
+        }
         $deliveryModel = new DeliveryModel();
         $deliveryMethods = $deliveryModel->getMethods();
         $paymentMethodsModel = new PaymentMethodsModel();

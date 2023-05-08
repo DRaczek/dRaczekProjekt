@@ -43,6 +43,13 @@ class LoginUserController extends AuthController{
             $_SESSION['user_id']=$user['id'];
             $_SESSION['user_first_name'] = $user['first_name'];
             $_SESSION['user_email'] = $user['email'];
+
+            if($userModel->isAdmin($_SESSION['user_id'])){
+                $_SESSION['user_is_admin'] = true;
+                header("Location:../admin/home");
+                exit();
+            }
+
             header("Location:../home");
         }
         else{

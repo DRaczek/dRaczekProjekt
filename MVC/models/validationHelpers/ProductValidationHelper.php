@@ -62,7 +62,7 @@ class ProductValidationHelper{
             if($adminProductModel->isProductNameTaken($name, $id)){
                 array_push($violations,"Nazwa produku jest już zajęta!<br>");     
             }
-            if (!preg_match('/^[a-zA-Z\d\s]{2,250}$/', $name)) {
+            if (!preg_match('/[\p{L}\p{N}\s|]{2,250}/u', $name)) {
                 array_push($violations, "Podana nazwa jest niepoprawna. Dozwolone są tylko litery i spacja. Długośc powinna wynosić od 2 do 250 znaków.<br>");
             }
         }
@@ -121,7 +121,7 @@ class ProductValidationHelper{
     }
 
     private function validateDescription($description, &$violations){
-        if (!preg_match('/^[a-zA-Z0-9.,:;"\'() \n-]*$/', $description)) {
+        if (!preg_match('/[\p{L}\p{N}\.,:;"\'()\%\n-]*/u', $description)) {
             array_push($violations,"Podany opis jest nieprawidłowy.<br>");
         }
     }

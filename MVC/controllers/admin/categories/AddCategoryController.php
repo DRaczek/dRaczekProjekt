@@ -1,6 +1,7 @@
 <?php
 include_once("MVC/controllers/admin/categories/AdminCategoryController.php");
 include_once("MVC/models/databaseModels/AdminCategoryModel.php");
+include_once("MVC/models/databaseModels/CategoryModel.php");
 include_once("MVC/models/validationHelpers/FileUploadValidationHelper.php");
 
 class AddCategoryController extends AdminCategoryController{
@@ -10,7 +11,18 @@ class AddCategoryController extends AdminCategoryController{
 
     public function displayAddCategoryPage(){
         $this->RedirectIfAdminNotLoggedIn();
-        include("MVC/views/admin/addCategoryPage.php");
+
+        $data = array();
+        $categoryModel = new CategoryModel();
+        $headerData = array(
+            "categories"=>$categoryModel->getCategories()
+        );
+        $data['header']=$this->loadView("MVC/views/common/header", $headerData, true);
+        $data['footer']=$this->loadView("MVC/views/common/footer", null, true);
+        $data['styles']='<link rel="stylesheet" href="/dRaczekProjekt/css/header.css">
+        <link rel="stylesheet" href="/dRaczekProjekt/css/footer.css">
+        <link rel="stylesheet" href="/dRaczekProjekt/css/basicLayout.css">';
+        $this->loadView("MVC/views/admin/addCategoryPage", $data, false);
     }
 
     public function addCategory(){

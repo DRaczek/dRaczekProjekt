@@ -1,13 +1,19 @@
 <?php
 include_once("MVC/models/databaseModels/AdminOrderModel.php");
-include_once("MVC/controllers/Controller.php");
+include_once("MVC/models/databaseModels/CategoryModel.php");
+include_once("MVC/models/databaseModels/PaymentMethodsModel.php");
+include_once("MVC/models/databaseModels/DeliveryModel.php");
+include_once("MVC/controllers/admin/order/AdminOrderController.php");
 
-class ManageOrdersController extends Controller{
+class ManageOrdersController extends AdminOrderController{
     public function __construct(){
 
     }
 
     public function displayManageOrdersPage($pageable="?page=1&size=10"){
+        $this->RedirectIfAdminNotLoggedIn();
+
+        if($pageable[0]=='?')$pageable=substr($pageable,1);
         setcookie("admin_order_pageable", $pageable, time()+1*60*60, "/");
 
         if(!isset($_GET['page'])){
@@ -18,6 +24,7 @@ class ManageOrdersController extends Controller{
         }
 
         $page = intval($_GET['page']);
+        if($page<1)$page=1;
         $pageSize = intval($_GET['size']);
         $id=null;
         $user_id=null;
@@ -179,15 +186,47 @@ class ManageOrdersController extends Controller{
                                                             $payment_status,
                                                             $order_status,
                                                             $created_date,
-                                                            $status));
-
-
-        echo "<pre>";
-        print_r($result);
-        echo "</pre>";
-        
-        echo "<br>".$resultCount."<br";
-
-        include("MVC/views/admin/manageOrdersPage.php");
+                                                            $status));                                         
+        $data = array();
+        $categoryModel = new CategoryModel();
+        $headerData = array(
+            "categories"=>$categoryModel->getCategories()
+        );
+        $data['result'] = $result;
+        $data['resultCount'] = $resultCount;
+        $data['filter'] = [
+            "page" => $page,
+            "pageSize" => $pageSize,
+            "id" => $id,
+            "user_id" => $user_id,
+            "is_company" => $is_company,
+            "first_name" => $first_name,
+            "last_name" => $last_name,
+            "street" => $street,
+            "postal_code" => $postal_code,
+            "postal_city" => $postal_city,
+            "country" => $country,
+            "nip" => $nip,
+            "company_name" => $company_name,
+            "delivery_id" => $delivery_id,
+            "payment_method_id" => $payment_method_id,
+            "payment_status" => $payment_status,
+            "order_status" => $order_status,
+            "created_date" => $created_date,
+            "status" => $status,
+            "orderBy" => $orderBy,
+            "order" => $order
+        ];
+        $paymentMethodsModel = new PaymentMethodsModel();
+        $data['payment_methods'] = $paymentMethodsModel->getMethods();
+        $deliveryModel = new DeliveryModel();
+        $data['delivery_methods'] = $deliveryModel->getMethods();
+        $data['acceptableOrderBy'] = $AcceptableOrderByArray;
+        $data['header']=$this->loadView("MVC/views/common/header", $headerData, true);
+        $data['footer']=$this->loadView("MVC/views/common/footer", null, true);
+        $data['styles']='<link rel="stylesheet" href="/dRaczekProjekt/css/header.css">
+        <link rel="stylesheet" href="/dRaczekProjekt/css/footer.css">
+        <link rel="stylesheet" href="/dRaczekProjekt/css/basicLayout.css">';
+        $this->loadView("MVC/views/admin/manageOrdersPage", $data, false);
     }
 }

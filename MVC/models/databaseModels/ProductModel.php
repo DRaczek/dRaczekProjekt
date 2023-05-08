@@ -70,7 +70,7 @@ class ProductModel{
                                     $order=null){
         $dbh = include("MVC/models/databaseModels/Database.php");
         include("config/predefindedUsers.php");
-        $query = "SELECT id, name, image_path_1, price, quantity, size, colour, gender, view_count FROM products WHERE 1=1 ";
+        $query = "SELECT id, name, image_path_1, price, quantity, size, colour, gender, view_count FROM products WHERE status=:status ";
 
         if($categoryId===0 || !empty($categoryId)){
             $query.=" AND `category_id` = :categoryId ";
@@ -106,6 +106,8 @@ class ProductModel{
 
         $stmt->bindParam(':firstResult', $firstResultIdx, PDO::PARAM_INT);
         $stmt->bindParam(':pageSize', $pageSIze, PDO::PARAM_INT);
+        $status = StatusEnum::ACTIVE;
+        $stmt->bindParam(':status', $status, PDO::PARAM_INT);
 
         if($categoryId===0 || !empty($categoryId)){
             $stmt->bindParam(':categoryId', $categoryId, PDO::PARAM_INT);
@@ -142,7 +144,7 @@ class ProductModel{
                                         $colour=null){
         $dbh = include("MVC/models/databaseModels/Database.php");
         include("config/predefindedUsers.php");
-        $query = "SELECT Count(id) FROM products WHERE 1=1 ";
+        $query = "SELECT Count(id) FROM products WHERE status = :status ";
 
         if($categoryId===0 || !empty($categoryId)){
             $query.=" AND `category_id` = :categoryId ";
@@ -170,6 +172,9 @@ class ProductModel{
         }
 
         $stmt = $dbh->prepare($query);  
+
+        $status = StatusEnum::ACTIVE;
+        $stmt->bindParam(':status', $status, PDO::PARAM_INT);
 
         if($categoryId===0 || !empty($categoryId)){
             $stmt->bindParam(':categoryId', $categoryId, PDO::PARAM_INT);

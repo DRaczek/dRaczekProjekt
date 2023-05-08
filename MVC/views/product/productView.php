@@ -44,8 +44,8 @@
                 ?>
             </div>
             <div class="info">
-                <a href="#">Zobacz opcje płatności</a><br>
-                <a href="#">Zobacz opcje dostawy</a><br>
+                <a href="/dRaczekProjekt/payment">Zobacz opcje płatności</a><br>
+                <a href="/dRaczekProjekt/delivery">Zobacz opcje dostawy</a><br>
             </div>
         </div>
         <div class="additional-info">

@@ -7,7 +7,7 @@ class CategoryModel{
 
     public function getCategories(){
         $dbh = include("MVC/models/databaseModels/Database.php");
-        $query = "SELECT id, name FROM categories WHERE STATUS = ?";
+        $query = "SELECT id, name, image_path FROM categories WHERE STATUS = ?";
         $stmt = $dbh->prepare($query);
         $stmt->execute([StatusEnum::ACTIVE]);
         $result = $stmt->fetchAll();

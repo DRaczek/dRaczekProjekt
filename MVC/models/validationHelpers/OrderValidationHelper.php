@@ -26,14 +26,37 @@ class OrderValidationHelper{
             array_push($violations, "Nie wszystkie pola zostały przesłane<br>");
         }
         else{
+            if($edit===true){
+                if(!isset($_POST['delivery_tracking']) 
+                || !isset($_POST['payment_status']) 
+                || !isset($_POST['order_status'])){
+                    array_push($violations, "Nie wszystkie pola zostały przesłane<br>");
+                }
+            }
+
             if(!isset($_POST['is_company']))$_POST['is_company']="off";
             $this->validateCompany($_POST['is_company'], $_POST['nip'], $_POST['company_name'], $violations);
             $this->validateName($_POST['first_name'], $_POST['last_name'], $violations);
             $this->validateAddress($_POST['street'], $_POST['street_number'], $_POST['postal_code'], $_POST['postal_city'], $_POST['country'], $violations);
+            if($edit===true){
+                $this->validateEditFields($_POST['delivery_tracking'], $_POST['payment_status'], $_POST['order_status'], $violations);
+            }
         }
         if(count($violations)>0){
             throw new Exception(implode(" ", $violations));
             return null;
+        }
+    }
+
+    private function validateEditFields($delivery_tracking, $paymentStatus, $orderStatus, &$violations){
+        if (!preg_match('/[\p{N}\P{L}!@#$%^&*()\-_=+|;:\'",.?\w]{2,250}/u', $delivery_tracking)) {
+            array_push($violations, "Podany link do śledzenia dostawy jest niepoprawny<br>");
+        }
+        if($paymentStatus<0 || $paymentStatus >= count(PaymentStatusEnum::GetConstants())){
+            array_push($violations, "Podany status płatności jest niepoprawny<br>");
+        }
+        if($orderStatus<0 || $orderStatus >= count(OrderStatusenum::GetConstants())){
+            array_push($violations, "Podany status zamówienia jest niepoprawny<br>");
         }
     }
 
@@ -53,7 +76,7 @@ class OrderValidationHelper{
 
     private function validateAddress($street, $streetNumber, $postalCode, $postalCity, $country, &$violations){
         //litery polskiego alfabetu, ., -, spacja
-        if (!preg_match('/^[A-Za-ząćęłńóśźżĄĆĘŁŃÓŚŹŻ.\-\s]{2,250}$/', $street)) {
+        if (!preg_match('/[A-Za-ząćęłńóśźżĄĆĘŁŃÓŚŹŻ.\-\s]{2,250}/u', $street)) {
             array_push($violations, "Podana nazwa ulicy jest niepoprawna.<br>");
         }
         // liczby + litery, np. 7a
@@ -68,7 +91,7 @@ class OrderValidationHelper{
             array_push($violations, "Podany kod pocztowy jest niepoprawny.<br>");
         }
         // sprawdzenie, czy nazwa miejscowości jest poprawna
-        if (!preg_match('/^[A-Za-ząćęłńóśźżĄĆĘŁŃÓŚŹŻ.\-\s]{2,250}$/', $postalCity)) {
+        if (!preg_match('/[A-Za-ząćęłńóśźżĄĆĘŁŃÓŚŹŻ.\-\s]{2,250}/u', $postalCity)) {
             array_push($violations, "Podana miejscowość jest niepoprawna.<br>");
         }
         // sprawdzenie, czy kraj jest poprawny
@@ -78,10 +101,10 @@ class OrderValidationHelper{
     }
 
     private function validateName($firstName, $lastName, &$violations){
-        if (!preg_match('/^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]{2,100}$/', $firstName)) {
+        if (!preg_match('/[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]{2,100}/u', $firstName)) {
             array_push($violations, "Podane imię jest niepoprawne.<br>");
         }
-        if (!preg_match('/^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]{2,100}+$/', $lastName)) {
+        if (!preg_match('/[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]{2,100}/u', $lastName)) {
             array_push($violations, "Podane nazwisko jest niepoprawne.<br>");
         }
     }

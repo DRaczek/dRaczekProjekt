@@ -55,7 +55,16 @@
     '/dRaczekProjekt/order/pay/:id' => array('controller' => 'OrderPaymentController', 'action' => 'pay', 'path' => 'MVC/controllers/order/'),
     '/dRaczekProjekt/admin/manage/orders' => array('controller' => 'ManageOrdersController', 'action' => 'displayManageOrdersPage', 'path' => 'MVC/controllers/admin/order/'),
     '/dRaczekProjekt/admin/manage/orders?:pageableOrders' => array('controller' => 'ManageOrdersController', 'action' => 'displayManageOrdersPage', 'path' => 'MVC/controllers/admin/order/'),
+    '/dRaczekProjekt/admin/manage/orders/suspend/:id' => array('controller' => 'ManageOrderStateController', 'action' => 'suspendOrder', 'path' => 'MVC/controllers/admin/order/'),
+    '/dRaczekProjekt/admin/manage/orders/activate/:id' => array('controller' => 'ManageOrderStateController', 'action' => 'activateOrder', 'path' => 'MVC/controllers/admin/order/'),
+    '/dRaczekProjekt/admin/manage/orders/delete/:id' => array('controller' => 'ManageOrderStateController', 'action' => 'deleteOrder', 'path' => 'MVC/controllers/admin/order/'),
+    '/dRaczekProjekt/admin/manage/orders/edit/form/:id' => array('controller' => 'EditOrderController', 'action' => 'displayForm', 'path' => 'MVC/controllers/admin/order/'),
+    '/dRaczekProjekt/admin/manage/orders/edit/send' => array('controller' => 'EditOrderController', 'action' => 'edit', 'path' => 'MVC/controllers/admin/order/'),
+    '/dRaczekProjekt/admin/manage/orders/products/:id' => array('controller' => 'ManageOrderProductController', 'action' => 'display', 'path' => 'MVC/controllers/admin/order/'),
     '/dRaczekProjekt/products?:pageableProductsUser' => array('controller' => 'SearchProductsController', 'action' => 'search', 'path' => 'MVC/controllers/products/'),
     '/dRaczekProjekt/orders' => array('controller' => 'OrdersListController', 'action' => 'display', 'path' => 'MVC/controllers/order/'),
+    '/dRaczekProjekt/categories' => array('controller' => 'CategoriesListController', 'action' => 'display', 'path' => 'MVC/controllers/categories/'),
+    '/dRaczekProjekt/delivery' => array('controller' => 'DeliveryMethodsController', 'action' => 'display', 'path' => 'MVC/controllers/info/'),
+    '/dRaczekProjekt/payment' => array('controller' => 'PaymentMethodsController', 'action' => 'display', 'path' => 'MVC/controllers/info/'),
 );
 ?>

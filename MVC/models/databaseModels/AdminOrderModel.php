@@ -26,7 +26,7 @@ class AdminOrderModel{
                                 $orderBy=null,
                                 $order=null){
         $dbh = include("MVC/models/databaseModels/Database.php");
-        $query = "SELECT * FROM orders WHERE 1=1 ";
+        $query = "SELECT *, (SELECT name FROM delivery_methods ds WHERE ds.id=o.delivery_id) as delivery_name, (SELECT name FROM payment_methods ps WHERE ps.id = o.payment_method_id) as payment_method_name FROM orders o WHERE 1=1 ";
 
         if($id===0 || !empty($id)){
             $query.=" AND `id` = :id ";
@@ -35,7 +35,7 @@ class AdminOrderModel{
             $query.=" AND `user_id` = :user_id ";
         }
         if(!empty($first_name)){
-            $query.=" AND `first_name` LIKE(LOWER(:fist_name)) ";
+            $query.=" AND `first_name` LIKE(LOWER(:first_name)) ";
         }
         if(!empty($last_name)){
             $query.=" AND `last_name` LIKE(LOWER(:last_name)) ";
@@ -83,7 +83,7 @@ class AdminOrderModel{
 
         $query.=" LIMIT :firstResult, :pageSize";
 
-        $stmt = $dbh->prepare($query);  
+        $stmt = $dbh->prepare($query);      
 
         $stmt->bindParam(':firstResult', $firstResultIdx, PDO::PARAM_INT);
         $stmt->bindParam(':pageSize', $pageSIze, PDO::PARAM_INT);
@@ -177,7 +177,7 @@ class AdminOrderModel{
             $query.=" AND `user_id` = :user_id ";
         }
         if(!empty($first_name)){
-            $query.=" AND `first_name` LIKE(LOWER(:fist_name)) ";
+            $query.=" AND `first_name` LIKE(LOWER(:first_name)) ";
         }
         if(!empty($last_name)){
             $query.=" AND `last_name` LIKE(LOWER(:last_name)) ";
@@ -280,4 +280,98 @@ class AdminOrderModel{
         $dbh = null;
         return $stmt->fetch()[0];
     }
+
+    public function suspendOrder($orderId, $userIdModified){
+        $dbh = include("MVC/models/databaseModels/Database.php");
+        $query = "UPDATE orders SET status = ?, last_modified_date = ?, user_id_last_modified = ?  WHERE id = ?";
+        $stmt = $dbh->prepare($query);
+        $stmt->execute([StatusEnum::SUSPENDED, (new DateTime())->format('Y-m-d H:i:s'), $userIdModified, $orderId]);
+        $dbh = null;
+    }
+    public function activateOrder($orderId, $userIdModified){
+        $dbh = include("MVC/models/databaseModels/Database.php");
+        $query = "UPDATE orders SET status = ?, last_modified_date = ?, user_id_last_modified = ?  WHERE id = ?";
+        $stmt = $dbh->prepare($query);
+        $stmt->execute([StatusEnum::ACTIVE, (new DateTime())->format('Y-m-d H:i:s'), $userIdModified, $orderId]);
+        $dbh = null;
+    }
+    public function deleteOrder($orderId){
+        $dbh = include("MVC/models/databaseModels/Database.php");
+        $query = "DELETE FROM orders WHERE id = ?";
+        $stmt = $dbh->prepare($query);
+        $stmt->execute([$orderId]);
+        $dbh = null;
+    }
+    public function getOrder($orderId){
+        $dbh = include("MVC/models/databaseModels/Database.php");
+        $query = "SELECT * FROM orders WHERE id = ?";
+        $stmt = $dbh->prepare($query);
+        $stmt->execute([$orderId]);
+        $dbh = null;
+        return $stmt->fetch();
+    }
+    public function orderExists($orderId){
+        $dbh = include("MVC/models/databaseModels/Database.php");
+        $query = "SELECT COUNT(id) FROM orders WHERE id = ?";
+        $stmt = $dbh->prepare($query);
+        $stmt->execute([$orderId]);
+        $dbh = null;
+        if($stmt->fetch()[0]>0){
+            return true;
+        }
+        return false;
+    }
+    public function editOrder(  $id, 
+                                $is_company,
+                                $first_name,
+                                $last_name,
+                                $street,
+                                $street_number,
+                                $postal_code,
+                                $postal_city,
+                                $country,
+                                $nip,
+                                $company_name,
+                                $delivery_id,
+                                $delivery_tracking,
+                                $payment_method_id,
+                                $payment_status,
+                                $order_status,
+                                $user_id){
+        $dbh = include("MVC/models/databaseModels/Database.php");
+        $query = "UPDATE orders SET is_company = ?, first_name = ?, last_name = ?, street = ?, street_number = ?, postal_code = ?, postal_city = ?, country = ?, ";
+        $query.= "nip = ?, company_name = ?, delivery_id = ?, delivery_tracking = ?, payment_method_id = ?, payment_status = ?, order_status = ?, user_id_last_modified = ?, last_modified_date = ? WHERE id = ?";
+        $stmt = $dbh->prepare($query);
+        $stmt->execute([
+            $is_company,
+            $first_name,
+            $last_name,
+            $street,
+            $street_number,
+            $postal_code,
+            $postal_city,
+            $country,
+            $nip,
+            $company_name,
+            $delivery_id,
+            $delivery_tracking,
+            $payment_method_id,
+            $payment_status,
+            $order_status,
+            $user_id,
+            (new DateTime())->format('Y-m-d H:i:s'),
+            $id]);
+        $dbh = null;
+    }
+
+    public function getOrderProducts($id){
+        $dbh = include("MVC/models/databaseModels/Database.php");
+        $query = "SELECT products.id as id, image_path_1, name, orders_products.quantity as quantity, price FROM orders_products INNER JOIN products ON products.id=orders_products.product_id WHERE order_id = ?";
+        $stmt = $dbh->prepare($query);
+        $stmt->execute([$id]);
+        $result = $stmt->fetchAll();
+        $dbh = null;
+        return $result;
+    }
+
 }

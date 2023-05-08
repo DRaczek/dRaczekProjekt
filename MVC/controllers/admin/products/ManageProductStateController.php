@@ -52,6 +52,7 @@ class ManageProductStateController extends AdminProductController{
                     unlink($path);
                 }
             }
+          
         }
         catch(Exception $e){
             $_SESSION['message'] = "Nie udało się usunąć produktu";

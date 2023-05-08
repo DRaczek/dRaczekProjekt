@@ -96,4 +96,16 @@ class UserModel{
         $stmt->execute([$firstName, $lastName, $dateOfBirth, $userId, (new DateTime())->format('Y-m-d H:i:s'), $userId]);
         $dbh = null;
     }
+
+    public function isAdmin($userId){
+        $dbh = include("MVC/models/databaseModels/Database.php");
+        $query ="SELECT COUNT(id) FROM users_admin WHERE user_id = ?";
+        $stmt = $dbh->prepare($query);
+        $stmt->execute([$userId]);
+        $dbh = null;
+        if($stmt->fetch()[0]>0){
+            return true;
+        }
+        return false;
+    }
 }
