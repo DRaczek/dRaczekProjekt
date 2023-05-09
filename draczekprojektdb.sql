@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Maj 08, 2023 at 10:09 PM
+-- Generation Time: Maj 09, 2023 at 12:21 PM
 -- Wersja serwera: 10.4.28-MariaDB
 -- Wersja PHP: 8.2.4
 
@@ -47,9 +47,7 @@ CREATE TABLE `categories` (
 INSERT INTO `categories` (`id`, `name`, `image_path`, `created_date`, `user_id_created`, `last_modified_date`, `user_id_last_modified`, `status`) VALUES
 (30, 'Bluzy', 'img/uploads/categories/2023-05-06-20-42-26_g185b_charcoal_ff.png', '2023-05-06 20:42:26', 49, '2023-05-06 20:42:26', 49, 1),
 (31, 'T-shirty', 'img/uploads/categories/2023-05-06-20-43-32_tshirtpng.parspng.com_.png', '2023-05-06 20:43:32', 49, '2023-05-06 20:43:32', 49, 1),
-(32, 'Spodnie', 'img/uploads/categories/2023-05-06-20-44-43_khaki-pant-png-transparent-image.png', '2023-05-06 20:44:43', 49, '2023-05-06 20:44:43', 49, 1),
-(33, 'Kurtki', 'img/uploads/categories/2023-05-06-20-45-30_helly-hansen-verglas-down-jacket-png.png', '2023-05-06 20:45:30', 49, '2023-05-06 20:45:30', 49, 1),
-(34, 'Obuwie', 'img/uploads/categories/2023-05-06-20-47-39_buty-meskie-air-force-1-07-gjgxsp.png', '2023-05-06 20:47:39', 49, '2023-05-06 20:47:39', 49, 1);
+(32, 'Spodnie', 'img/uploads/categories/2023-05-06-20-44-43_khaki-pant-png-transparent-image.png', '2023-05-06 20:44:43', 49, '2023-05-06 20:44:43', 49, 1);
 
 -- --------------------------------------------------------
 
@@ -208,11 +206,28 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `category_id`, `image_path_1`, `image_path_2`, `image_path_3`, `description`, `price`, `quantity`, `size`, `colour`, `gender`, `view_count`, `last_modified_date`, `user_id_last_modified`, `created_date`, `user_id_created`, `status`) VALUES
-(23, 'Bluza The North Face r L BINER GRAPHIC | L', 30, 'img/uploads/products/2023-05-07-11-31-12_bluza-rozpinana-meska-the-nort-face-biner-graphic.png', 'img/uploads/products/2023-05-07-11-31-12_bluza-rozpinana-meska-the-nort-face-biner-graphic-rodzaj-rozpinane-z-kapturem.png', NULL, 'Przyciągająca wzrok w 100% bawełniana bluza z kapturem zapinana na zamek błyskawiczny Biner Graphic z kultowym logo The North Face jest idealna na codzienne letnie wyprawy.', 299.99, 994, '3', '0', 0, 18, '2023-05-07 22:45:11', 49, '2023-05-07 11:29:42', 49, 1),
+(23, 'Bluza The North Face r L BINER GRAPHIC | L', 30, 'img/uploads/products/2023-05-07-11-31-12_bluza-rozpinana-meska-the-nort-face-biner-graphic.png', 'img/uploads/products/2023-05-07-11-31-12_bluza-rozpinana-meska-the-nort-face-biner-graphic-rodzaj-rozpinane-z-kapturem.png', NULL, 'Przyciągająca wzrok w 100% bawełniana bluza z kapturem zapinana na zamek błyskawiczny Biner Graphic z kultowym logo The North Face jest idealna na codzienne letnie wyprawy.', 299.99, 994, '3', '0', 0, 21, '2023-05-07 22:45:11', 49, '2023-05-07 11:29:42', 49, 1),
 (24, 'Bluza The North Face r L BINER GRAPHIC | S', 30, 'img/uploads/products/2023-05-07-11-31-49_bluza-rozpinana-meska-the-nort-face-biner-graphic.png', 'img/uploads/products/2023-05-07-11-31-49_bluza-rozpinana-meska-the-nort-face-biner-graphic-rodzaj-rozpinane-z-kapturem.png', NULL, 'Przyciągająca wzrok w 100% bawełniana bluza z kapturem zapinana na zamek błyskawiczny Biner Graphic z kultowym logo The North Face jest idealna na codzienne letnie wyprawy.', 299.99, 993, '1', '0', 0, 9, '2023-05-07 22:45:13', 49, '2023-05-07 11:31:49', 49, 1),
 (25, 'Bluza The North Face Resolve Fleece | S', 30, 'img/uploads/products/2023-05-07-11-33-26_polar-damski-the-north-face-resolve.png', NULL, NULL, 'Trzymaj mróz na dystans nawet na eksponowanych górskich szlakach.', 299.99, 991, '3', '0', 1, 7, '2023-05-07 22:49:15', 49, '2023-05-07 11:33:26', 49, 1),
-(26, 'Bluza The North Face Half Dome | S', 30, 'img/uploads/products/2023-05-07-11-36-32_bluza-z-kapturem-damska-the-north-face-half-dome.png', 'img/uploads/products/2023-05-07-11-36-32_bluza-z-kapturem-damska-the-north-face-half-dome-marka-the-north-face.png', NULL, 'Bluza z kapturem Half Dome to lekka warstwa ubioru, którą zechcesz mieć zawsze przy sobie.', 349.99, 44, '1', '7', 1, 5, '2023-05-07 22:49:18', 49, '2023-05-07 11:36:32', 49, 1),
-(27, 'Polar The North Face niebieski | L', 30, 'img/uploads/products/2023-05-07-11-41-14_polar-meski-the-north-face-resolve-fleece.png', 'img/uploads/products/2023-05-07-11-41-14_polar-meski-the-north-face-resolve-fleece-plec-produkt-meski.png', NULL, 'Nasza bluza polarowa Resolve to idealna warstwa na piesze wędrówki – jest ciepła, szybkoschnąca i odprowadza wilgoć.', 299.99, 994, '3', '3', 0, 7, '2023-05-08 12:54:46', 49, '2023-05-07 11:41:14', 49, 1);
+(26, 'Bluza The North Face Half Dome | S', 30, 'img/uploads/products/2023-05-07-11-36-32_bluza-z-kapturem-damska-the-north-face-half-dome.png', 'img/uploads/products/2023-05-07-11-36-32_bluza-z-kapturem-damska-the-north-face-half-dome-marka-the-north-face.png', NULL, 'Bluza z kapturem Half Dome to lekka warstwa ubioru, którą zechcesz mieć zawsze przy sobie.', 349.99, 44, '1', '7', 1, 6, '2023-05-07 22:49:18', 49, '2023-05-07 11:36:32', 49, 1),
+(27, 'Polar The North Face niebieski | L', 30, 'img/uploads/products/2023-05-07-11-41-14_polar-meski-the-north-face-resolve-fleece.png', 'img/uploads/products/2023-05-07-11-41-14_polar-meski-the-north-face-resolve-fleece-plec-produkt-meski.png', NULL, 'Nasza bluza polarowa Resolve to idealna warstwa na piesze wędrówki – jest ciepła, szybkoschnąca i odprowadza wilgoć.', 299.99, 994, '3', '3', 0, 8, '2023-05-08 12:54:46', 49, '2023-05-07 11:41:14', 49, 1),
+(42, 'Koszulka T-shirt Hi-Tec Eron | L', 31, 'img/uploads/products/2023-05-09-11-22-34_hi-tec-meska-koszulka-t-shirt-eron-bawelniana-plec-produkt-meski.png', 'img/uploads/products/2023-05-09-11-22-34_hi-tec-meska-koszulka-t-shirt-eron-bawelniana-material-dominujacy-bawelna.jpg', 'img/uploads/products/2023-05-09-11-22-34_hi-tec-meska-koszulka-t-shirt-eron-bawelniana-liczba-kieszeni-0.png', 'Męska, klasyczna koszulka, t-shirt ERON z najnowszej marki Hi-Tec świetnie sprawdza się jako uzupełnienie codziennego stroju. Idealna podczas codziennego użytkowania, spacerów po mieście, czy też podczas uprawiania różnych form aktywności sportowej.', 45.00, 1000, '3', '3', 0, 0, '2023-05-09 11:22:34', 59, '2023-05-09 11:22:34', 59, 1),
+(43, 'Koszulka T-shirt Hi-Tec Eron | M', 31, 'img/uploads/products/2023-05-09-11-23-13_hi-tec-meska-koszulka-t-shirt-eron-bawelniana-plec-produkt-meski.png', 'img/uploads/products/2023-05-09-11-23-13_hi-tec-meska-koszulka-t-shirt-eron-bawelniana-material-dominujacy-bawelna.jpg', 'img/uploads/products/2023-05-09-11-23-13_hi-tec-meska-koszulka-t-shirt-eron-bawelniana-liczba-kieszeni-0.png', 'Męska, klasyczna koszulka, t-shirt ERON z najnowszej marki Hi-Tec świetnie sprawdza się jako uzupełnienie codziennego stroju. Idealna podczas codziennego użytkowania, spacerów po mieście, czy też podczas uprawiania różnych form aktywności sportowej.', 45.00, 500, '2', '3', 0, 0, '2023-05-09 11:23:13', 59, '2023-05-09 11:23:13', 59, 1),
+(44, 'Koszulka T-shirt Hi-Tec Eron | XL', 31, 'img/uploads/products/2023-05-09-11-23-48_hi-tec-meska-koszulka-t-shirt-eron-bawelniana-plec-produkt-meski.png', 'img/uploads/products/2023-05-09-11-23-48_hi-tec-meska-koszulka-t-shirt-eron-bawelniana-material-dominujacy-bawelna.jpg', 'img/uploads/products/2023-05-09-11-23-48_hi-tec-meska-koszulka-t-shirt-eron-bawelniana-liczba-kieszeni-0.png', 'Męska, klasyczna koszulka, t-shirt ERON z najnowszej marki Hi-Tec świetnie sprawdza się jako uzupełnienie codziennego stroju. Idealna podczas codziennego użytkowania, spacerów po mieście, czy też podczas uprawiania różnych form aktywności sportowej.', 45.00, 500, '4', '3', 0, 4, '2023-05-09 11:23:48', 59, '2023-05-09 11:23:48', 59, 1),
+(45, 'Koszulka T-shirt 4F TSHM536 | S', 31, 'img/uploads/products/2023-05-09-11-28-19_4f-t-shirt-sportowy-koszulka-meska-bawelniana.png', 'img/uploads/products/2023-05-09-11-28-19_4f-t-shirt-sportowy-koszulka-meska-bawelniana-plec-produkt-meski.png', 'img/uploads/products/2023-05-09-11-28-19_4f-t-shirt-sportowy-koszulka-meska-bawelniana-liczba-kieszeni-0.png', 'Zależy Ci na wysokiej jakości ubrań i dodatków? Nie musisz dalej szukać! T-SHIRT marki 4F spełnia wszystkie Twoje oczekiwania. Został wykonany z najwyższej klasy materiałów, dlatego imponuje nie tylko designem, ale także innymi walorami. Jest niezwykle żywotny i wygodny w użytkowaniu oraz, co szczególnie ważne, nadają się do uprawiania wszelkich dyscyplin sportowych!', 40.00, 1000, '1', '1', 0, 0, '2023-05-09 11:28:19', 59, '2023-05-09 11:26:18', 59, 1),
+(46, 'Koszulka T-shirt 4F TSHM536 | M', 31, 'img/uploads/products/2023-05-09-11-26-58_4f-t-shirt-sportowy-koszulka-meska-bawelniana.png', 'img/uploads/products/2023-05-09-11-26-58_4f-t-shirt-sportowy-koszulka-meska-bawelniana-plec-produkt-meski.png', 'img/uploads/products/2023-05-09-11-26-58_4f-t-shirt-sportowy-koszulka-meska-bawelniana-liczba-kieszeni-0.png', 'Zależy Ci na wysokiej jakości ubrań i dodatków? Nie musisz dalej szukać! T-SHIRT marki 4F spełnia wszystkie Twoje oczekiwania. Został wykonany z najwyższej klasy materiałów, dlatego imponuje nie tylko designem, ale także innymi walorami. Jest niezwykle żywotny i wygodny w użytkowaniu oraz, co szczególnie ważne, nadają się do uprawiania wszelkich dyscyplin sportowych!', 40.00, 1000, '2', '1', 0, 0, '2023-05-09 11:26:58', 59, '2023-05-09 11:26:58', 59, 1),
+(47, 'Koszulka T-shirt 4F TSHM536 | XXL', 31, 'img/uploads/products/2023-05-09-11-27-37_4f-t-shirt-sportowy-koszulka-meska-bawelniana.png', 'img/uploads/products/2023-05-09-11-27-37_4f-t-shirt-sportowy-koszulka-meska-bawelniana-plec-produkt-meski.png', 'img/uploads/products/2023-05-09-11-27-37_4f-t-shirt-sportowy-koszulka-meska-bawelniana-liczba-kieszeni-0.png', 'Zależy Ci na wysokiej jakości ubrań i dodatków? Nie musisz dalej szukać! T-SHIRT marki 4F spełnia wszystkie Twoje oczekiwania. Został wykonany z najwyższej klasy materiałów, dlatego imponuje nie tylko designem, ale także innymi walorami. Jest niezwykle żywotny i wygodny w użytkowaniu oraz, co szczególnie ważne, nadają się do uprawiania wszelkich dyscyplin sportowych!', 30.00, 100, '5', '1', 0, 1, '2023-05-09 11:27:37', 59, '2023-05-09 11:27:37', 59, 1),
+(48, 'T-SHIRT HUGO BOSS DYSKRETNE MAŁE LOGO KLASYCZNY', 31, 'img/uploads/products/2023-05-09-11-31-17_t-shirt-hugo-boss-dyskretne-male-logo-klasyczny.png', NULL, NULL, 'Klasyczny t-shirt HUGO BOSS z dyskretnym logo wykonany został z dbałością o każdy detal co sprawi że będziesz chętnie do niego wracać i nosić go przy każdej okazji. Produkt z powodzeniem nada się również na prezent', 119.99, 100, '3', '0', 0, 0, '2023-05-09 11:31:17', 59, '2023-05-09 11:31:17', 59, 1),
+(49, 'Koszulka T-shirt EA7 Emporio Armani ', 31, 'img/uploads/products/2023-05-09-11-33-20_koszulka-t-shirt-ea7-emporio-armani-czarna-r-xl.png', NULL, NULL, 'T-SHIRT EMPORIO ARMANI 3G1TM41 JHRZ', 89.99, 100, '2', '0', 2, 0, '2023-05-09 11:33:20', 59, '2023-05-09 11:33:20', 59, 1),
+(50, 'Koszulka T-shirt JHK TSRA | M', 31, 'img/uploads/products/2023-05-09-11-35-36_koszulka-robocza-t-shirt-bawelniany-unisex-roz-m.png', NULL, NULL, 'Koszulka T-shirt JHK TSRA', 17.20, 1000, '2', '7', 2, 0, '2023-05-09 11:35:36', 59, '2023-05-09 11:35:36', 59, 1),
+(51, 'Spodnie Jogger Jigga Wear | M', 32, 'img/uploads/products/2023-05-09-11-51-06_spodnie-jogger-jigga-wear-czarne-super-jakosc-m-fason-inny.png', 'img/uploads/products/2023-05-09-11-51-06_spodnie-jogger-jigga-wear-czarne-super-jakosc-m-rozmiar-m.png', 'img/uploads/products/2023-05-09-11-51-06_spodnie-jogger-jigga-wear-czarne-super-jakosc-m-dlugosc-nogawki-dluga.png', 'Unikatowe i wygodne spodnie materiałowe z haftowanym logotypem o regularnym kroju. Posiadają gumę w pasie regulowaną sznurkiem oraz cztery kieszenie.', 99.99, 1000, '2', '0', 0, 0, '2023-05-09 11:51:06', 59, '2023-05-09 11:51:06', 59, 1),
+(52, 'Spodnie Jogger Jigga Wear | L', 32, 'img/uploads/products/2023-05-09-11-51-17_spodnie-jogger-jigga-wear-czarne-super-jakosc-m-fason-inny.png', 'img/uploads/products/2023-05-09-11-51-17_spodnie-jogger-jigga-wear-czarne-super-jakosc-m-rozmiar-m.png', 'img/uploads/products/2023-05-09-11-51-17_spodnie-jogger-jigga-wear-czarne-super-jakosc-m-dlugosc-nogawki-dluga.png', 'Unikatowe i wygodne spodnie materiałowe z haftowanym logotypem o regularnym kroju. Posiadają gumę w pasie regulowaną sznurkiem oraz cztery kieszenie.', 99.99, 1000, '3', '0', 0, 0, '2023-05-09 11:51:17', 59, '2023-05-09 11:51:17', 59, 1),
+(53, 'Spodnie bojówki Fk_fashion | M', 32, 'img/uploads/products/2023-05-09-11-53-31_it096-1-r-38-robocze-bojowki-pasek-gratis-moro-rozmiar-38.png', 'img/uploads/products/2023-05-09-11-53-31_it096-1-r-38-robocze-bojowki-pasek-gratis-moro-wzor-dominujacy-bez-wzoru.png', NULL, 'Spodnie bojówki Fk_fashion', 105.00, 100, '2', '0', 0, 0, '2023-05-09 11:53:31', 59, '2023-05-09 11:53:31', 59, 1),
+(54, 'Spodnie bojówki Fk_fashion | S', 32, 'img/uploads/products/2023-05-09-11-53-40_it096-1-r-38-robocze-bojowki-pasek-gratis-moro-rozmiar-38.png', 'img/uploads/products/2023-05-09-11-53-40_it096-1-r-38-robocze-bojowki-pasek-gratis-moro-wzor-dominujacy-bez-wzoru.png', NULL, 'Spodnie bojówki Fk_fashion', 105.00, 100, '1', '0', 0, 1, '2023-05-09 11:53:40', 59, '2023-05-09 11:53:40', 59, 1),
+(55, 'Spodnie rybaczki Agrafka | XS', 32, 'img/uploads/products/2023-05-09-11-59-44_cienkie-spodnie-w-gumke-elastyczne-3-4-letnie-50-plec-produkt-damski.png', 'img/uploads/products/2023-05-09-11-59-44_cienkie-spodnie-w-gumke-elastyczne-3-4-letnie-50.png', NULL, 'Fason spodni jest bardzo przemyślany i sprawia, że są one bardzo wygodne w noszeniu. W pasie znajduje się bardzo rozciągliwa gumka, która zapewnia idealne dopasowanie do sylwetki. Przód spodni zdobią dwie kieszenie, ozdobione guzikami. Tył spodni ma bardziej stonowany, gładki wygląd. Dostępne są w dużej ilości rozmiarów, co z pewnością ucieszy każdą kobietę, która poszukuje modnych ubrań w swoim rozmiarze. Dół nogawek i pas spodni zostały ozdobione paseczkami.  Spodnie są idealne na co dzień - świetnie wyglądają, a jednocześnie zapewniają komfort i wygodę użytkowania. To doskonały wybór dla każdej kobiety, która ceni sobie modę i wygodę.', 79.90, 100, '0', '0', 1, 0, '2023-05-09 11:59:44', 59, '2023-05-09 11:55:44', 59, 1),
+(56, 'Spodnie rybaczki Agrafka | S', 32, 'img/uploads/products/2023-05-09-11-59-28_cienkie-spodnie-w-gumke-elastyczne-3-4-letnie-50.png', 'img/uploads/products/2023-05-09-11-59-28_cienkie-spodnie-w-gumke-elastyczne-3-4-letnie-50-plec-produkt-damski.png', NULL, 'Fason spodni jest bardzo przemyślany i sprawia, że są one bardzo wygodne w noszeniu. W pasie znajduje się bardzo rozciągliwa gumka, która zapewnia idealne dopasowanie do sylwetki. Przód spodni zdobią dwie kieszenie, ozdobione guzikami. Tył spodni ma bardziej stonowany, gładki wygląd. Dostępne są w dużej ilości rozmiarów, co z pewnością ucieszy każdą kobietę, która poszukuje modnych ubrań w swoim rozmiarze. Dół nogawek i pas spodni zostały ozdobione paseczkami.  Spodnie są idealne na co dzień - świetnie wyglądają, a jednocześnie zapewniają komfort i wygodę użytkowania. To doskonały wybór dla każdej kobiety, która ceni sobie modę i wygodę.', 79.90, 100, '1', '0', 1, 1, '2023-05-09 11:59:29', 59, '2023-05-09 11:55:54', 59, 1),
+(57, 'Spodnie dresowe bordowe Dresy PAKO LORENTE | L', 32, 'img/uploads/products/2023-05-09-11-59-11_spodnie-dresowe-bordowe-dresy-pako-lorente-r-l.png', 'img/uploads/products/2023-05-09-11-59-11_spodnie-dresowe-bordowe-dresy-pako-lorente-r-l-marka-pako-lorente.png', NULL, 'Spodnie dresowe bordowe Dresy PAKO LORENTE', 99.99, 100, '3', '7', 2, 0, '2023-05-09 11:59:11', 59, '2023-05-09 11:59:11', 59, 1),
+(58, 'Spodnie proste | S', 32, 'img/uploads/products/2023-05-09-12-11-59_spodnie-damskie-wysoki-stan-mix-kolor-plus-size-fason-proste.png', NULL, NULL, 'długie, proste nogawki (Straight leg), w pasie szeroka niewpijająca się guma, z tyłu dwie kieszenie w szpic oraz z przodu dwie kieszenie  z ozdobnymi dżetami', 59.99, 100, '1', '7', 1, 1, '2023-05-09 12:11:59', 59, '2023-05-09 12:11:59', 59, 1);
 
 -- --------------------------------------------------------
 
@@ -247,7 +262,8 @@ INSERT INTO `users` (`id`, `email`, `password`, `first_name`, `last_name`, `date
 (53, 'test4', 'test', 'test', 'test', '2023-04-02', '2023-04-02 14:23:32', 1, '2023-04-10 19:38:30', 49, 1),
 (54, 'test5', 'test', 'test', 'test', '2023-04-02', '2023-04-02 14:23:32', 1, '2023-05-06 16:22:25', 49, 1),
 (59, 'draczekprojekt@gmail.com', '$2y$10$VdcnF/x6CVWihhaXjTN1meqf.iJBL.p38amXN3rMJN0l6xkc8w8kS', 'Damian', 'Raczek', '2023-03-31', '2023-04-10 15:47:17', 1, '2023-05-06 17:00:48', 49, 1),
-(60, 'damian.raczek4206695@gmail.com', '$2y$10$hUIhLo7gAGA7P93X3WiUuuTZ3i8CBZcj7LX8PPXfe7W9P/XvjhOde', 'DamianZmienione', 'RaczekZmienione', '2023-04-01', '2023-04-16 16:12:13', 1, '2023-05-06 17:00:47', 49, 1);
+(60, 'damian.raczek4206695@gmail.com', '$2y$10$hUIhLo7gAGA7P93X3WiUuuTZ3i8CBZcj7LX8PPXfe7W9P/XvjhOde', 'DamianZmienione', 'RaczekZmienione', '2023-04-01', '2023-04-16 16:12:13', 1, '2023-05-06 17:00:47', 49, 1),
+(61, 'admin@dRaczekProjekt.com', '$2y$10$LeS3ubSpd6OFFerPMMMSnufQKGHmRTuvqQQQlD8I9AfeLMQVd1sQ6', 'admin', 'admin', '2023-05-09', '2023-05-09 12:18:25', 1, '2023-05-09 12:18:25', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -266,7 +282,8 @@ CREATE TABLE `users_admin` (
 
 INSERT INTO `users_admin` (`id`, `user_id`) VALUES
 (7, 49),
-(8, 59);
+(8, 59),
+(9, 61);
 
 -- --------------------------------------------------------
 
@@ -285,14 +302,6 @@ CREATE TABLE `users_token_action` (
   `user_id_last_modified` bigint(20) NOT NULL,
   `status` tinyint(3) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
-
---
--- Dumping data for table `users_token_action`
---
-
-INSERT INTO `users_token_action` (`id`, `token`, `action`, `user_id`, `created_date`, `user_id_created`, `last_modified_date`, `user_id_last_modified`, `status`) VALUES
-(45, 'eebfd35fbc654200c34253a8e05710afea32432c4b9b8110bfade1afa009a07f', 1, 59, '2023-05-03 12:46:37', 1, '2023-05-03 12:46:37', 1, 1),
-(46, '69b8ad459ad7e07a416ad59f0eaf249c0fe20ecfebf2c1fda316db219bb5a2a7', 1, 59, '2023-05-05 12:51:34', 1, '2023-05-05 12:51:34', 1, 1);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -419,19 +428,19 @@ ALTER TABLE `payment_methods`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `users_admin`
 --
 ALTER TABLE `users_admin`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users_token_action`

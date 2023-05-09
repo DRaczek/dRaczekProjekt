@@ -160,10 +160,10 @@ class ManageProductsController extends AdminProductController{
         $categories = $categoryModel->getCategories();
 
         $data = array();
-        $categoryModel = new CategoryModel();
         $headerData = array(
-            "categories"=>$categoryModel->getCategories()
+            "categories"=>$categories
         );
+        $data['categories'] = $categories;
         $data['result'] = $result;
         $data['resultCount'] = $resultCount;
         $data['filter'] = [

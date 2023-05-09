@@ -14,7 +14,7 @@
     <main>
        <form class="filter" action="/dRaczekProjekt/products" method="get">
             <input type="hidden" name="page" value="1">
-            <input type="hidden" name="size" value="30">
+            <input type="hidden" name="size" value="20">
             <input type="hidden" name="text" value="<?php if(isset($_GET['text']))echo $_GET['text']; else echo ""; ?>">
             <h2>Kategorie</h2>
             <hr>

@@ -34,6 +34,10 @@
                         echo "<a href=\"/dRaczekProjekt/logout\">WYLOGUJ</a>";
                         echo "<hr>";
                         echo "<a href=\"/dRaczekProjekt/orders\">Zamówienia</a>";
+                        if(isset($_SESSION['user_is_admin']) && $_SESSION['user_is_admin']==true){
+                            echo "<hr>";
+                            echo "<a href=\"/dRaczekProjekt/admin/home\">Panel Administratora</a>";
+                        }
                     }
                     else{
                         echo "<a href=\"/dRaczekProjekt/login\">ZALOGUJ SIĘ</a>";

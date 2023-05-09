@@ -213,7 +213,7 @@ class ProductModel{
 
     public function getNewest(){
         $dbh = include("MVC/models/databaseModels/Database.php");
-        $query = "SELECT id, name, image_path_1, price FROM products WHERE status = ? ORDER BY created_date DESC LIMIT 10";
+        $query = "SELECT id, name, image_path_1, price FROM products WHERE status = ? ORDER BY created_date DESC LIMIT 20";
         $stmt = $dbh->prepare($query);
         $stmt->execute([StatusEnum::ACTIVE]);
         $dbh = null;

@@ -12,13 +12,14 @@ class SearchProductsController extends Controller{
 
         $pageable = explode("&", $pageable);
         $pageable=array_slice($pageable,2);
-        $pageable="&".implode("&",$pageable);
+        $pageable=implode("&",$pageable);
+        if(strlen($pageable)>=1)$pageable="&".$pageable;
 
         if(!isset($_GET['page'])){
             $_GET['page']=1;
         }
         if(!isset($_GET['size'])){
-            $_GET['size']=10;
+            $_GET['size']=20;
         }
         $page = intval($_GET['page']);
         if($page<1)$page=1;

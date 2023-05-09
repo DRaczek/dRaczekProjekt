@@ -36,6 +36,7 @@
 
             $result = $data['result'];
             $resultCount  = $data['resultCount'];
+            $categories = $data['categories'];
     ?>
     <?php echo $data['header']; ?>
     <main>
