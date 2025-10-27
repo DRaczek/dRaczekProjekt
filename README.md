@@ -66,3 +66,26 @@ A sample configuration file is included in the repository, though its credential
 - **Other**: `sendmail` for email handling
 
 ---
+
+## Images
+
+### User interface
+
+![ss1](images/ss1.png)
+![ss2](images/ss2.png)
+![ss3](images/ss3.png)
+![ss4](images/ss4.png)
+![ss5](images/ss5.png)
+![ss6](images/ss6.png)
+![ss7](images/ss7.png)
+![ss8](images/ss8.png)
+
+### Admin Panel
+
+![admin1](images/admin1.png)
+![admin2](images/admin2.png)
+![admin3](images/admin3.png)
+![admin4](images/admin4.png)
+![admin5](images/admin5.png)
+![admin6](images/admin6.png)
+
